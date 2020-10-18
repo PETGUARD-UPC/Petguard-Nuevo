@@ -6,9 +6,9 @@ import pe.edu.upc.entity.Cliente;
 
 public interface IClienteService {
 
-	public void insert(Cliente cuid);
+	public void insert(Cliente clie);
 
 	public List<Cliente> list();
 
-	public void delete(Cliente cuid);
+	public void delete(Cliente clie);
 }
