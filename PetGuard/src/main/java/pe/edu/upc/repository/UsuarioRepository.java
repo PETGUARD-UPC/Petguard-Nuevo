@@ -7,4 +7,6 @@ import pe.edu.upc.entity.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
+	
+
 }
