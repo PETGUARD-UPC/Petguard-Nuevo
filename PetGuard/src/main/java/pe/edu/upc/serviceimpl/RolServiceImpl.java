@@ -1,4 +1,4 @@
-package pe.edu.upc.serviceimplement;
+package pe.edu.upc.serviceimpl;
 
 import java.io.Serializable;
 import java.util.List;
