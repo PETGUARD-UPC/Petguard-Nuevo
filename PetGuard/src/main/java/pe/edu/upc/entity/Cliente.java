@@ -2,13 +2,46 @@ package pe.edu.upc.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+@Table(name = "customers")
 public class Cliente {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCustomer;
+	
+	@ManyToOne
+	@JoinColumn(name = "idUser", nullable = false)
 	private int idUser;
+	
+	@Column(name = "name", length = 45, nullable = false)
 	private String name;
+	
+	@Column(name = "lastname", length = 45, nullable = false)
 	private String lastname;
+	
+	@Column(name = "phone", length = 9, nullable = false)
 	private int phone;
+	
+	@Column(name = "email", length = 45, nullable = false)
 	private String email;
+	
+	@DateTimeFormat
+	@Column(name = "birhtdate")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date Birthdate;
 	
 	public Cliente() {
