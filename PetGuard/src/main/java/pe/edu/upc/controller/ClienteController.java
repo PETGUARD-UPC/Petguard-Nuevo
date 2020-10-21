@@ -11,42 +11,41 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.entity.Mascota;
-import pe.edu.upc.serviceinterface.IMascotaService;
+import pe.edu.upc.entity.Cliente;
+import pe.edu.upc.serviceinterface.IClienteService;
 
 @Controller
-@RequestMapping("/pets")
-public class MascotaController {
-	
+@RequestMapping("/customers")
+public class ClienteController {
 	@Autowired
-	private IMascotaService mS;
+	private IClienteService cS;
 	
 	@GetMapping("/new")
-	public String newMascota(Model model) {
-		
-		model.addAttribute("pet", new Mascota());
-		return "pet/pet";
+	public String newCliente(Model model) {
+		model.addAttribute("customers", new Cliente());
+		return "customers/customers";
 	}
 	
 	@PostMapping("/save")
-	public String saveMascota(@Valid Mascota pet,BindingResult result,Model model,
+	public String saveCliente(@Valid Cliente cli, BindingResult result, Model model,
 			SessionStatus status) throws Exception{
 		if(result.hasErrors()) {
-			return"pet/pet";
+			return"customers/customers";
 		}else {
-			mS.insert(pet);
+			cS.insert(cli);
 		}
-		model.addAttribute("listaMascotas",mS.list());
-		return "/pet/listPet";
+		model.addAttribute("listaCliente",cS.list());
+		return "/customers/listCustomers";
 	}
 	
 	@GetMapping("/list")
-	public String listPets(Model model) {
+	public String listCliente (Model model) {
 		try {
-			model.addAttribute("listaMascotas",mS.list());
+			model.addAttribute("listaCliente",cS.list());
 		}catch(Exception e) {
 			System.out.println("Error al listar en el controller");
 		}
-		return "/pet/listPet";
+		return "/customers/listCustomers";
 	}
+
 }
