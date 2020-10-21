@@ -39,9 +39,9 @@
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				th:href="@{/pets/index}">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-leaf"></i>
+					<i class="fas fa-dog"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">App</div>
+				<div class="sidebar-brand-text mx-3">PetGuard</div>
 			</a>
 
 			<!-- Divider -->
@@ -57,7 +57,7 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
+						 <i class="fas fa-fw fa-paw"></i>&nbsp;<span class="collapse-item" th:href="@{/pets/list}">&nbsp;&nbsp;  Mascotas</span>
 					</div>
 				</div></li>
 
@@ -181,8 +181,8 @@
 					
 						<div class="form-group row">
 							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/pets/list" class="btn btn-danger">Cancelar</a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+								<a href="/pets/listPet" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 						<p th:text="${mensaje}" class="form-text text-danger"></p>
