@@ -43,7 +43,7 @@ public class MascotaController {
 	@GetMapping("/list")
 	public String listPets(Model model) {
 		try {
-			model.addAttribute("listMascotas",mS.list());
+			model.addAttribute("listaMascotas",mS.list());
 		}catch(Exception e) {
 			System.out.println("Error al listar en el controller");
 		}
