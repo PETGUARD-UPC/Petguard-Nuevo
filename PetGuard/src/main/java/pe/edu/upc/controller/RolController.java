@@ -15,7 +15,7 @@ import pe.edu.upc.entity.Rol;
 import pe.edu.upc.serviceinterface.IRolService;
 
 @Controller
-@RequestMapping("/pets")
+@RequestMapping("/rols")
 public class RolController {
 
 	@Autowired
@@ -35,17 +35,17 @@ public class RolController {
 			rS.insertar(rol);
 		}
 		model.addAttribute("listaRoles", rS.list());
-		return "/rol/listRol";
+		return "/rol/listRols";
 	}
 
 	@GetMapping("/list")
 	public String listRols(Model model) {
 		try {
-			model.addAttribute("listRoles", rS.list());
+			model.addAttribute("listRols", rS.list());
 		} catch (Exception e) {
 			System.out.println("Error al listar en el controller");
 		}
-		return "/rol/listRol";
+		return "/rol/listRols";
 	}
 
 }
