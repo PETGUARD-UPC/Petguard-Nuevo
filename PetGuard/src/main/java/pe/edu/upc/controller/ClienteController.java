@@ -28,7 +28,7 @@ public class ClienteController {
 	public String newCliente(Model model) {
 		model.addAttribute("listUsers", uS.list());
 		model.addAttribute("customer", new Cliente());
-		return "customer/customer";
+		return "/customer/customer";
 	}
 	
 	@PostMapping("/save")
