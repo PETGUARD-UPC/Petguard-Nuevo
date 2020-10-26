@@ -8,7 +8,7 @@ public interface ICuidadorService {
 
 	public void insert(Cuidador cuid);
 
-	public List<Cuidador> list();
+	List<Cuidador> list();
 
-	public void delete(Cuidador cuid);
+
 }
