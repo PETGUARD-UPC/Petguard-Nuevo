@@ -118,8 +118,20 @@
 						</ul>
 					</div>
 
-					<form th:action="@{/pets/save}" th:object="${pet}"
-						method="post">
+					<form th:action="@{/pets/save}" th:object="${pet}" method="post">
+
+						<div class="form-group row">
+							<label for="mascotaCustomer" class="col-sm-2 col-form-label">Id</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{cliente.idCustomer}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('cliente.idCustomer')}"
+									th:errors="*{cliente.idCustomer}"></small>
+							</div>
+						</div>
+
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Mascota</label>
 							<div class="col-sm-6">
@@ -153,7 +165,7 @@
 									th:errors="*{edadMascota}"></small>
 							</div>
 						</div>
-							<div class="form-group row">
+						<div class="form-group row">
 							<label for="pesoMascota" class="col-sm-2 col-form-label">Peso</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{pesoMascota}"
@@ -164,7 +176,7 @@
 									th:errors="*{pesoMascota}"></small>
 							</div>
 						</div>
-							<div class="form-group row">
+						<div class="form-group row">
 							<label for="sexoMascota" class="col-sm-2 col-form-label">Sexo</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{sexoMascota}"
@@ -175,41 +187,41 @@
 									th:errors="*{sexoMascota}"></small>
 							</div>
 						</div>
-						</div>
-						
 
-					
+
+
 						<div class="form-group row">
 							<div class="col-sm-6">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+									type="submit" value="Guardar" class="btn btn-secondary"></input>
 								<a href="/pets/listPet" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 						<p th:text="${mensaje}" class="form-text text-danger"></p>
-
-					</form>
-
-
-
-
 				</div>
-				<!-- /.container-fluid -->
+				</form>
+
+
+
 
 			</div>
-			<!-- End of Main Content -->
-
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 2019</span>
-					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
+			<!-- /.container-fluid -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright &copy; Web 2019</span>
+				</div>
+			</div>
+		</footer>
+		<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
