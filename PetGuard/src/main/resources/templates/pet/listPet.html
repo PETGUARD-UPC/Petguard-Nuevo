@@ -37,7 +37,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/laboratories/list}">
+				th:href="@{/pets/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-dog"></i>
 				</div>
@@ -57,6 +57,12 @@
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/keepers/list}">Cuidadores</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/list}">Clientes</a>
+					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
 					</div>
@@ -138,6 +144,7 @@
 								<th scope="col">Edad</th>
 								<th scope="col">Peso</th>
 								<th scope="col">Sexo</th>
+								<th scope="col">Dueño</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -148,6 +155,7 @@
 								<td th:text="${l.edadMascota}"></td>
 								<td th:text="${l.pesoMascota}"></td>
 								<td th:text="${l.sexoMascota}"></td>
+								<td th:text="${l.cliente.name}"></td>
 							</tr>
 						</tbody>
 					</table>

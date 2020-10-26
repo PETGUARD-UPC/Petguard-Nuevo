@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entity.Mascota;
+import pe.edu.upc.serviceinterface.IClienteService;
 import pe.edu.upc.serviceinterface.IMascotaService;
 
 @Controller
@@ -21,8 +22,14 @@ public class MascotaController {
 	@Autowired
 	private IMascotaService mS;
 	
+	@Autowired
+	private IClienteService cS;
+	
+	
 	@GetMapping("/new")
 	public String newMascota(Model model) {
+		
+		model.addAttribute("listaCliente", cS.list());
 		
 		model.addAttribute("pet", new Mascota());
 		return "pet/pet";
@@ -37,7 +44,7 @@ public class MascotaController {
 			mS.insert(pet);
 		}
 		model.addAttribute("listaMascotas",mS.list());
-		return "/pet/listPet";
+		return "redirect:/pets/list";
 	}
 	
 	@GetMapping("/list")

@@ -39,7 +39,7 @@
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				th:href="@{/customers/index}">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-leaf"></i>
+					<i class="fas fa-dog"></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">PetGuard</div>
 			</a>
@@ -57,7 +57,13 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/customers/list}">Cliente</a>
+						<a class="collapse-item" th:href="@{/keepers/list}">Cuidadores</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/list}">Clientes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
 					</div>
 				</div></li>
 
@@ -121,7 +127,7 @@
 					<form th:action="@{/customers/save}" th:object="${customer}"
 						method="post">
 						<div class="form-group row">
-							<label for="lastnameC" class="col-sm-2 col-form-label">Id</label>
+							<label for="id" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{usuario.idUser}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
