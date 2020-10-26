@@ -39,7 +39,7 @@ public class Cliente {
 	@Column(name = "email", length = 45, nullable = false)
 	private String email;
 	
-	@DateTimeFormat
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "birhtdate")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date birthdate;

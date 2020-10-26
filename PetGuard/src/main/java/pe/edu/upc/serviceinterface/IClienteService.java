@@ -10,5 +10,4 @@ public interface IClienteService {
 
 	public List<Cliente> list();
 
-	public void delete(Cliente clie);
 }

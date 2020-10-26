@@ -22,7 +22,7 @@ public class ClienteController {
 	
 	@GetMapping("/new")
 	public String newCliente(Model model) {
-		model.addAttribute("customers", new Cliente());
+		model.addAttribute("customer", new Cliente());
 		return "customer/customer";
 	}
 	
