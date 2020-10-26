@@ -35,14 +35,14 @@ public class CuidadorController {
 		}else {
 			cS.insert(cui);
 		}
-		model.addAttribute("listaCuidadores",cS.list());
+		model.addAttribute("listaCuidador",cS.list());
 		return "/keeper/listKeeper";
 	}
 	
 	@GetMapping("/list")
 	public String listCuidadores (Model model) {
 		try {
-			model.addAttribute("listaCuidadores",cS.list());
+			model.addAttribute("listaCuidador",cS.list());
 		}catch(Exception e) {
 			System.out.println("Error al listar en el controller");
 		}
