@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "keepers")
@@ -18,37 +22,47 @@ public class Cuidador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCuidador;
-
-	@Column(name = "nameCuidador", length = 40, nullable = false)
-	private String nameCuidador;
-	@Column(name = "surnameCuidador", length = 40, nullable = false)
-	private String surnameCuidador;
-	@Column(name = "phoneCuidador", length = 10, nullable = false)
-	private int phoneCuidador;
-	@Column(name = "mailCuidador", length = 20, nullable = false)
-	private String mailCuidador;
-	@Column(name = "birthCuidador", nullable = false)
-	private Date birthCuidador;
-	@Column(name = "scoreCuidador", nullable = false)
-	private int scoreCuidador;
-	@Column(name = "salaryCuidador", nullable = false)
-	private int salaryCuidador;
-	@Column(name = "experienceCuidador", nullable = false)
-	private int experienceCuidador;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "idUser", nullable = false)
 	private Usuario usuario;
+	
+	@Column(name = "nameCuidador", length = 40, nullable = false)
+	private String nameCuidador;
+	
+	@Column(name = "surnameCuidador", length = 40, nullable = false)
+	private String surnameCuidador;
+	
+	@Column(name = "phoneCuidador", length = 10, nullable = false)
+	private int phoneCuidador;
+	
+	@Column(name = "mailCuidador", length = 20, nullable = false)
+	private String mailCuidador;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "birhtCuidador")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date birthCuidador;
+	
+	@Column(name = "scoreCuidador")
+	private int scoreCuidador;
+	
+	@Column(name = "salaryCuidador", nullable = false)
+	private int salaryCuidador;
+	
+	@Column(name = "experienceCuidador", nullable = false)
+	private int experienceCuidador;
 
 	public Cuidador() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cuidador(int idCuidador, String nameCuidador, String surnameCuidador, int phoneCuidador, String mailCuidador,
-			Date birthCuidador, int scoreCuidador, int salaryCuidador, int experienceCuidador, Usuario usuario) {
+	public Cuidador(int idCuidador, Usuario usuario, String nameCuidador, String surnameCuidador, int phoneCuidador,
+			String mailCuidador, Date birthCuidador, int scoreCuidador, int salaryCuidador, int experienceCuidador) {
 		super();
 		this.idCuidador = idCuidador;
+		this.usuario = usuario;
 		this.nameCuidador = nameCuidador;
 		this.surnameCuidador = surnameCuidador;
 		this.phoneCuidador = phoneCuidador;
@@ -57,7 +71,6 @@ public class Cuidador {
 		this.scoreCuidador = scoreCuidador;
 		this.salaryCuidador = salaryCuidador;
 		this.experienceCuidador = experienceCuidador;
-		this.usuario = usuario;
 	}
 
 	public int getIdCuidador() {
@@ -66,6 +79,14 @@ public class Cuidador {
 
 	public void setIdCuidador(int idCuidador) {
 		this.idCuidador = idCuidador;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getNameCuidador() {
@@ -131,15 +152,7 @@ public class Cuidador {
 	public void setExperienceCuidador(int experienceCuidador) {
 		this.experienceCuidador = experienceCuidador;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
+	
 
 
 }
