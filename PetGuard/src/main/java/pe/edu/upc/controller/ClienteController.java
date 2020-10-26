@@ -26,31 +26,33 @@ public class ClienteController {
 	
 	@GetMapping("/new")
 	public String newCliente(Model model) {
+
 		model.addAttribute("listUsers", uS.list());
 		model.addAttribute("customer", new Cliente());
 		return "customer/customer";
+
 	}
 	
 	@PostMapping("/save")
 	public String saveCliente(@Valid Cliente cli, BindingResult result, Model model,
 			SessionStatus status) throws Exception{
 		if(result.hasErrors()) {
-			return"customer/customer";
+			return"customers/customers";
 		}else {
 			cS.insert(cli);
 		}
-		model.addAttribute("listaClientes",cS.list());
-		return "/customer/listCustomer";
+		model.addAttribute("listaCliente",cS.list());
+		return "/customers/listCustomers";
 	}
 	
 	@GetMapping("/list")
-	public String listClientes (Model model) {
+	public String listCliente (Model model) {
 		try {
-			model.addAttribute("listaClientes",cS.list());
+			model.addAttribute("listaCliente",cS.list());
 		}catch(Exception e) {
 			System.out.println("Error al listar en el controller");
 		}
-		return "/customer/listCustomer";
+		return "/customers/listCustomers";
 	}
 
 }
