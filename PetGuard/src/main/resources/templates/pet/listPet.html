@@ -138,6 +138,7 @@
 								<th scope="col">Edad</th>
 								<th scope="col">Peso</th>
 								<th scope="col">Sexo</th>
+								<th scope="col">Dueño</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -148,6 +149,7 @@
 								<td th:text="${l.edadMascota}"></td>
 								<td th:text="${l.pesoMascota}"></td>
 								<td th:text="${l.sexoMascota}"></td>
+								<td th:text="${l.cliente.name}"></td>
 							</tr>
 						</tbody>
 					</table>
