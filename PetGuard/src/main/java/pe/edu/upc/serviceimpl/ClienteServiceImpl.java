@@ -27,5 +27,10 @@ public class ClienteServiceImpl implements IClienteService {
 		return cR.findAll();
 	}
 
+	@Override
+	public void delete(Cliente clie) {
+		// TODO Auto-generated method stub
+		cR.delete(clie);
+	}
 
 }
