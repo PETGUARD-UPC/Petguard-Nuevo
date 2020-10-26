@@ -23,19 +23,19 @@ public class ClienteController {
 	@GetMapping("/new")
 	public String newCliente(Model model) {
 		model.addAttribute("customers", new Cliente());
-		return "customers/customers";
+		return "customer/customer";
 	}
 	
 	@PostMapping("/save")
 	public String saveCliente(@Valid Cliente cli, BindingResult result, Model model,
 			SessionStatus status) throws Exception{
 		if(result.hasErrors()) {
-			return"customers/customers";
+			return"customer/customer";
 		}else {
 			cS.insert(cli);
 		}
 		model.addAttribute("listaCliente",cS.list());
-		return "/customers/listCustomers";
+		return "/customer/listCustomer";
 	}
 	
 	@GetMapping("/list")
@@ -45,7 +45,7 @@ public class ClienteController {
 		}catch(Exception e) {
 			System.out.println("Error al listar en el controller");
 		}
-		return "/customers/listCustomers";
+		return "/customer/listCustomer";
 	}
 
 }
