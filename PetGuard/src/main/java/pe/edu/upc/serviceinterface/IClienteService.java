@@ -8,6 +8,7 @@ public interface IClienteService {
 
 	public void insert(Cliente clie);
 
-	List<Cliente> list();
+	public List<Cliente> list();
 
+	public void delete(Cliente clie);
 }

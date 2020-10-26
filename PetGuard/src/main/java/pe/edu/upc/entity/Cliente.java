@@ -22,7 +22,11 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCustomer;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "idUser", nullable = false)
+	private Usuario usuario;
+	
 	@Column(name = "name", length = 45, nullable = false)
 	private String name;
 	
@@ -35,15 +39,11 @@ public class Cliente {
 	@Column(name = "email", length = 45, nullable = false)
 	private String email;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat
 	@Column(name = "birhtdate")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date birthdate;
+	private Date Birthdate;
 
-	@ManyToOne
-	@JoinColumn(name = "idUser")
-	private Usuario usuario;
-	
 	public Cliente() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -58,7 +58,7 @@ public class Cliente {
 		this.lastname = lastname;
 		this.phone = phone;
 		this.email = email;
-		this.birthdate = birthdate;
+		Birthdate = birthdate;
 	}
 
 	public int getIdCustomer() {
@@ -110,15 +110,13 @@ public class Cliente {
 	}
 
 	public Date getBirthdate() {
-		return birthdate;
+		return Birthdate;
 	}
 
 	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
+		Birthdate = birthdate;
 	}
-
-
-
+	
 
 	
 }
