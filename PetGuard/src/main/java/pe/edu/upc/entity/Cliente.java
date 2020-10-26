@@ -42,7 +42,7 @@ public class Cliente {
 	@DateTimeFormat
 	@Column(name = "birhtdate")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date Birthdate;
+	private Date birthdate;
 
 	public Cliente() {
 		super();
@@ -58,7 +58,7 @@ public class Cliente {
 		this.lastname = lastname;
 		this.phone = phone;
 		this.email = email;
-		Birthdate = birthdate;
+		this.birthdate = birthdate;
 	}
 
 	public int getIdCustomer() {
@@ -110,13 +110,13 @@ public class Cliente {
 	}
 
 	public Date getBirthdate() {
-		return Birthdate;
+		return birthdate;
 	}
 
 	public void setBirthdate(Date birthdate) {
-		Birthdate = birthdate;
+		this.birthdate = birthdate;
 	}
-	
+
 
 	
 }
