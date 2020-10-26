@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
@@ -15,6 +17,10 @@ public class Mascota {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMascota;
+	
+	@ManyToOne
+	@JoinColumn(name = "idCustomer", nullable = false)
+	private Cliente cliente;
 	
 	@Column(name = "namePet", length=40, nullable = false)
 	private String nombreMascota;
@@ -30,16 +36,17 @@ public class Mascota {
 	
 	@Column(name = "genderPet", length = 10, nullable = false)
 	private String sexoMascota;
-	
+
 	public Mascota() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Mascota(int idMascota, String nombreMascota, String razaMascota, String edadMascota, Double pesoMascota,
+	public Mascota(int idMascota, Cliente cliente, String nombreMascota, String razaMascota, String edadMascota,Double pesoMascota,
 			String sexoMascota) {
 		super();
 		this.idMascota = idMascota;
+		this.cliente = cliente;
 		this.nombreMascota = nombreMascota;
 		this.razaMascota = razaMascota;
 		this.edadMascota = edadMascota;
@@ -53,6 +60,14 @@ public class Mascota {
 
 	public void setIdMascota(int idMascota) {
 		this.idMascota = idMascota;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public String getNombreMascota() {
@@ -94,6 +109,7 @@ public class Mascota {
 	public void setSexoMascota(String sexoMascota) {
 		this.sexoMascota = sexoMascota;
 	}
+
 	
-	
+
 }
