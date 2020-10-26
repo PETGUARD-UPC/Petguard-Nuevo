@@ -27,10 +27,4 @@ public class CuidadorServiceImpl implements ICuidadorService {
 		return cR.findAll();
 	}
 
-	@Override
-	public void delete(Cuidador cuid) {
-		// TODO Auto-generated method stub
-		cR.delete(cuid);
-	}
-
 }
