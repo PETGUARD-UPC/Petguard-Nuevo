@@ -29,31 +29,26 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/save")
-	public String saveUser(@Valid Usuario user, BindingResult result, Model model,
-			SessionStatus status) throws Exception {
-		
+	public String saveUser(@Valid Usuario usu, BindingResult result, Model model,
+			SessionStatus status) throws Exception {	
 		if(result.hasErrors()) {
 			return "user/user";
 		}else {
-			
-			uS.insert(user);
+			uS.insert(usu);
 		}
-		
-		model.addAttribute("listUsers", uS.list());
-		return "/user/listUsers";
+		model.addAttribute("listaUsuario", uS.list());
+		return "/user/listUser";
 		
 	}
 	
 	@GetMapping("/list")
 	public String listUsers(Model model) {
-		
 		try {
-			model.addAttribute("listUsers", uS.list());
-			
+			model.addAttribute("listaUsuario", uS.list());
 		} catch (Exception e) {
 			System.out.println("no se pudo listar los usuarios en el controller");
 		}
-		return "/user/listUsers";
+		return "/user/listUser";
 		
 	}
 }

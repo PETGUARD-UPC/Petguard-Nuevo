@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -17,9 +18,11 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUser;
 	
+	@NotNull
 	@Column(name="userName", length=40, nullable = false)
 	private String userName;
 	
+	@NotNull
 	@Column(name="password",length = 20,nullable = false)
 	private String password;
 
