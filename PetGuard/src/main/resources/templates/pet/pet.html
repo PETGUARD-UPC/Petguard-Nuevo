@@ -142,7 +142,8 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{nombreMascota}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required
+									pattern="[A-Za-z]+" title="Sólo se permite texto" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nombreMascota')}"
 									th:errors="*{nombreMascota}"></small>
@@ -153,7 +154,8 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{razaMascota}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required
+									pattern="[A-Za-z]+" title="Sólo se permite texto" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('razaMascota')}"
 									th:errors="*{razaMascota}"></small>
@@ -164,7 +166,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{edadMascota}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('edadMascota')}"
 									th:errors="*{edadMascota}"></small>
@@ -175,7 +177,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{pesoMascota}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('pesoMascota')}"
 									th:errors="*{pesoMascota}"></small>
@@ -186,14 +188,13 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{sexoMascota}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required
+									pattern="[A-Za-z]+" title="Sólo se permite texto" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('sexoMascota')}"
 									th:errors="*{sexoMascota}"></small>
 							</div>
 						</div>
-
-
 
 						<div class="form-group row">
 							<label for="category">Cliente:</label>
