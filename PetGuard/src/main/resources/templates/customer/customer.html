@@ -148,7 +148,9 @@
 							<label for="nameC" class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{name}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" 
+									required pattern="[A-Za-z]+"
+									title="Sólo se permite texto"/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
 							</div>
@@ -157,7 +159,10 @@
 							<label for="lastnameC" class="col-sm-2 col-form-label">Apellido</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{lastname}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" 
+									required pattern="[A-Za-z]+"
+									title="Sólo se permite texto"
+									/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('lastname')}"
 									th:errors="*{lastname}"></small>
@@ -176,7 +181,9 @@
 							<label for="emailC" class="col-sm-2 col-form-label">Email</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{email}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" 
+									required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+									/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
 							</div>

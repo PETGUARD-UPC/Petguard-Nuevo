@@ -149,7 +149,10 @@
 							<label for="nameCu" class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{nameCuidador}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'"
+									required pattern="[A-Za-z]+"
+									title="Sólo se permite texto"
+									 /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameCuidador')}" th:errors="*{nameCuidador}"></small>
 							</div>
@@ -158,7 +161,10 @@
 							<label for="lastnameCu" class="col-sm-2 col-form-label">Apellido</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{surnameCuidador}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" 
+									 required pattern="[A-Za-z]+"
+									title="Sólo se permite texto"
+									/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('surnameCuidador')}"
 									th:errors="*{surnameCuidador}"></small>
@@ -168,7 +174,10 @@
 							<label for="phoneCu" class="col-sm-2 col-form-label">Teléfono</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{phoneCuidador}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" 
+									min="8"
+									required
+									/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('phoneCuidador')}" th:errors="*{phoneCuidador}"></small>
 							</div>
@@ -177,7 +186,9 @@
 							<label for="emailCu" class="col-sm-2 col-form-label">Email</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{mailCuidador}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" 
+									required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+									/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('mailCuidador')}" th:errors="*{mailCuidador}"></small>
 							</div>
@@ -197,7 +208,10 @@
 							<label for="salaryCu" class="col-sm-2 col-form-label">Salario</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{salaryCuidador}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" 
+									min ="5"  max="100" required pattern="{2,}"
+									title="Sólo se permite números"
+									/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('salaryCuidador')}" th:errors="*{salaryCuidador}"></small>
 							</div>
@@ -207,7 +221,10 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{experienceCuidador}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" 
+									min ="1" max="10" required pattern="{2,}"
+									title="Sólo se permite números"
+									/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('experienceCuidador')}"
 									th:errors="*{experienceCuidador}"></small>
