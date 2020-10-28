@@ -183,21 +183,19 @@
 									th:errors="*{pesoMascota}"></small>
 							</div>
 						</div>
+						
 						<div class="form-group row">
 							<label for="sexoMascota" class="col-sm-2 col-form-label">Sexo</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{sexoMascota}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" required
-									pattern="[A-Za-z]+" title="Sólo se permite texto" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('sexoMascota')}"
-									th:errors="*{sexoMascota}"></small>
+								<select name="sexoMascota" class="form-control" id="sexoMascota">
+									<option value="Macho">Macho</option>
+									<option value="Hembra">Hembra</option>
+								</select>
 							</div>
 						</div>
 
 						<div class="form-group row">
-							<label for="category">Cliente:</label>
+							<label for="category" class="col-sm-2 col-form-label">Cliente:</label>
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{cliente.idCustomer}">
 									<option th:each="l: ${listaCliente}" th:value="${l.idCustomer}"
@@ -206,8 +204,6 @@
 								</select>
 							</div>
 						</div>
-
-
 
 						<div class="form-group row">
 							<div class="col-sm-6">
