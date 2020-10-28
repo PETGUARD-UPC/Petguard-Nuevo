@@ -41,7 +41,7 @@ public class ReservaController {
 		model.addAttribute("listaCuidadores", cuS.list());
 		model.addAttribute("listaMedioPagos", mS.list());
 		
-		model.addAttribute("reservation", new Reserva());
+		model.addAttribute("reserve", new Reserva());
 		return "reservation/reservation";
 	}
 	
