@@ -46,13 +46,12 @@ public class Reserva {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
-	@DateTimeFormat
-	@Column(name = "hora")
-	@Temporal(TemporalType.TIME)
-	private Date hour;
 	
-	@Column(name = "price", nullable = false)
-	private Double price;
+	@Column(name = "horas", length = 2, nullable = false)
+	private Integer hour;
+
+	@Column(name = "price")
+	private Integer price;
 
 	public Reserva() {
 		super();
@@ -60,7 +59,7 @@ public class Reserva {
 	}
 
 	public Reserva(int idReserva, Cliente cliente, Cuidador cuidador, MedioPago typePay, String numTarjeta,
-			String direction, Date date, Date hour, Double price) {
+			String direction, Date date, Integer hour, Integer price) {
 		super();
 		this.idReserva = idReserva;
 		this.cliente = cliente;
@@ -129,21 +128,23 @@ public class Reserva {
 		this.date = date;
 	}
 
-	public Date getHour() {
+	public Integer getHour() {
 		return hour;
 	}
 
-	public void setHour(Date hour) {
+	public void setHour(Integer hour) {
 		this.hour = hour;
 	}
 
-	public Double getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
+	
+	
 
 	
 	
