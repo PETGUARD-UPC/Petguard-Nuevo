@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -39,9 +40,11 @@ public class Cuidador {
 	@Column(name = "mailCuidador", length = 20, nullable = false)
 	private String mailCuidador;
 	
+	
+	@Past(message = "la fecha debe ser pasada")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "birhtCuidador")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date birthCuidador;
 	
 	@Column(name = "scoreCuidador")
