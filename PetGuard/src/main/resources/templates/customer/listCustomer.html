@@ -37,13 +37,13 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/customers/index}">
-				<div class="sidebar-brand-icon">
-					<i class="fas fa-dog"></i>
-				</div>
-				<div class="sidebar-brand-text mx-3">PetGuard</div>
-			</a>
+                class="sidebar-brand d-flex align-items-center justify-content-center"
+                th:href="@{/customers/index}">
+                <div class="sidebar-brand-icon">
+                    <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">PetGuard</div>
+            </a>
 
 
 			<!-- Divider -->
@@ -60,13 +60,19 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/keepers/list}">Cuidadores</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">Clientes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/keepers/list}">Cuidadores</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservations/list}">Reserva</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/payments/list}">Gestionar métodos de pago</a>
