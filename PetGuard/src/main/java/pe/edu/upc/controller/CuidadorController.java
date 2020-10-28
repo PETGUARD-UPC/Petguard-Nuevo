@@ -13,6 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entity.Cuidador;
 import pe.edu.upc.serviceinterface.ICuidadorService;
+import pe.edu.upc.serviceinterface.IUsuarioService;
 
 @Controller
 @RequestMapping("/keepers")
@@ -21,8 +22,15 @@ public class CuidadorController {
 	@Autowired
 	private ICuidadorService cS;
 	
+	@Autowired
+	private IUsuarioService uS;
+	
+	
 	@GetMapping("/new")
 	public String newCuidado(Model model) {
+		
+		model.addAttribute("listaUsuarios", uS.list());
+		
 		model.addAttribute("keeper", new Cuidador());
 		return "keeper/keeper";
 	}
