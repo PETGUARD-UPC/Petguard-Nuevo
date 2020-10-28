@@ -37,13 +37,13 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-                class="sidebar-brand d-flex align-items-center justify-content-center"
-                th:href="@{/reservations/index}">
-                <div class="sidebar-brand-icon">
-                    <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">PetGuard</div>
-            </a>
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				th:href="@{/reservations/index}">
+				<div class="sidebar-brand-icon">
+					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">PetGuard</div>
+			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
@@ -70,10 +70,12 @@
 						<a class="collapse-item" th:href="@{/reservations/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de
+							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/payments/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/payments/list}">Gestionar
+							métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -127,17 +129,24 @@
 					<h1 class="h3 mb-4 text-gray-800">Reservas</h1>
 
 					<hr class="sidebar-divider">
-					<div th:object="${reservation}" th:remove="tag">
+					<div th:object="${reserve}" th:remove="tag">
 						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 						</ul>
 					</div>
 
-					<form th:action="@{/reservations/save}" th:object="${reservation}"
+					<!-- <tbody>
+						<tr th:each="r: ${listaReserva}">
+							<td th:text="${r.hour*10}"></td>
+
+						</tr>
+					</tbody> -->
+
+					<form th:action="@{/reservations/save}" th:object="${reserve}"
 						method="post">
 
-
+<!-- 
 						<div class="form-group row">
 							<label for="id" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
@@ -147,7 +156,7 @@
 									th:if="${#fields.hasErrors('idReserva')}"
 									th:errors="*{idReserva}"></small>
 							</div>
-						</div>
+						</div> -->
 
 						<div class="form-group row">
 							<label for="category">Cliente:</label>
@@ -175,8 +184,8 @@
 							<label for="pay">Medio de pago:</label>
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{typePay.idPay}">
-									<option th:each="l: ${listaMedioPagos}"
-										th:value="${l.idPay}" th:text="${l.typePay}"
+									<option th:each="l: ${listaMedioPagos}" th:value="${l.idPay}"
+										th:text="${l.typePay}"
 										th:selected="(${l.typePay} == *{typePay.idPay})"></option>
 								</select>
 							</div>
@@ -185,11 +194,23 @@
 
 
 						<div class="form-group row">
-							<label for="direcRC" class="col-sm-2 col-form-label">Numero
-								de Tarjeta</label>
+							<label for="direcRC" class="col-sm-2 col-form-label">Número
+								de Tarjeta: </label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{numTarjeta}" class="form-control"
+									th:errorclass="'form-control alert-danger'" required  title="Es obligatorio el número de tarjeta" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('numTarjeta')}"
+									th:errors="*{numTarjeta}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="direcRC" class="col-sm-2 col-form-label">Dirección: </label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{direction}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required 
+                                    title="Sólo se permite texto" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('direction')}"
 									th:errors="*{direction}"></small>
@@ -197,18 +218,7 @@
 						</div>
 
 						<div class="form-group row">
-							<label for="direcRC" class="col-sm-2 col-form-label">Dirección</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{direction}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('direction')}"
-									th:errors="*{direction}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="date" class="col-sm-2 col-form-label">Fecha </label>
+							<label for="date" class="col-sm-2 col-form-label">Fecha de reserva: </label>
 							<div class="col-sm-6">
 								<input type="date" th:field="*{date}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
@@ -216,32 +226,43 @@
 									th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
-							<label for="hour" class="col-sm-2 col-form-label">Hora </label>
+							<label for="hour" class="col-sm-2 col-form-label">Cantidad
+								horas para cuiado de mascota: </label>
 							<div class="col-sm-6">
-								<input type="time" th:field="*{hour}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+								<input type="text" th:field="*{hour}" class="form-control"
+									th:errorclass="'form-control alert-danger'" required  title="Este campo es obligatorio para la reserva" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('hour')}" th:errors="*{hour}"></small>
 							</div>
 						</div>
 
+						<!--  
+						<label for ="costo" class="col-sm-2 col-form-label" >Costo:</label>
+						
+  
 						<div class="form-group row">
-							<label for="precioR" class="col-sm-2 col-form-label">Precio</label>
+							<label for="precioR" class="col-sm-2 col-form-label">Costo:
+							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{price}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
+								<p  th:field="*{price}" class="form-control"
+									th:errorclass="'form-control alert-danger'"/> 
+									<div th:each="r:${listaReserva}"></div>
+								<div th:text="${r.hour}*150"></div>
 							</div>
 						</div>
+						
+-->
+
 
 						<div class="form-group row">
 							<div class="col-sm-6">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="submit" value="Guardar" class="btn btn-dark" style="background-color: #8062ff ; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/reservations/list" class="btn btn-dark" style="background-color: #8062ff ; border-color: white">Cancelar</a>
+									type="submit" value="Guardar" class="btn btn-dark"
+									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="/reservations/list" class="btn btn-dark"
+									style="background-color: #8062ff; border-color: white">Cancelar</a>
 							</div>
 						</div>
 						<p th:text="${mensaje}" class="form-text text-danger"></p>
@@ -317,6 +338,4 @@
 </body>
 
 </html>
-
-
 
