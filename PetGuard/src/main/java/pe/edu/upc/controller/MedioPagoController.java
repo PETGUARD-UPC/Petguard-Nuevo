@@ -36,6 +36,7 @@ public class MedioPagoController {
 			pS.insert(mediopago);
 		}
 		model.addAttribute("listaMedioPago", pS.list());
+		
 		return "/pay/listPay";
 	}
 	

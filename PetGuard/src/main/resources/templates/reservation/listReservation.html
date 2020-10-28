@@ -142,24 +142,29 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Dirección</th>
-								<th scope="col">Precio</th>
-								<th scope="col">Fecha inicio</th>
-								<th scope="col">Fecha Final</th>
 								<th scope="col">Cliente</th>
 								<th scope="col">Cuidador</th>
+								<th scope="col">Medio de Pago</th>
+								<th scope="col">Numero tarjeta</th>
+								<th scope="col">Dirección</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">Hora</th>
+								<th scope="col">Precio</th>
+
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="r: ${listaReserva}">
 								<td th:text="${r.idReserva}"></td>
-								<td th:text="${r.direction}"></td>
-								<td th:text="${r.price}"></td>
-								<td th:text="${r.starDate}"></td>
-								<td th:text="${r.finishDate}"></td>
 								<td th:text="${r.cliente.name}"></td>
 								<td th:text="${r.cuidador.nameCuidador}"></td>
-						
+								<td th:text="${r.mediopago.typePay}"></td>
+								<td th:text="${r.numTarjeta}"></td>
+								<td th:text="${r.direction}"></td>
+								<td th:text="${r.date}"></td>
+								<td th:text="${r.hour}"></td>
+								<td th:text="${r.price}"></td>
+
 							</tr>
 						</tbody>
 					</table>

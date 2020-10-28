@@ -150,7 +150,7 @@
 								</select>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="category">Cuidadores:</label>
 							<div class="col-sm-6">
@@ -159,6 +159,31 @@
 										th:value="${l.idCuidador}" th:text="${l.nameCuidador}"
 										th:selected="(${l.nameCuidador} == *{cuidador.idCuidador})"></option>
 								</select>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="pay">Medio de pago:</label>
+							<div class="col-sm-6">
+								<select class="form-control" th:field="*{typePay.idPay}">
+									<option th:each="l: ${listaMedioPagos}"
+										th:value="${l.idPay}" th:text="${l.typePay}"
+										th:selected="(${l.typePay} == *{typePay.idPay})"></option>
+								</select>
+							</div>
+						</div>
+
+
+
+						<div class="form-group row">
+							<label for="direcRC" class="col-sm-2 col-form-label">Numero
+								de Tarjeta</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{direction}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('direction')}"
+									th:errors="*{direction}"></small>
 							</div>
 						</div>
 
@@ -172,6 +197,27 @@
 									th:errors="*{direction}"></small>
 							</div>
 						</div>
+
+						<div class="form-group row">
+							<label for="date" class="col-sm-2 col-form-label">Fecha </label>
+							<div class="col-sm-6">
+								<input type="date" th:field="*{date}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="hour" class="col-sm-2 col-form-label">Hora </label>
+							<div class="col-sm-6">
+								<input type="time" th:field="*{hour}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('hour')}" th:errors="*{hour}"></small>
+							</div>
+						</div>
+
 						<div class="form-group row">
 							<label for="precioR" class="col-sm-2 col-form-label">Precio</label>
 							<div class="col-sm-6">
@@ -181,28 +227,7 @@
 									th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
 							</div>
 						</div>
-						<div class="form-group row">
-							<label for="firstdateC" class="col-sm-2 col-form-label">Fecha
-								de Inicio</label>
-							<div class="col-sm-6">
-								<input type="date" th:field="*{starDate}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('starDate')}"
-									th:errors="*{starDate}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="finishDateR" class="col-sm-2 col-form-label">Fecha
-								Final</label>
-							<div class="col-sm-6">
-								<input type="time" th:field="*{finishDate}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('finishDate')}"
-									th:errors="*{finishDate}"></small>
-							</div>
-						</div>
+
 						<div class="form-group row">
 							<div class="col-sm-6">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input

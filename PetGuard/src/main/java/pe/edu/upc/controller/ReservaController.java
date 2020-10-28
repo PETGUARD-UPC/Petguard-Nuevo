@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entity.Reserva;
+import pe.edu.upc.serviceinterface.IClienteService;
+import pe.edu.upc.serviceinterface.ICuidadorService;
+import pe.edu.upc.serviceinterface.IMedioPagoService;
 import pe.edu.upc.serviceinterface.IReservaService;
 
 @Controller
@@ -21,8 +24,22 @@ public class ReservaController {
 	@Autowired
 	private IReservaService rS;
 	
+	@Autowired
+	private IClienteService cS;
+	
+	@Autowired
+	private ICuidadorService cuS;
+	
+	@Autowired
+	private IMedioPagoService mS;
+	
+	
 	@GetMapping("/new")
 	public String newReservation(Model model) {
+		
+		model.addAttribute("listaClientes", cS.list());
+		model.addAttribute("listaCuidadores", cuS.list());
+		model.addAttribute("listaMedioPagos", mS.list());
 		
 		model.addAttribute("reservation", new Reserva());
 		return "reservation/reservation";

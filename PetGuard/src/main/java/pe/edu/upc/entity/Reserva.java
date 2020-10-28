@@ -31,37 +31,46 @@ public class Reserva {
 	@JoinColumn(name = "idCuidador", nullable = false)
 	private Cuidador cuidador;
 	
+	@ManyToOne
+	@JoinColumn(name = "idPay", nullable = false)
+	private MedioPago typePay;
+	
+	@Column(name = "numTarjeta", length = 45, nullable = false)
+	private String numTarjeta;
+	
 	@Column(name = "direction", length = 45, nullable = false)
 	private String direction;
-	
-	@Column(name = "price", length = 9, nullable = false)
-	private int price;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "starDate")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date starDate;
+	@Temporal(TemporalType.DATE)
+	private Date date;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "finishDate")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date finishDate;
+	@DateTimeFormat
+	@Column(name = "hora")
+	@Temporal(TemporalType.TIME)
+	private Date hour;
+	
+	@Column(name = "price", nullable = false)
+	private Double price;
 
 	public Reserva() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reserva(int idReserva, Cliente cliente, Cuidador cuidador, String direction, int price, Date starDate,
-			Date finishDate) {
+	public Reserva(int idReserva, Cliente cliente, Cuidador cuidador, MedioPago typePay, String numTarjeta,
+			String direction, Date date, Date hour, Double price) {
 		super();
 		this.idReserva = idReserva;
 		this.cliente = cliente;
 		this.cuidador = cuidador;
+		this.typePay = typePay;
+		this.numTarjeta = numTarjeta;
 		this.direction = direction;
+		this.date = date;
+		this.hour = hour;
 		this.price = price;
-		this.starDate = starDate;
-		this.finishDate = finishDate;
 	}
 
 	public int getIdReserva() {
@@ -88,6 +97,22 @@ public class Reserva {
 		this.cuidador = cuidador;
 	}
 
+	public MedioPago getTypePay() {
+		return typePay;
+	}
+
+	public void setTypePay(MedioPago typePay) {
+		this.typePay = typePay;
+	}
+
+	public String getNumTarjeta() {
+		return numTarjeta;
+	}
+
+	public void setNumTarjeta(String numTarjeta) {
+		this.numTarjeta = numTarjeta;
+	}
+
 	public String getDirection() {
 		return direction;
 	}
@@ -96,29 +121,30 @@ public class Reserva {
 		this.direction = direction;
 	}
 
-	public int getPrice() {
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Date getHour() {
+		return hour;
+	}
+
+	public void setHour(Date hour) {
+		this.hour = hour;
+	}
+
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
-	public Date getStarDate() {
-		return starDate;
-	}
-
-	public void setStarDate(Date starDate) {
-		this.starDate = starDate;
-	}
-
-	public Date getFinishDate() {
-		return finishDate;
-	}
-
-	public void setFinishDate(Date finishDate) {
-		this.finishDate = finishDate;
-	}
-
+	
 	
 }

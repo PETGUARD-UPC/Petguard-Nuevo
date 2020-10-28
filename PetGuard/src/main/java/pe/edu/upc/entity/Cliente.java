@@ -41,7 +41,7 @@ public class Cliente {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "birhtdate")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date birthdate;
 
 	public Cliente() {
