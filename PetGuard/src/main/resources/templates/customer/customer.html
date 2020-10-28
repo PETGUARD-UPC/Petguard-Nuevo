@@ -134,16 +134,17 @@
 					<form th:action="@{/customers/save}" th:object="${customer}"
 						method="post">
 						<div class="form-group row">
-							<label for="id" class="col-sm-2 col-form-label">Id</label>
+							<label for="user">Elegir el usuario:</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{usuario.idUser}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('usuario.idUser')}"
-									th:errors="*{usuario.idUser}"></small>
+								<select class="form-control"
+									th:field="*{usuario.idUser}">
+									<option th:each="l: ${listaUsuarios}"
+										th:value="${l.idUser}" th:text="${l.userName}"
+										th:selected="(${l.idUser} == *{usuario.idUser})"></option>
+								</select>
 							</div>
 						</div>
+						
 						<div class="form-group row">
 							<label for="nameC" class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
@@ -275,6 +276,5 @@
 </body>
 
 </html>
-
 
 
