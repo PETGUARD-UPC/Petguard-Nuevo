@@ -13,6 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entity.Cliente;
 import pe.edu.upc.serviceinterface.IClienteService;
+import pe.edu.upc.serviceinterface.IUsuarioService;
 
 @Controller
 @RequestMapping("/customers")
@@ -20,8 +21,14 @@ public class ClienteController {
 	@Autowired
 	private IClienteService cS;
 	
+	@Autowired
+	private IUsuarioService uS;
+	
 	@GetMapping("/new")
 	public String newCliente(Model model) {
+		
+		model.addAttribute("listaUsuarios", uS.list());
+		
 		model.addAttribute("customer", new Cliente());
 		return "customer/customer";
 	}
