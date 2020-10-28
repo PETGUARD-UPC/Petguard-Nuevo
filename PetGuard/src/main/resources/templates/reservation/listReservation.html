@@ -66,6 +66,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
 					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservations/list}">Reservas</a>
+					</div>
 				</div></li>
 
 
@@ -154,8 +157,8 @@
 								<td th:text="${r.price}"></td>
 								<td th:text="${r.starDate}"></td>
 								<td th:text="${r.finishDate}"></td>
-								<td th:text="${r.Cuidador.nameCuidador}"></td>
-								<td th:text="${r.Cliente.name}"></td>
+								<td th:text="${r.cuidador.nameCuidador}"></td>
+								<td th:text="${r.cliente.name}"></td>
 							</tr>
 						</tbody>
 					</table>
