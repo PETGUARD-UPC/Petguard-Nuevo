@@ -155,8 +155,8 @@
 								<th scope="col">Numero tarjeta</th>
 								<th scope="col">Dirección</th>
 								<th scope="col">Fecha</th>
-								<th scope="col">Hora</th>
-								<th scope="col">Precio</th>
+								<th scope="col">Cantidad horas</th>
+								<th scope="col">Costo (soles) </th>
 
 							</tr>
 						</thead>
@@ -165,12 +165,12 @@
 								<td th:text="${r.idReserva}"></td>
 								<td th:text="${r.cliente.name}"></td>
 								<td th:text="${r.cuidador.nameCuidador}"></td>
-								<td th:text="${r.mediopago.typePay}"></td>
+								<td th:text="${r.typePay.typePay}"></td>
 								<td th:text="${r.numTarjeta}"></td>
 								<td th:text="${r.direction}"></td>
 								<td th:text="${r.date}"></td>
 								<td th:text="${r.hour}"></td>
-								<td th:text="${r.price}"></td>
+								<td th:text="${r.hour*10}"></td>
 
 							</tr>
 						</tbody>
