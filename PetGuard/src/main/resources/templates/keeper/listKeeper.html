@@ -32,8 +32,8 @@
 		<!-- Sidebar -->
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar"
-			style="background-image: linear-gradient(180deg, #614ffb 10%, #fdd7fc 97%)">
+			id="accordionSidebar">
+
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
@@ -58,18 +58,14 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/keepers/list}">Cuidadores</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/customers/list}">Clientes</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/payments/list}">Gestionar
-							métodos de pago</a>
-					</div>
+                        <a class="collapse-item" th:href="@{/keepers/list}">Cuidadores</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" th:href="@{/customers/list}">Clientes</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
+                    </div>
 				</div></li>
 
 
@@ -154,7 +150,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="cu: ${listaCuidadores}">
+							<tr th:each="cu: ${listaCuidador}">
 								<td th:text="${cu.idCuidador}"></td>
 								<td th:text="${cu.nameCuidador}"></td>
 								<td th:text="${cu.surnameCuidador}"></td>
