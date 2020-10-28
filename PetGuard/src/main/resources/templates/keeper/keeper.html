@@ -129,7 +129,7 @@
 						<div class="form-group row">
 							<label for="lastnameCu" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{usuario.idUser}" class="form-control"
+								<input type="text" th:field="*{usuario.idUser}" class="form-control" required
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('usuario.idUser')}"
@@ -158,7 +158,7 @@
 						<div class="form-group row">
 							<label for="phoneCu" class="col-sm-2 col-form-label">Teléfono</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{phoneCuidador}" class="form-control"
+								<input type="text" th:field="*{phoneCuidador}" class="form-control"  minlength="8" maxlength="10" required
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('phoneCuidador')}" th:errors="*{phoneCuidador}"></small>
