@@ -9,6 +9,4 @@ public interface IRolService {
 	public void insertar(Rol rol);
 	
 	List<Rol>list();
-	
-	public void delete(int idRol);
 }

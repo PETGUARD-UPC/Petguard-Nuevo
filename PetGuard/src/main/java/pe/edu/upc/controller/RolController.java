@@ -41,9 +41,9 @@ public class RolController {
 	@GetMapping("/list")
 	public String listRols(Model model) {
 		try {
-			model.addAttribute("listRols", rS.list());
+			model.addAttribute("listaRoles", rS.list());
 		} catch (Exception e) {
-			System.out.println("Error al listar en el controller");
+			System.out.println("Error al listar roles en el controller");
 		}
 		return "/rol/listRols";
 	}

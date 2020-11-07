@@ -38,7 +38,7 @@
 			<!-- Sidebar - Brand -->
 			<a
                 class="sidebar-brand d-flex align-items-center justify-content-center"
-                th:href="@{/payments/index}">
+                th:href="@{/pays/index}">
                 <div class="sidebar-brand-icon">
                     <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
                 </div>
@@ -67,13 +67,13 @@
 						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservations/list}">Reserva</a>
+						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/payments/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -126,33 +126,43 @@
 					<!-- Page Heading -->
 					<h1 class="h3 mb-4 text-gray-800">Métodos de pago</h1>
 
-					<hr class="sidebar-divider">
-					<div th:object="${typePay}" th:remove="tag">
-						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
-							role="alert">
-							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-						</ul>
-					</div>
-
-					<form th:action="@{/payments/save}" th:object="${typePay}"
-						method="post">
+					<form th:action="@{/pays/save}" th:object="${pay}"
+						method="post" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
 						<div class="form-group row">
-							<label for="typePay" class="col-sm-2 col-form-label">Tipo de pago</label>
+							<label for="pay" class="col-sm-2 col-form-label">Tipo de pago</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{typePay}" 
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" required/> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('typePay')}" 
-									th:errors="*{typePay}"></small>
+								<select name="name" class="form-control" id="name">
+								<option value="0" selected disabled>Elegir tipo de tarjeta</option>
+									<option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+									<option value="Tarjeta de Débito">Tarjeta de Débito</option>
+								</select>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('name')}" 
+									th:errors="*{name}" />
 							</div>
 						</div>
+						
+						<div class="form-group row">
+							<label for="pay" class="col-sm-2 col-form-label">Entidad financiera</label>
+							<div class="col-sm-6">
+								<select name="entity" class="form-control" id="entity">
+								<option value="0" selected disabled>Elegir entidad financiera</option>
+									<option value="Visa">Visa</option>
+									<option value="MasterCard">MasterCard</option>
+									<option value="American Express">American Express</option>
+								</select>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('entity')}" 
+									th:errors="*{entity}" />
+							</div>
+						</div>
+						
 						<div class="form-group row">
 							<div class="col-sm-6">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 									type="submit" value="Guardar" class="btn btn-dark"
 									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/payments/list" class="btn btn-dark"
+								<a href="/pays/list" class="btn btn-dark"
 									style="background-color: #8062ff; border-color: white">Cancelar</a>
 							</div>
 						</div>

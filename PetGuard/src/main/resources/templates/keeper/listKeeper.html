@@ -68,13 +68,13 @@
 						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservations/list}">Reserva</a>
+						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/payments/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -143,6 +143,30 @@
 
 					<a th:href="@{/keepers/new/}"class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
 
+					<form th:action="@{/keepers/find}" method="post"
+						th:object="${keeper}">
+
+						<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<td><label for="name"
+											class="col-sm-2 col-form-label">Buscar:</label></td>
+
+										<td><input type="text" class="form-control"
+											th:field="*{name}" id="name"
+											placeholder="Nombre" required="required"></input></td>
+										<td><button type="submit" class="btn btn-danger">
+												<i class="iconf fa fa-search" style="color: white;"></i>
+											</button></td>
+										<td><a href="/keepers/list" class="btn btn-danger">Limpiar</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</form>
+
 					<hr class="sidebar-divider">
 
 					<table class="table" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
@@ -160,21 +184,21 @@
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
-							<tr th:each="cu: ${listaCuidador}">
-								<td th:text="${cu.idCuidador}"></td>
-								<td th:text="${cu.nameCuidador}"></td>
-								<td th:text="${cu.surnameCuidador}"></td>
-								<td th:text="${cu.phoneCuidador}"></td>
-								<td th:text="${cu.mailCuidador}"></td>
-								<td th:text="${cu.birthCuidador}"></td>
-								<td th:text="${cu.salaryCuidador}"></td>
-								<td th:text="${cu.experienceCuidador}"></td>
-								<td th:text="${cu.Usuario.userName}"></td>
+							<tr th:each="cu: ${listaCuidadores}">
+								<td th:text="${cu.idKeeper}"></td>
+								<td th:text="${cu.name}"></td>
+								<td th:text="${cu.lastname}"></td>
+								<td th:text="${cu.phone}"></td>
+								<td th:text="${cu.email}"></td>
+								<td th:text="${cu.birthdate}"></td>
+								<td th:text="${'S/. ' + cu.salary}"></td>
+								<td th:text="${cu.experience+ ' meses'}"></td>
+								<td th:text="${cu.user.username}"></td>
 							</tr>
 						</tbody>
 					</table>
 
-					<p th:text="${mensaje}"></p>
+					<p th:text="${mensaje}" class="form-text text-danger"></p>
 
 				</div>
 				<!-- /.container-fluid -->

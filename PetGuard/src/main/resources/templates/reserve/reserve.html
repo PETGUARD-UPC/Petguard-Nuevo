@@ -37,16 +37,17 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-                class="sidebar-brand d-flex align-items-center justify-content-center"
-                th:href="@{/users/index}">
-                <div class="sidebar-brand-icon">
-                    <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">PetGuard</div>
-            </a>
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				th:href="@{/reserves/index}">
+				<div class="sidebar-brand-icon">
+					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">PetGuard</div>
+			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
+
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
@@ -69,10 +70,12 @@
 						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de
+							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
+							métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -123,38 +126,157 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Crear Usuarios</h1>
+					<h1 class="h3 mb-4 text-gray-800">Reservas</h1>
 
-					<form th:action="@{/users/save}" th:object="${user}"
+					<!-- <tbody>
+						<tr th:each="r: ${listaReserva}">
+							<td th:text="${r.hour*10}"></td>
+
+						</tr>
+					</tbody> -->
+
+					<form th:action="@{/reserves/save}" th:object="${reserve}"
 						method="post" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
-						
+
+<!-- 
 						<div class="form-group row">
-							<label for="nameCu" class="col-sm-2 col-form-label">Nombre Usuario</label>
+							<label for="id" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{username}" class="form-control"/> 
-									<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+								<input type="text" th:field="*{idReserva}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('idReserva')}"
+									th:errors="*{idReserva}"></small>
+							</div>
+						</div> -->
+
+						<div class="form-group row">
+							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
+							<div class="col-sm-6">
+								<select class="form-control" 
+										th:field="*{customer.idCustomer}">
+									<option value="0" selected disabled>Elegir cliente</option>
+									<option th:each="l: ${listaClientes}" 
+										th:value="${l.idCustomer}" th:text="${l.name + ' '+l.lastname}"
+										th:selected="(${l.idCustomer} == *{customer.idCustomer})"></option>
+								</select>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('customer')}" 
+									th:errors="*{customer}" />
 							</div>
 						</div>
 						
+						
 						<div class="form-group row">
-							<label for="contraUs" class="col-sm-2 col-form-label">Contraseña</label>
+							<label for="keeper" class="col-sm-2 col-form-label">Cuidador:</label>
 							<div class="col-sm-6">
-								<input type="password" th:field="*{password}" class="form-control"/>
-									<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('password')}"
-									th:errors="*{password}"></p>
+								<select class="form-control" th:field="*{keeper.idKeeper}">
+									<option value="0" selected disabled>Elegir cuidador</option>
+									<option th:each="l: ${listaCuidadores}"
+										th:value="${l.idKeeper}" th:text="${l.name+ ' '+l.lastname}"
+										th:selected="(${l.idKeeper} == *{keeper.idKeeper})"></option>
+								</select>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('keeper')}" 
+									th:errors="*{keeper}" />
 							</div>
 						</div>
+
+						<div class="form-group row">
+							<label for="pay" class="col-sm-2 col-form-label">Medio de pago:</label>
+							<div class="col-sm-6">
+								<select class="form-control" th:field="*{pay.idPay}">
+									<option value="0" selected disabled>Elegir medio de pago</option>
+									<option th:each="l: ${listaMedioPagos}" 
+										th:value="${l.idPay}" th:text="${l.name + ' '+ l.entity}"
+										th:selected="(${l.idPay} == *{pay.idPay})"></option>
+								</select>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('pay')}" 
+									th:errors="*{pay}" />
+							</div>
+						</div>
+
+
+
+						<div class="form-group row">
+							<label for="card" class="col-sm-2 col-form-label">Número
+								de Tarjeta: </label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{card}" 
+								class="form-control"/>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('card')}" 
+									th:errors="*{card}" />
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="site" class="col-sm-2 col-form-label">Dirección: </label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{site}" 
+								class="form-control"/>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('site')}" 
+									th:errors="*{site}" />
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="date" class="col-sm-2 col-form-label">Fecha de reserva: </label>
+							<div class="col-sm-6">
+								<input type="date" th:field="*{date}" 
+								class="form-control"/>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('date')}" 
+									th:errors="*{date}" />
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="hour" class="col-sm-2 col-form-label">Cantidad
+								horas para cuiado de mascota: </label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{hour}" 
+								class="form-control"/>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('hour')}" 
+									th:errors="*{hour}" />
+							</div>
+						</div>
+
+						<!--  
+						<label for ="costo" class="col-sm-2 col-form-label" >Costo:</label>
+						
+  
+						<div class="form-group row">
+							<label for="precioR" class="col-sm-2 col-form-label">Costo:
+							</label>
+							<div class="col-sm-6">
+								<p  th:field="*{price}" class="form-control"
+									th:errorclass="'form-control alert-danger'"/> 
+									<div th:each="r:${listaReserva}"></div>
+								<div th:text="${r.hour}*150"></div>
+							</div>
+						</div>
+						
+-->
+
+
 						<div class="form-group row">
 							<div class="col-sm-6">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="submit" value="Guardar" class="btn btn-dark" style="background-color: #8062ff ; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/users/list" class="btn btn-dark" style="background-color: #8062ff ; border-color: white">Cancelar</a>
+									type="submit" value="Guardar" class="btn btn-dark"
+									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="/reserves/list" class="btn btn-dark"
+									style="background-color: #8062ff; border-color: white">Cancelar</a>
 							</div>
 						</div>
 						<p th:text="${mensaje}" class="form-text text-danger"></p>
+
 					</form>
+
+
 
 
 
@@ -223,7 +345,4 @@
 </body>
 
 </html>
-						
-						
-						
-						
+

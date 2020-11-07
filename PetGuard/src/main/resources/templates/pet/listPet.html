@@ -68,13 +68,13 @@
 						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservations/list}">Reserva</a>
+						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/payments/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -158,13 +158,13 @@
 						</thead>
 						<tbody style="color: #353434">
 							<tr th:each="l: ${listaMascotas}">
-								<td th:text="${l.idMascota}"></td>
-								<td th:text="${l.nombreMascota}"></td>
-								<td th:text="${l.razaMascota}"></td>
-								<td th:text="${l.edadMascota}"></td>
-								<td th:text="${l.pesoMascota}"></td>
-								<td th:text="${l.sexoMascota}"></td>
-								<td th:text="${l.cliente.name}"></td>
+								<td th:text="${l.idPet}"></td>
+								<td th:text="${l.name}"></td>
+								<td th:text="${l.breed}"></td>
+								<td th:text="${l.years + ' años'}"></td>
+								<td th:text="${l.weight+ ' kilogramos'}"></td>
+								<td th:text="${l.gender}"></td>
+								<td th:text="${l.customer.name}"></td>
 							</tr>
 						</tbody>
 					</table>

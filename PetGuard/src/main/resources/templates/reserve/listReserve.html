@@ -38,7 +38,7 @@
 			<!-- Sidebar - Brand -->
 			<a
                 class="sidebar-brand d-flex align-items-center justify-content-center"
-                th:href="@{/users/index}">
+                th:href="@{/reserves/index}">
                 <div class="sidebar-brand-icon">
                     <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
                 </div>
@@ -47,6 +47,8 @@
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
+
+
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
@@ -137,9 +139,9 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Usuarios</h1>
+					<h1 class="h3 mb-4 text-gray-800">Reservas</h1>
 
-					<a th:href="@{/users/new/}"class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
+					<a th:href="@{/reserves/new/}" class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
 
 					<hr class="sidebar-divider">
 
@@ -147,15 +149,29 @@
 						<thead style="color:white; background-color: #8062ff">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Nombre Usuario</th>
-								<th scope="col">Contraseña</th>
+								<th scope="col">Cliente</th>
+								<th scope="col">Cuidador</th>
+								<th scope="col">Medio de Pago</th>
+								<th scope="col">Numero tarjeta</th>
+								<th scope="col">Dirección</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">Cantidad horas</th>
+								<th scope="col">Costo (soles) </th>
+
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
-							<tr th:each="us: ${listaUsuarios}">
-								<td th:text="${us.idUser}"></td>
-								<td th:text="${us.username}"></td>
-								<td th:text="${us.password}"></td>
+							<tr th:each="r: ${listaReservas}">
+								<td th:text="${r.idReserve}"></td>
+								<td th:text="${r.customer.name}"></td>
+								<td th:text="${r.keeper.name}"></td>
+								<td th:text="${r.pay.name + ' ' + r.pay.entity}"></td>
+								<td th:text="${r.card}"></td>
+								<td th:text="${r.site}"></td>
+								<td th:text="${r.date}"></td>
+								<td th:text="${r.hour + ' horas'}"></td>
+								<td th:text="${'S/. '+ r.hour*10}"></td>
+
 							</tr>
 						</tbody>
 					</table>

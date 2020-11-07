@@ -24,28 +24,40 @@ public class Rol implements Serializable{
     private int idRol;
     
     @NotEmpty(message = "Debe ingresar el tipo de rol")
-    @Column(name = "tipoRol")
-    private String tipoRol;
-    public Rol() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    public Rol(int idRol, String tipoRol) {
-        super();
-        this.idRol = idRol;
-        this.tipoRol = tipoRol;
-    }
-    public int getIdRol() {
-        return idRol;
-    }
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
-    }
-    public String getTipoRol() {
-        return tipoRol;
-    }
-    public void setTipoRol(String tipoRol) {
-        this.tipoRol = tipoRol;
-    }
+    @Column(name = "rol")
+    private String rol;
+
+	public Rol() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Rol(int idRol, String rol) {
+		super();
+		this.idRol = idRol;
+		this.rol = rol;
+	}
+
+	public int getIdRol() {
+		return idRol;
+	}
+
+	public void setIdRol(int idRol) {
+		this.idRol = idRol;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+    
+    
 
 }

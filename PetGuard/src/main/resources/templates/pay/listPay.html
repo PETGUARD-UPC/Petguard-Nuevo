@@ -38,7 +38,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/payments/index}">
+				th:href="@{/pays/index}">
 				<div class="sidebar-brand-icon">
 					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
 				</div>
@@ -69,13 +69,13 @@
 						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservations/list}">Reserva</a>
+						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/payments/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -142,7 +142,7 @@
 					<!-- Page Heading -->
 					<h1 class="h3 mb-4 text-gray-800">Métodos de pago</h1>
 
-					<a th:href="@{/payments/new}" class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
+					<a th:href="@{/pays/new}" class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
 
 					<hr class="sidebar-divider">
 
@@ -151,12 +151,14 @@
 							<tr>
 								<th scope="col">Id</th>
 								<th scope="col">Método de Pago</th>
+								<th scope="col">Entidad financiera</th>
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
-							<tr th:each="c: ${listaMedioPago}">
+							<tr th:each="c: ${listaMedioPagos}">
 								<td th:text="${c.idPay}"></td>
-								<td th:text="${c.typePay}"></td>
+								<td th:text="${c.name}"></td>
+								<td th:text="${c.entity}"></td>
 							</tr>
 						</tbody>
 					</table>

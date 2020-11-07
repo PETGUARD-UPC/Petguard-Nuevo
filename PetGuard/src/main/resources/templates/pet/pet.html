@@ -67,14 +67,14 @@
 						<a class="collapse-item" th:href="@{/pets/list}">Mascotas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservations/list}">Reserva</a>
+						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Gestión de
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/payments/list}">Gestionar
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
 							métodos de pago</a>
 					</div>
 				</div></li>
@@ -128,80 +128,93 @@
 					<!-- Page Heading -->
 					<h1 class="h3 mb-4 text-gray-800">Mascota</h1>
 
-					<hr class="sidebar-divider">
-					<div th:object="${pet}" th:remove="tag">
-						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
-							role="alert">
-							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-						</ul>
-					</div>
-
-					<form th:action="@{/pets/save}" th:object="${pet}" method="post">
+					<form th:action="@{/pets/save}" th:object="${pet}" method="post"
+					style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
+						
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Mascota</label>
+							<label for="name" class="col-sm-2 col-form-label">Nombre de mascota</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nombreMascota}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" required
-									pattern="[A-Za-z]+" title="Sólo se permite texto" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('nombreMascota')}"
-									th:errors="*{nombreMascota}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="razaMascota" class="col-sm-2 col-form-label">Raza</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{razaMascota}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" required
-									pattern="[A-Za-z]+" title="Sólo se permite texto" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('razaMascota')}"
-									th:errors="*{razaMascota}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="edadMascota" class="col-sm-2 col-form-label">Edad</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{edadMascota}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" required /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('edadMascota')}"
-									th:errors="*{edadMascota}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="pesoMascota" class="col-sm-2 col-form-label">Peso</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{pesoMascota}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" required /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('pesoMascota')}"
-									th:errors="*{pesoMascota}"></small>
+								<input type="text" th:field="*{name}" class="form-control"/> 
+									<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('name')}" 
+									th:errors="*{name}" />
 							</div>
 						</div>
 						
 						<div class="form-group row">
-							<label for="sexoMascota" class="col-sm-2 col-form-label">Sexo</label>
+							<label for="breed" class="col-sm-2 col-form-label">Raza</label>
 							<div class="col-sm-6">
-								<select name="sexoMascota" class="form-control" id="sexoMascota">
+								<select name="breed" class="form-control" id="breed">
+									<option value="0" selected disabled>Elegir raza de mascota</option>
+									<option value="Labrador">Labrador</option>
+									<option value="Pastor Alemán">Pastor Alemán</option>
+									<option value="Yorkshire">Yorkshire</option>
+									<option value="Beagle">Beagle</option>
+									<option value="Golden Retriever">Golden Retriever</option>
+									<option value="Chihuahua">Chihuahua</option>
+									<option value="Pequinés">Pequinés</option>
+									<option value="Bulldog">Bulldog</option>
+									<option value="Rottweiler">Rottweiler</option>
+									<option value="Pug">Pug</option>
+									<option value="Shar Pei">Shar Pei</option>
+									<option value="Husky">Husky</option>
+									<option value="Mestizo">Mestizo</option>
+								</select>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('breed')}" 
+									th:errors="*{breed}" />
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="edadMascota" class="col-sm-2 col-form-label">Edad</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{years}"
+									class="form-control"/>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('years')}" 
+									th:errors="*{years}" />
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="pesoMascota" class="col-sm-2 col-form-label">Peso</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{weight}"
+									class="form-control"/>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('weight')}" 
+									th:errors="*{weight}" />
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="gender" class="col-sm-2 col-form-label">Sexo</label>
+							<div class="col-sm-6">
+								<select name="gender" class="form-control" id="gender">
+									<option value="0" selected disabled>Elegir género de mascota</option>
 									<option value="Macho">Macho</option>
 									<option value="Hembra">Hembra</option>
 								</select>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('gender')}" 
+									th:errors="*{gender}" />
 							</div>
 						</div>
 
 						<div class="form-group row">
-							<label for="category" class="col-sm-2 col-form-label">Cliente:</label>
+							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{cliente.idCustomer}">
-									<option th:each="l: ${listaCliente}" th:value="${l.idCustomer}"
-										th:text="${l.name}"
-										th:selected="(${l.idCustomer} == *{cliente.idCustomer})"></option>
+								<select class="form-control" 
+										th:field="*{customer.idCustomer}">
+									<option value="0" selected disabled>Elegir dueño de mascota</option>
+									<option th:each="l: ${listaClientes}" 
+										th:value="${l.idCustomer}" th:text="${l.name + ' '+l.lastname}"
+										th:selected="(${l.idCustomer} == *{customer.idCustomer})"></option>
 								</select>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('customer')}" 
+									th:errors="*{customer}" />
 							</div>
 						</div>
 

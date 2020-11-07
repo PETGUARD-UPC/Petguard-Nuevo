@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.entity.Rol;
-import pe.edu.upc.repository.rolRepository;
+import pe.edu.upc.repository.RolRepository;
 import pe.edu.upc.serviceinterface.IRolService;
 
 @Service
@@ -19,14 +19,14 @@ public class RolServiceImpl implements IRolService, Serializable{
 	
 	//llamar al repositorio de Rol
 	@Autowired
-	private rolRepository rR;
+	private RolRepository roR;
 	
 	@Override
 	@Transactional
 	public void insertar(Rol rol) {
 		// TODO Auto-generated method stub
 		try {
-			rR.save(rol);
+			roR.save(rol);
 		} catch (Exception e) {
 			System.out.println("Error al insertar el rol");
 		}
@@ -35,18 +35,6 @@ public class RolServiceImpl implements IRolService, Serializable{
 	@Override
 	public List<Rol> list() {
 		// TODO Auto-generated method stub
-		return rR.findAll();
+		return roR.findAll();
 	}
-
-	@Override
-	@Transactional
-	public void delete(int idRol) {
-		// TODO Auto-generated method stub
-		try {
-			rR.deleteById(idRol);
-		} catch (Exception e) {
-			System.out.println("Error al eliminar el rol por id");
-		}
-	}
-
 }
