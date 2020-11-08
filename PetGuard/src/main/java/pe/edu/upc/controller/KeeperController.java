@@ -41,12 +41,21 @@ public class KeeperController {
 	@PostMapping("/save")
 	public String saveKeeper(@Valid Keeper keeper,BindingResult result,Model model,
 			SessionStatus status) throws Exception{
-		if(result.hasErrors()) {
-			model.addAttribute("listaUsuarios", uS.list());
+			if(result.hasErrors()) {
+		//	model.addAttribute("listaUsuarios", uS.list());
 			return"keeper/keeper";
-		}else {
-			kS.insert(keeper);
-		}
+			}
+			int rpta=kS.insert(keeper);
+			//int rptaE=kS.searchE(keeper);
+			if((rpta>0)) {
+				model.addAttribute("listaUsuarios", uS.list());
+				model.addAttribute("mensaje", "El DNI ya existe");
+				return "/keeper/Keeper";	
+			}
+			else {
+				model.addAttribute("listaCuidadores", kS.list());
+				status.setComplete();
+			}
 		model.addAttribute("listaCuidadores",kS.list());
 		return "redirect:/keepers/list";
 	}

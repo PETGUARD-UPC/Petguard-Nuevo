@@ -171,6 +171,17 @@
 							</div>
 						</div>
 						<div class="form-group row">
+							<label for="dniCu" class="col-sm-2 col-form-label">DNI</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{dni}"
+									class="form-control"/>
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('dni')}" 
+									th:errors="*{dni}" />
+								
+							</div>
+						</div>
+						<div class="form-group row">
 							<label for="emailCu" class="col-sm-2 col-form-label">Email</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{email}"
