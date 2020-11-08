@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 //import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -23,8 +24,8 @@ public class User {
 	@Column(name="username")
 	private String username;
 	 
-	//@NotEmpty(message = "Debe ingresar una contraseña")
-	@Column(name="password",length = 20,nullable = false)
+	@Size(min=1, message = "Debe ingresar una contraseña")
+	@Column(name="password")
 	private String password;
 
 	public User() {
