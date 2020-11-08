@@ -142,7 +142,7 @@
 						<div class="form-group row">
 							<label for="nameCu" class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{name}"
+								<input type="text" pattern="[A-Za-z]+" title="Sólo se permite letras" th:field="*{name}"
 									class="form-control"/> 
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('name')}" 
@@ -152,7 +152,7 @@
 						<div class="form-group row">
 							<label for="lastnameCu" class="col-sm-2 col-form-label">Apellido</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{lastname}"
+								<input type="text" pattern="[A-Za-z]+" title="Sólo se permite letras" th:field="*{lastname}"
 									class="form-control"/> 
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('lastname')}" 
@@ -162,7 +162,7 @@
 						<div class="form-group row">
 							<label for="phoneCu" class="col-sm-2 col-form-label">Teléfono</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{phone}"
+								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{phone}"
 									class="form-control"/>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('phone')}" 
@@ -173,7 +173,7 @@
 						<div class="form-group row">
 							<label for="dniCu" class="col-sm-2 col-form-label">DNI</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{dni}"
+								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{dni}"
 									class="form-control"/>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('dni')}" 
@@ -209,7 +209,7 @@
 						<div class="form-group row">
 							<label for="salary" class="col-sm-2 col-form-label">Salario</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{salary}"
+								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{salary}"
 									class="form-control"/>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('salary')}" 
@@ -220,7 +220,7 @@
 						<div class="form-group row">
 							<label for="experience" class="col-sm-2 col-form-label">Experiencia</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{experience}"
+								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{experience}"
 									class="form-control"/>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('experience')}" 

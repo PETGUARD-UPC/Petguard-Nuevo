@@ -141,7 +141,7 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{name}" class="form-control"/> 
+								<input type="text" pattern="[A-Za-z]+" title="Sólo se permite letras" th:field="*{name}" class="form-control"/> 
 									<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('name')}" 
 									th:errors="*{name}" />
@@ -151,7 +151,7 @@
 						<div class="form-group row">
 							<label for="lastname" class="col-sm-2 col-form-label">Apellido</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{lastname}" 
+								<input type="text" pattern="[A-Za-z]+" title="Sólo se permite letras" th:field="*{lastname}" 
 									class="form-control"/> 
 									<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('lastname')}" 
@@ -162,7 +162,7 @@
 						<div class="form-group row">
 							<label for="lastname" class="col-sm-2 col-form-label">DNI</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{dni}" 
+								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{dni}" 
 									class="form-control"/> 
 									<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('dni')}" 
@@ -173,7 +173,7 @@
 						<div class="form-group row">
 							<label for="phone" class="col-sm-2 col-form-label">Teléfono</label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{phone}" 
+								<input type="number" pattern="[0-9]+" title="Sólo se permite números" th:field="*{phone}" 
 									class="form-control"/> 
 									<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('phone')}" 

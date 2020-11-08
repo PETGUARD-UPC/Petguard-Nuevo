@@ -134,7 +134,7 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Nombre de mascota</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{name}" class="form-control"/> 
+								<input type="text" pattern="[A-Za-z]+" title="Sólo se permite letras" th:field="*{name}" class="form-control"/> 
 									<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('name')}" 
 									th:errors="*{name}" />
@@ -169,7 +169,7 @@
 						<div class="form-group row">
 							<label for="edadMascota" class="col-sm-2 col-form-label">Edad</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{years}"
+								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{years}"
 									class="form-control"/>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('years')}" 
@@ -180,7 +180,7 @@
 						<div class="form-group row">
 							<label for="pesoMascota" class="col-sm-2 col-form-label">Peso</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{weight}"
+								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{weight}"
 									class="form-control"/>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('weight')}" 

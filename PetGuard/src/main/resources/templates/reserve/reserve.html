@@ -203,7 +203,7 @@
 							<label for="card" class="col-sm-2 col-form-label">Número
 								de Tarjeta: </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{card}" 
+								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{card}" 
 								class="form-control"/>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('card')}" 
@@ -237,7 +237,7 @@
 							<label for="hour" class="col-sm-2 col-form-label">Cantidad
 								horas para cuiado de mascota: </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{hour}" 
+								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{hour}" 
 								class="form-control"/>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('hour')}" 
