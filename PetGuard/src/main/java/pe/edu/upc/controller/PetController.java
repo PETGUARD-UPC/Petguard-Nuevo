@@ -1,16 +1,21 @@
 package pe.edu.upc.controller;
 
+import java.text.ParseException;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.entity.Customer;
 import pe.edu.upc.entity.Pet;
 import pe.edu.upc.serviceinterface.ICustomerService;
 import pe.edu.upc.serviceinterface.IPetService;
@@ -51,10 +56,23 @@ public class PetController {
 	@GetMapping("/list")
 	public String listPets(Model model) {
 		try {
+			model.addAttribute("pet", new Pet());
 			model.addAttribute("listaMascotas",mS.list());
 		}catch(Exception e) {
 			System.out.println("Error al listar mascotas en el controller");
 		}
+		return "/pet/listPet";
+	}
+	@RequestMapping("/find")
+	public String findBynamePet(Model model, @Validated Pet pet) throws ParseException{
+		
+		List<Pet> listaMascotas;
+		listaMascotas=mS.findBynamePet(pet.getName());
+		
+		if (listaMascotas.isEmpty()) {
+			model.addAttribute("mensaje", "No se encontró la mascota");	
+		}
+		model.addAttribute("listaMascotas", listaMascotas);
 		return "/pet/listPet";
 	}
 }

@@ -37,13 +37,13 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-                class="sidebar-brand d-flex align-items-center justify-content-center"
-                th:href="@{/pets/index}">
-                <div class="sidebar-brand-icon">
-                    <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">PetGuard</div>
-            </a>
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				th:href="@{/pets/index}">
+				<div class="sidebar-brand-icon">
+					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">PetGuard</div>
+			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
@@ -71,10 +71,12 @@
 						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de
+							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
+							métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -141,11 +143,35 @@
 					<!-- Page Heading -->
 					<h1 class="h3 mb-4 text-gray-800">Mascotas</h1>
 
-					<a th:href="@{/pets/new/}" class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
+					<a th:href="@{/pets/new/}" class="btn btn-secondary btn-xs"
+						style="background-color: #8062ff; border-color: white">Nuevo</a>
+					<form th:action="@{/pets/find}" method="post"
+						th:object="${pet}">
+
+						<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<td><label for="name" class="col-sm-2 col-form-label">Buscar:</label></td>
+
+										<td><input type="text" class="form-control"
+											th:field="*{name}" id="name" placeholder="Nombre"
+											required="required"></input></td>
+										<td><button type="submit" class="btn btn-danger">
+												<i class="iconf fa fa-search" style="color: white;"></i>
+											</button></td>
+										<td><a href="/pets/list" class="btn btn-danger">Limpiar</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</form>
 					<hr class="sidebar-divider">
 
-					<table class="table" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
-						<thead style="color:white; background-color: #8062ff">
+					<table class="table"
+						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
+						<thead style="color: white; background-color: #8062ff">
 							<tr>
 								<th scope="col">IdMascota</th>
 								<th scope="col">Nombre</th>

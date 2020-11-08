@@ -8,5 +8,5 @@ public interface IPetService {
 	
 	public void insert (Pet pet);
 	public List<Pet> list();
-
+	List<Pet>findBynamePet(String namePet);
 }
