@@ -16,9 +16,12 @@ public class CustomerServiceImpl implements ICustomerService {
 	private CustomerRepository cR;
 
 	@Override
-	public void insert(Customer customer) {
-		// TODO Auto-generated method stub
-		cR.save(customer);
+	public int insert(Customer customer) {
+		int rpta=cR.searchCustomer(customer.getDni());
+		if(rpta==0) {
+			cR.save(customer);
+		}
+		return rpta;
 	}
 
 	@Override

@@ -44,9 +44,17 @@ public class CustomerController {
 		if(result.hasErrors()) {
 			model.addAttribute("listaUsuarios", uS.list());
 			return"customer/customer";
-		}else {
-			cS.insert(customer);
 		}
+			int rpta=cS.insert(customer);
+			if(rpta>0) {
+				model.addAttribute("listaUsuarios", uS.list());
+				model.addAttribute("mensaje", "El DNI ya existe");
+				return "/customer/customer";
+			}else {
+				model.addAttribute("mensaje", "Se guardó correctamente");
+				status.setComplete();
+				
+			}
 		model.addAttribute("listaClientes", cS.list());
 		return "redirect:/customers/list";
 	}

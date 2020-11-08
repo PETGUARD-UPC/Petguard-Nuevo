@@ -6,7 +6,7 @@ import pe.edu.upc.entity.Customer;
 
 public interface ICustomerService {
 
-	public void insert(Customer customer);
+	public int insert(Customer customer);
 
 	public List<Customer> list();
 	

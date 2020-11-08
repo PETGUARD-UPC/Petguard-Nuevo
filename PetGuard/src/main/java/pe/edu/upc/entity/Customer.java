@@ -57,19 +57,22 @@ public class Customer {
 	@Column(name = "birhtdate")
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
-
+	
+	@Size(max=8, min=8, message = "DNI debe tener 8 dígitos")
+	@Column(name = "dni")
+	private String dni;
 
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Customer(User user, int idCustomer, String name,
-			 String lastname,
-			String phone,
+			String lastname,
+			 String phone,
 			String email,
-			Date birthdate) {
+			Date birthdate,
+			String dni) {
 		super();
 		this.user = user;
 		this.idCustomer = idCustomer;
@@ -78,78 +81,75 @@ public class Customer {
 		this.phone = phone;
 		this.email = email;
 		this.birthdate = birthdate;
+		this.dni = dni;
 	}
-
 
 	public User getUser() {
 		return user;
 	}
 
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 
 	public int getIdCustomer() {
 		return idCustomer;
 	}
 
-
 	public void setIdCustomer(int idCustomer) {
 		this.idCustomer = idCustomer;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getLastname() {
 		return lastname;
 	}
 
-
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
 
 	public String getPhone() {
 		return phone;
 	}
 
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public Date getBirthdate() {
 		return birthdate;
 	}
 
-
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+
+	
 	
 
 	
