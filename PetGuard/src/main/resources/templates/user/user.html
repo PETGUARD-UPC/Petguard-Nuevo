@@ -140,7 +140,7 @@
 						<div class="form-group row">
 							<label for="contraUs" class="col-sm-2 col-form-label">Contraseña</label>
 							<div class="col-sm-6">
-								<input type="password" th:field="*{password}" class="form-control"/>
+								<input type="password" required th:field="*{password}" class="form-control"/>
 									<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('password')}"
 									th:errors="*{password}"></p>

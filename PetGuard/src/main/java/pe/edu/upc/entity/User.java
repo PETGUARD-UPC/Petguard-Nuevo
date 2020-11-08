@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+//import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotEmpty;
 
 
@@ -18,8 +19,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUser;
 	
-	//@NotEmpty(message = "Debe ingresar un nombre de usuario")
-	@Column(name="username", length=40, nullable = false)
+	@NotEmpty(message = "Debe ingresar un nombre de usuario")
+	@Column(name="username")
 	private String username;
 	 
 	//@NotEmpty(message = "Debe ingresar una contraseña")

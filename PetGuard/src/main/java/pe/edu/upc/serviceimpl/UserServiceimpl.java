@@ -15,12 +15,7 @@ public class UserServiceimpl implements IUserService{
 	@Autowired
 	private UserRepository uR;
 	
-	@Override
-	public void insert(User user) {
-		uR.save(user);
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public List<User> list() {
@@ -34,5 +29,13 @@ public class UserServiceimpl implements IUserService{
 		return uR.findBynameUser(username);
 	}
 
-
+	@Override
+	public int insert(User user) {
+		int rpta=uR.searchUser(user.getUsername());
+		if (rpta==0) {
+			uR.save(user);
+		}
+		return rpta;
+	}
+	
 }

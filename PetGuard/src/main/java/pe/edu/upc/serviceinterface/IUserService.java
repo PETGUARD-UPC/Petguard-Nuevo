@@ -6,7 +6,7 @@ import pe.edu.upc.entity.User;
 
 public interface IUserService {
 	
-	public void insert(User user);
+	public int insert(User user);
 	public List<User> list();
 	List<User>findBynameUser(String username);
 }
