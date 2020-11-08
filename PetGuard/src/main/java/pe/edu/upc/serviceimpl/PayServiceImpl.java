@@ -30,5 +30,11 @@ public class PayServiceImpl implements IPayService{
 		return pR.findAll();
 	}
 	
+	@Override
+	public List<Pay> findBynamePay(String namePay) {
+		// TODO Auto-generated method stub
+		return pR.findBynamePay(namePay);
+	}
+	
 	
 }
