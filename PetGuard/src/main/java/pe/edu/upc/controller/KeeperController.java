@@ -42,7 +42,7 @@ public class KeeperController {
 	public String saveKeeper(@Valid Keeper keeper,BindingResult result,Model model,
 			SessionStatus status) throws Exception{
 			if(result.hasErrors()) {
-		//	model.addAttribute("listaUsuarios", uS.list());
+			model.addAttribute("listaUsuarios", uS.list());
 			return"keeper/keeper";
 			}
 			int rpta=kS.insert(keeper);
