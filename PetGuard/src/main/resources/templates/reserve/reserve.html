@@ -245,24 +245,27 @@
 							</div>
 						</div>
 
+
+<!-- 						<div class="form-group row"> -->
+<!-- 							<label for="salary" class="col-sm-2 col-form-label">Tarifa de cuidador: </label> -->
+<!-- 							<div class="col-sm-6"> -->
+<!-- 								<output th:each="l: ${listaCuidadores}" -->
+<!-- 										th:value="${l.salary}" -->
+<!-- 								class="form-control"> </output> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 						<!--  
-						<label for ="costo" class="col-sm-2 col-form-label" >Costo:</label>
-						
-  
 						<div class="form-group row">
-							<label for="precioR" class="col-sm-2 col-form-label">Costo:
-							</label>
-							<div class="col-sm-6">
-								<p  th:field="*{price}" class="form-control"
-									th:errorclass="'form-control alert-danger'"/> 
-									<div th:each="r:${listaReserva}"></div>
-								<div th:text="${r.hour}*150"></div>
+							<label for="price" class="col-sm-2 col-form-label">Costo total a pagar: </label>
+							<div class="col-sm-6" th:with="price=0">
+								<output th:each="l: ${listaCuidadores}"
+								th:field="*{price}"
+								th:with="price=${hours * l.salary}"></output>
+								<p th:text="${price}"></p>
 							</div>
+							
 						</div>
-						
 -->
-
-
 						<div class="form-group row">
 							<div class="col-sm-6">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
