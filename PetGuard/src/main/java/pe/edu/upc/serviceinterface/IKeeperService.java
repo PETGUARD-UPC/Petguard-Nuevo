@@ -6,8 +6,9 @@ import pe.edu.upc.entity.Keeper;
 
 public interface IKeeperService {
 
-	public void insert(Keeper keeper);
-
+	public int insert(Keeper keeper);
+	
+	public int searchE (Keeper keeper);
 	List<Keeper> list();
 	
 	List<Keeper>findBynameKeeper(String nameKeeper);

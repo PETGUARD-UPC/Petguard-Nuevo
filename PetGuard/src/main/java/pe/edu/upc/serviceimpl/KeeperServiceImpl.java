@@ -15,11 +15,7 @@ public class KeeperServiceImpl implements IKeeperService {
 	@Autowired
 	private KeeperRepository kR;
 
-	@Override
-	public void insert(Keeper keeper) {
-		// TODO Auto-generated method stub
-		kR.save(keeper);
-	}
+
 
 	@Override
 	public List<Keeper> list() {
@@ -31,6 +27,24 @@ public class KeeperServiceImpl implements IKeeperService {
 	public List<Keeper> findBynameKeeper(String nameKeeper) {
 		
 		return kR.findBynameKeeper(nameKeeper);
+	}
+
+	@Override
+	public int insert(Keeper keeper) {
+		int rpta= kR.searchKeeper(keeper.getDni()) ;
+		if(rpta==0) {
+			kR.save(keeper);
+		}
+		return rpta;
+	}
+
+	@Override
+	public int searchE(Keeper keeper) {
+		int rptaE= kR.searchKeeper(keeper.getEmail()) ;
+		if(rptaE==0) {
+			kR.save(keeper);
+		}
+		return rptaE;
 	}
 
 }
