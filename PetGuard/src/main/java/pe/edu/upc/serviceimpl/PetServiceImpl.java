@@ -28,10 +28,4 @@ public class PetServiceImpl implements IPetService{
 		return pR.findAll();
 	}
 
-	@Override
-	public List<Pet> findBynamePet(String namePet) {
-		// TODO Auto-generated method stub
-		return pR.findBynamePet(namePet);
-	}
-
 }
