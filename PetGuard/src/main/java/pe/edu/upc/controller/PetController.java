@@ -55,6 +55,7 @@ public class PetController {
 	@GetMapping("/list")
 	public String listPets(Model model) {
 		try {
+			model.addAttribute("pet", new Pet());
 			model.addAttribute("listaMascotas",mS.list());
 		}catch(Exception e) {
 			System.out.println("Error al listar mascotas en el controller");
