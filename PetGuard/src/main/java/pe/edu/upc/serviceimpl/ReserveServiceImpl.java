@@ -28,4 +28,10 @@ public class ReserveServiceImpl implements IReserveService{
 		return rR.findAll();
 	}
 
+	@Override
+	public List<Reserve> findBycustomer(String name) {
+		// TODO Auto-generated method stub
+		return rR.findBycustomer(name);
+	}
+
 }

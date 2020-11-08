@@ -8,5 +8,7 @@ public interface IReserveService {
 	
 	public void insert(Reserve reserve);
 	public List<Reserve> list();
+	
+	List<Reserve>findBycustomer(String name);
 
 }
