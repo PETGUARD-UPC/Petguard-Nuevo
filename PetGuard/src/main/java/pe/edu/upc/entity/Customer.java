@@ -49,7 +49,7 @@ public class Customer {
 	//@NotEmpty(message = "Ingresa tu email!")
 	@Email(message="Ingresar email válido")
 	@Pattern(regexp=".+@.+\\..+", message="Ingresar email válido")
-	@Column(name = "email", length = 50)
+	@Column(name = "email", nullable=false)
 	private String email;
 	
 	@Past(message = "La fecha debe ser pasada!")

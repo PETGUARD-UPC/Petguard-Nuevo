@@ -52,7 +52,7 @@ public class Keeper {
 
 	@Email(message = "Ingresar email válido")
 	@Pattern(regexp = ".+@.+\\..+", message = "Ingresar email válido")
-	@Column(name = "email", length = 20, nullable = false)
+	@Column(name = "email", nullable = false)
 	private String email;
 
 	// @NotNull(message = "Ingresar la fecha de nacimiento!")
