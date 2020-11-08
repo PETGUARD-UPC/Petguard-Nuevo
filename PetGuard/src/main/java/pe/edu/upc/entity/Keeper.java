@@ -34,7 +34,7 @@ public class Keeper {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idKeeper;
 
-	// @NotEmpty(message = "Ingresa el nombre!")
+	@NotEmpty(message = "Ingresa el nombre!")
 	@Column(name = "name", nullable = false)
 	private String name;
 
