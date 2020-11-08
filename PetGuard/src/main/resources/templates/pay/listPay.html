@@ -72,10 +72,12 @@
 						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de
+							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
+							métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -142,12 +144,38 @@
 					<!-- Page Heading -->
 					<h1 class="h3 mb-4 text-gray-800">Métodos de pago</h1>
 
-					<a th:href="@{/pays/new}" class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
+					<a th:href="@{/pays/new}" class="btn btn-secondary btn-xs"
+						style="background-color: #8062ff; border-color: white">Nuevo</a>
+
+					<form th:action="@{/pays/find}" method="post"
+						th:object="${pay}">
+
+						<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<td><label for="name" class="col-sm-2 col-form-label">Buscar:</label></td>
+
+										<td><input type="text" class="form-control"
+											th:field="*{name}" id="name" 
+											placeholder="Metodo de pago" required="required"></input></td>
+										<td><button type="submit" class="btn btn-danger">
+												<i class="iconf fa fa-search" style="color: white;"></i>
+											</button></td>
+										<td><a href="/pays/list" class="btn btn-danger">Limpiar</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</form>
+
 
 					<hr class="sidebar-divider">
 
-					<table class="table" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
-						<thead style="color:white; background-color: #8062ff">
+					<table class="table"
+						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
+						<thead style="color: white; background-color: #8062ff">
 							<tr>
 								<th scope="col">Id</th>
 								<th scope="col">Método de Pago</th>
@@ -163,7 +191,7 @@
 						</tbody>
 					</table>
 
-					<p th:text="${mensaje}"></p>
+					<p th:text="${mensaje}" class="form-text text-danger" ></p>
 
 				</div>
 				<!-- /.container-fluid -->

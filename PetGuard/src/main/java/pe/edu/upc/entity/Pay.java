@@ -6,7 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
+
 @Entity
 @Table(name = "pays")
 public class Pay {
@@ -15,11 +16,11 @@ public class Pay {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPay;
 	
-	@NotNull(message = "Elegir tipo de tarjeta")
+	@NotEmpty(message = "Elegir tipo de tarjeta")
 	@Column(name = "name")
 	private String name;
 
-	@NotNull(message = "Elegir entidad financiera")
+	//@NotEmpty(message = "Elegir entidad financiera")
 	@Column(name = "entity")
 	private String entity;
 

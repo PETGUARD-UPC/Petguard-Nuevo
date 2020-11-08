@@ -1,5 +1,9 @@
 package pe.edu.upc.controller;
 
+import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
@@ -65,12 +70,28 @@ public class ReserveController {
 	@GetMapping("/list")
 	public String listReserves(Model model) {
 		try {
+			model.addAttribute("reserve", new Reserve());
 			model.addAttribute("listaReservas", rS.list());
 		} catch (Exception e) {
 			System.out.println("no se pudo listar las reservas en el controller");
 		}
 		return "/reserve/listReserve";
 		
+	}
+	
+	@RequestMapping("/find")
+	public String findBycustomer(Map<String, Object> model, @ModelAttribute Reserve reserve) throws ParseException{
+		
+		List<Reserve> listaReservas;
+		reserve.setSite(reserve.getSite());
+		listaReservas=rS.findBycustomer(reserve.getSite());
+		
+		if(listaReservas.isEmpty()) {
+			model.put("mensaje", "No se encontró");
+		}
+		
+		model.put("listaReservas", listaReservas);
+		return  "reserve/listReserve";
 	}
 		
 }

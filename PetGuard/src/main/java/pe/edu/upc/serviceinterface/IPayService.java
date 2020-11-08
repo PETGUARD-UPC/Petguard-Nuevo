@@ -8,6 +8,8 @@ public interface IPayService {
 
 	public void insert(Pay pay);
 	
-	List<Pay>list();
+	public List<Pay>list();
+	
+	List<Pay>findBynamePay(String namePay);
 	
 }

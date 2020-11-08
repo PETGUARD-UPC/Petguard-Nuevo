@@ -1,11 +1,15 @@
 package pe.edu.upc.controller;
 
+import java.text.ParseException;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +40,7 @@ public class UserController {
 		}else {
 			uS.insert(user);
 		}
+		
 		model.addAttribute("listaUsuarios", uS.list());
 		return "/user/listUser";
 		
@@ -44,11 +49,24 @@ public class UserController {
 	@GetMapping("/list")
 	public String listUsers(Model model) {
 		try {
+			model.addAttribute("user", new User());
 			model.addAttribute("listaUsuarios", uS.list());
 		} catch (Exception e) {
 			System.out.println("no se pudo listar los usuarios en el controller");
 		}
 		return "/user/listUser";
 		
+	}
+	@RequestMapping("/find")
+	public String findBynameCustomer(Model model, @Validated User user) throws ParseException{
+		
+		List<User> listaUsuarios;
+		listaUsuarios=uS.findBynameUser(user.getUsername());
+		
+		if (listaUsuarios.isEmpty()) {
+			model.addAttribute("mensaje", "No se encontró Usuario");	
+		}
+		model.addAttribute("listaUsuarios", listaUsuarios);
+		return "/user/listUser";
 	}
 }

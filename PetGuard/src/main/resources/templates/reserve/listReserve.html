@@ -143,6 +143,30 @@
 
 					<a th:href="@{/reserves/new/}" class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
 
+					<form th:action="@{/reserves/find}" method="post"
+						th:object="${reserve}">
+
+						<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<td><label for="name"
+											class="col-sm-2 col-form-label">Buscar:</label></td>
+
+										<td><input type="text" class="form-control"
+											th:field="*{site}" id="name"
+											placeholder="Nombre" required="required"></input></td>
+										<td><button type="submit" class="btn btn-danger">
+												<i class="iconf fa fa-search" style="color: white;"></i>
+											</button></td>
+										<td><a href="/reserves/list" class="btn btn-danger">Limpiar</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</form>
+
 					<hr class="sidebar-divider">
 
 					<table class="table" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">

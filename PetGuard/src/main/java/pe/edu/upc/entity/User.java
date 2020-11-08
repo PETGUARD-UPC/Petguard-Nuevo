@@ -18,11 +18,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUser;
 	
-	@NotEmpty(message = "Debe ingresar un nombre de usuario")
+	//@NotEmpty(message = "Debe ingresar un nombre de usuario")
 	@Column(name="username", length=40, nullable = false)
 	private String username;
 	 
-	@NotEmpty(message = "Debe ingresar una contraseña")
+	//@NotEmpty(message = "Debe ingresar una contraseña")
 	@Column(name="password",length = 20,nullable = false)
 	private String password;
 

@@ -27,4 +27,12 @@ public class UserServiceimpl implements IUserService{
 		// TODO Auto-generated method stub
 		return uR.findAll();
 	}
+
+	@Override
+	public List<User> findBynameUser(String username) {
+		// TODO Auto-generated method stub
+		return uR.findBynameUser(username);
+	}
+
+
 }
