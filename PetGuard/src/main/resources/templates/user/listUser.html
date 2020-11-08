@@ -140,6 +140,31 @@
 					<h1 class="h3 mb-4 text-gray-800">Usuarios</h1>
 
 					<a th:href="@{/users/new/}"class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
+					
+					
+					<form th:action="@{/users/find}" method="post"
+						th:object="${user}">
+
+						<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<td><label for="username"
+											class="col-sm-2 col-form-label">Buscar:</label></td>
+
+										<td><input type="text" class="form-control"
+											th:field="*{username}" id="username"
+											placeholder="Nombre" required="required"></input></td>
+										<td><button type="submit" class="btn btn-danger">
+												<i class="iconf fa fa-search" style="color: white;"></i>
+											</button></td>
+										<td><a href="/users/list" class="btn btn-danger">Limpiar</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</form>
 
 					<hr class="sidebar-divider">
 
