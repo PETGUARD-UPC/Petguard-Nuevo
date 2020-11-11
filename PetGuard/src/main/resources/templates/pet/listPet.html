@@ -181,8 +181,8 @@
 								<th scope="col">Peso</th>
 								<th scope="col">Sexo</th>
 								<th scope="col">Dueño</th>
-								<th scope="col" class="text-center">Operación</th>
-								<th scope="col" class="text-center">Operación</th>
+								<th scope="col" class="text-center">Eliminar</th>
+								<th scope="col" class="text-center">Actualizar</th>
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
@@ -196,11 +196,11 @@
 								<td th:text="${l.gender}"></td>
 								<td th:text="${l.customer.name +'  '+ l.customer.lastname}"></td>
 								<td class="text-center"><a
-									th:href="@{'/pets/irupdate/' + ${l.idPet}}"><i
-										class="iconf fa fa-pen" style="color: green;"></i></a></td>
-								<td class="text-center"><a
-									th:href="@{'/pets/delete/'+${l.idPet}}"><i
+									th:href="@{'/pets/delete/' + ${l.idPet}}"><i
 										class="iconf fa fa-trash" style="color: red;"></i></a></td>
+								<td class="text-center"><a
+									th:href="@{'/pets/irupdate/'+${l.idPet}}"><i
+										class="iconf fa fa-pen" style="color: green;"></i></a></td>
 							</tr>
 						</tbody>
 					</table>

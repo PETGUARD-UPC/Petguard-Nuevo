@@ -122,6 +122,7 @@ public class PetController {
 	@PostMapping("/update")
     public String updatePet(@Valid Pet pet, BindingResult result, Model model,
             SessionStatus status) throws Exception {
+		
         if (result.hasErrors()) {
             return "pet/pet";
         } else {
@@ -129,6 +130,7 @@ public class PetController {
         }
         model.addAttribute("listaClientes", cS.list());
         model.addAttribute("listaMascotas", mS.list());	
+        model.addAttribute("pet", new Pet());
         return "redirect:/pets/list";
     }
 	
