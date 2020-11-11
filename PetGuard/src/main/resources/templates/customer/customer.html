@@ -199,7 +199,7 @@
 							<label for="birthdateC" class="col-sm-2 col-form-label">Fecha
 								de Nacimiento</label>
 							<div class="col-sm-6"> 
-								<input type="date" th:field="*{birthdate}" required="required" class="form-control" />
+								<input type="date" th:field="*{birthdate}"  class="form-control" required/>
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('birthdate')}"
 									th:errors="*{birthdate}" />
