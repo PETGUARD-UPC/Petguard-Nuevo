@@ -135,30 +135,31 @@
 						</tr>
 					</tbody> -->
 
-					<form th:action="@{/reserves/save}" th:object="${reserve}"
+					<form th:action="@{/reserves/update}" th:object="${reserve}"
 						method="post" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
 
- 
+   
 						<div class="form-group row">
 							<label for="id" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{idReserve}" class="form-control"
-									th:errorclass="'form-control alert-danger'" readonly="readonly" /> <small
+									th:errorclass="'form-control alert-danger'" readonly="readonly"/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('idReserve')}"
 									th:errors="*{idReserve}"></small>
 							</div>
 						</div> 
-
+						
+						
 						<div class="form-group row">
 							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
 							<div class="col-sm-6">
 								<select class="form-control" 
 										th:field="*{customer.idCustomer}">
-									<option value="0" selected disabled>Elegir cliente</option>
+									<option value="0" selected disabled >Elegir cliente</option>
 									<option th:each="l: ${listaClientes}" 
 										th:value="${l.idCustomer}" th:text="${l.name + ' '+l.lastname}"
-										th:selected="(${l.idCustomer} == *{customer.idCustomer})"></option>
+										th:selected="(${l.idCustomer} == *{customer.idCustomer})" ></option>
 								</select>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('customer')}" 
@@ -174,7 +175,7 @@
 									<option value="0" selected disabled>Elegir cuidador</option>
 									<option th:each="l: ${listaCuidadores}"
 										th:value="${l.idKeeper}" th:text="${l.name+ ' '+l.lastname}"
-										th:selected="(${l.idKeeper} == *{keeper.idKeeper})"></option>
+										th:selected="(${l.idKeeper} == *{keeper.idKeeper})" ></option>
 								</select>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('keeper')}" 
@@ -204,7 +205,7 @@
 								de Tarjeta: </label>
 							<div class="col-sm-6">
 								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{card}" 
-								class="form-control" autocomplete="off"/>
+								class="form-control"/>
 								<p class="alert alert-danger" 
 									th:if="${#fields.hasErrors('card')}" 
 									th:errors="*{card}" />

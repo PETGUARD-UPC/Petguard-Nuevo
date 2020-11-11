@@ -181,6 +181,8 @@
 								<th scope="col">Fecha</th>
 								<th scope="col">Cantidad horas</th>
 								<th scope="col">Costo (soles) </th>
+								<th scope="col">Operación</th>
+								<th scope="col"></th>
 
 							</tr>
 						</thead>
@@ -196,7 +198,22 @@
 								<td th:text="${r.hour + ' horas'}"></td>
 								<td th:text="${'S/. '+ r.hour* r.keeper.salary}"></td>
 
+
+								   <td>
+							    <a th:href="@{'/reserves/delete/'+${r.idReserve}}">
+								<i class="iconf fa fa-trash" style="color:red;"></i>
+								</a>
+								</td>
+								
+								<td>
+								<a th:href="@{'/reserves/irupdate/'+${r.idReserve}}">
+								<i class="iconf fa fa-pen" style="color:#FFC848;"></i>
+								</a>
+								</td>
 							</tr>
+							
+							 
+						
 						</tbody>
 					</table>
 
