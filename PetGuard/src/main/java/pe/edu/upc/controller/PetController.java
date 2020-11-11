@@ -120,12 +120,30 @@ public class PetController {
 	}
 	
 	@PostMapping("/update")
-    public String updatePet(@Valid Pet pet, BindingResult result, Model model,
-            SessionStatus status) throws Exception {
+    public String updatePet(@Valid Pet pet,BindingResult result,Model model,
+			@RequestParam("file") MultipartFile foto, RedirectAttributes flash,
+			SessionStatus status) throws Exception {
 		
         if (result.hasErrors()) {
             return "pet/pet";
         } else {
+        	if (!foto.isEmpty()) {
+
+				if (pet.getIdPet() > 0 && pet.getFoto() != null && pet.getFoto().length() > 0) {
+
+					uploadFileService.delete(pet.getFoto());
+				}
+
+				String uniqueFilename = null;
+				try {
+					uniqueFilename = uploadFileService.copy(foto);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
+				pet.setFoto(uniqueFilename);
+			}
             mS.insert(pet);
         }
         model.addAttribute("listaClientes", cS.list());
