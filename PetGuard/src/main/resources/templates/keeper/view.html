@@ -38,7 +38,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/users/index}">
+				th:href="@{/keepers/index}">
 				<div class="sidebar-brand-icon">
 					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
 				</div>
@@ -47,6 +47,7 @@
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
+
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
@@ -122,81 +123,93 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container">
+					<div class="card">
+						<div class="card-header text-white bg-dark mb-3">Detalle del
+							cuidador</div>
+						<div class="card-body">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Actualizar Usuarios</h1>
+							<div class="table-responsive">
+								<table class="table table-white">
 
-					<form th:action="@{/users/update}" th:object="${user}"
-						method="post"
-						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
+									<tbody>
+										<tr>
+											<td>Nombre</td>
+											<td th:text="${keeper.name}"></td>
+										</tr>
+										<tr>
+											<td>Apellido</td>
+											<td th:text="${keeper.lastname}"></td>
+										</tr>
+										<tr>
+											<td>Telefono</td>
+											<td th:text="${keeper.phone}"></td>
+										</tr>
+										<tr>
+											<td>DNI</td>
+											<td th:text="${keeper.dni}"></td>
+										</tr>
+										<tr>
+											<td>Email</td>
+											<td th:text="${keeper.email}"></td>
+										</tr>
+										<tr>
+											<td>Fecha de nacimiento</td>
+											<td th:text="${keeper.birthdate}"></td>
+										</tr>
+										<tr>
+											<td>Salario</td>
+											<td th:text="${keeper.salary}"></td>
+										</tr>
+										<tr>
+											<td>Fecha de nacimiento</td>
+											<td th:text="${keeper.birthdate}"></td>
+										</tr>
+										<tr>
+											<td>Experiencia</td>
+											<td th:text="${keeper.experience}"></td>
+										</tr>
+										<tr>
+											<td>FOTO</td>
+											<td><img th:if="${#strings.length(keeper.foto)> 0}"
+												class="img-thumbnail rounded float-left"
+												style="max-width: 50%;"
+												th:src="@{'/keepers/uploads/' + ${keeper.foto}}"
+												th:alt="${keeper.foto}" /></td>
+										</tr>
+									</tbody>
 
-						<div class="form-group row">
-							<label for="id" class="col-sm-2 col-form-label">Id</label>
-							<div class="col-sm-6">
-								<input type="text" readonly="readonly" th:field="*{idUser}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('idUser')}" th:errors="*{idUser}"></small>
+								</table>
+
+								<a th:href="@{/keepers/list}" type="button"
+									class="btn btn-danger k"> <span
+									class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+								</a>
 							</div>
 						</div>
-
-						<div class="form-group row">
-							<label for="nameCu" class="col-sm-2 col-form-label">Nombre
-								Usuario</label>
-							<div class="col-sm-6">
-								<input type="text" 
-									title="Sólo se permite letras" th:field="*{username}"
-									class="form-control" autocomplete="off"/>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('username')}"
-									th:errors="*{username}"></p>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="contraUs" class="col-sm-2 col-form-label">Contraseña</label>
-							<div class="col-sm-6">
-								<input type="password" th:field="*{password}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('password')}"
-									th:errors="*{password}"></p>
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-sm-6">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="submit" value="Guardar" class="btn btn-dark"
-									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/users/list" class="btn btn-dark"
-									style="background-color: #8062ff; border-color: white">Cancelar</a>
-							</div>
-						</div>
-						<p th:text="${mensaje}" class="form-text text-danger"></p>
-					</form>
-
-
-
-				</div>
-				<!-- /.container-fluid -->
-
-			</div>
-			<!-- End of Main Content -->
-
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 2019</span>
 					</div>
 				</div>
-			</footer>
-			<!-- End of Footer -->
+
+
+
+			</div>
+			<!-- /.container-fluid -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright &copy; Web 2019</span>
+				</div>
+			</div>
+		</footer>
+		<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -244,6 +257,3 @@
 </body>
 
 </html>
-
-
-

@@ -74,13 +74,15 @@ public class Keeper {
 	@Column(name = "experience")
 	private int experience;
 
+	private String foto;
+	
 	public Keeper() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public Keeper(User user, int idKeeper, String name, String lastname, String phone, String dni, String email,
-			Date birthdate, int score, Double salary, int experience) {
+			Date birthdate, int score, Double salary, int experience, String foto) {
 		super();
 		this.user = user;
 		this.idKeeper = idKeeper;
@@ -93,6 +95,7 @@ public class Keeper {
 		this.score = score;
 		this.salary = salary;
 		this.experience = experience;
+		this.setFoto(foto);
 	}
 
 	public User getUser() {
@@ -181,6 +184,14 @@ public class Keeper {
 
 	public void setExperience(int experience) {
 		this.experience = experience;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 }

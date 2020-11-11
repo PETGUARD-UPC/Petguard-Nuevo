@@ -67,7 +67,7 @@ public class UserController {
 	}
 
 	@RequestMapping("/find")
-	public String findBynameCustomer(Model model, @Validated User user) throws ParseException {
+	public String findBynameUser(Model model, @Validated User user) throws ParseException {
 
 		List<User> listaUsuarios;
 		listaUsuarios = uS.findBynameUser(user.getUsername());
