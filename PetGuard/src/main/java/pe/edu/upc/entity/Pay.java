@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -21,19 +23,20 @@ public class Pay {
 	private String name;
 
 	//@NotEmpty(message = "Elegir entidad financiera")
-	@Column(name = "entity")
-	private String entity;
+	@ManyToOne
+	@JoinColumn(name = "idBanking")
+	private Banking banking;
 
 	public Pay() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pay(int idPay, String name, String entity) {
+	public Pay(int idPay, String name, Banking banking) {
 		super();
 		this.idPay = idPay;
 		this.name = name;
-		this.entity = entity;
+		this.banking = banking;
 	}
 
 	public int getIdPay() {
@@ -52,13 +55,14 @@ public class Pay {
 		this.name = name;
 	}
 
-	public String getEntity() {
-		return entity;
+	public Banking getBanking() {
+		return banking;
 	}
 
-	public void setEntity(String entity) {
-		this.entity = entity;
+	public void setBanking(Banking banking) {
+		this.banking = banking;
 	}
+
 	
 	
 	

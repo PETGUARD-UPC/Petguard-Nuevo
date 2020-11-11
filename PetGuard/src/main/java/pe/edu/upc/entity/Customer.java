@@ -23,56 +23,54 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "customers")
 public class Customer {
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idUser")
 	private User user;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCustomer;
-	 
+
 	@NotEmpty(message = "Ingresa el nombre!")
 	@Column(name = "name", length = 45)
 	private String name;
-	
-	//@NotEmpty(message = "Ingresa el apellido!")
-	@Size(max=40, min=3, message = "Ingresar apellido")
+
+	// @NotEmpty(message = "Ingresa el apellido!")
+	@Size(max = 40, min = 3, message = "Ingresar apellido")
 	@Column(name = "lastname", length = 45)
 	private String lastname;
-	
-	//@NotEmpty(message = "Ingresa tu número de teléfono!")
+
+	// @NotEmpty(message = "Ingresa tu número de teléfono!")
 	@Size(max = 9, min = 9, message = "Número de teléfono debe tener 9 dígitos")
 	@Column(name = "phone")
 	private String phone;
-	
-	//@NotEmpty(message = "Ingresa tu email!")
-	@Email(message="Ingresar email válido")
-	@Pattern(regexp=".+@.+\\..+", message="Ingresar email válido")
-	@Column(name = "email", nullable=false)
+
+	// @NotEmpty(message = "Ingresa tu email!")
+	@Email(message = "Ingresar email válido")
+	@Pattern(regexp = ".+@.+\\..+", message = "Ingresar email válido")
+	@Column(name = "email", nullable = false)
 	private String email;
-	
+
 	@Past(message = "La fecha debe ser pasada!")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "birhtdate")
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
-	
-	@Size(max=8, min=8, message = "DNI debe tener 8 dígitos")
+
+	@Size(max = 8, min = 8, message = "DNI debe tener 8 dígitos")
 	@Column(name = "dni")
 	private String dni;
+
+	private String foto;
 
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(User user, int idCustomer, String name,
-			String lastname,
-			 String phone,
-			String email,
-			Date birthdate,
-			String dni) {
+	public Customer(User user, int idCustomer, String name, String lastname, String phone, String email, Date birthdate,
+			String dni, String foto) {
 		super();
 		this.user = user;
 		this.idCustomer = idCustomer;
@@ -82,6 +80,7 @@ public class Customer {
 		this.email = email;
 		this.birthdate = birthdate;
 		this.dni = dni;
+		this.setFoto(foto);
 	}
 
 	public User getUser() {
@@ -148,10 +147,11 @@ public class Customer {
 		this.dni = dni;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
 
-	
-	
-
-	
-	
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 }

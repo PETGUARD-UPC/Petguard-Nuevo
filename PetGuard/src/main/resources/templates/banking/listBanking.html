@@ -38,7 +38,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/pays/index}">
+				th:href="@{/bankings/index}">
 				<div class="sidebar-brand-icon">
 					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
 				</div>
@@ -145,12 +145,12 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Métodos de pago</h1>
+					<h1 class="h3 mb-4 text-gray-800">Entidades Bancarias</h1>
 
-					<a th:href="@{/pays/new}" class="btn btn-secondary btn-xs"
+					<a th:href="@{/bankings/new}" class="btn btn-secondary btn-xs"
 						style="background-color: #8062ff; border-color: white">Nuevo</a>
 
-					<form th:action="@{/pays/find}" method="post" th:object="${pay}">
+					<form th:action="@{/bankings/find}" method="post" th:object="${banking}">
 
 						<div class="form-group">
 							<table>
@@ -164,7 +164,7 @@
 										<td><button type="submit" class="btn btn-danger">
 												<i class="iconf fa fa-search" style="color: white;"></i>
 											</button></td>
-										<td><a href="/pays/list" class="btn btn-danger">Limpiar</a></td>
+										<td><a href="/bankings/list" class="btn btn-danger">Limpiar</a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -180,23 +180,21 @@
 						<thead style="color: white; background-color: #8062ff">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Método de Pago</th>
 								<th scope="col">Entidad financiera</th>
 								<th scope="col">Eliminar</th>
 								<th scope="col">Actualizar</th>
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
-							<tr th:each="c: ${listaMedioPagos}">
-								<td th:text="${c.idPay}"></td>
+							<tr th:each="c: ${listaBancos}">
+								<td th:text="${c.idBanking}"></td>
 								<td th:text="${c.name}"></td>
-								<td th:text="${c.banking.name}"></td>
-								<td><a th:href="@{'/pays/delete/'+${c.idPay}}"> <i
+								<td><a th:href="@{'/bankings/delete/'+${c.idBanking}}"> <i
 										class="iconf fa fa-trash" style="color: red;"></i>
 								</a>	
 								</td>
 								<td>
-								<a th:href="@{'/pays/irupdate/'+${c.idPay}}"><i
+								<a th:href="@{'/bankings/irupdate/'+${c.idBanking}}"><i
 										class="iconf fa fa-pen" style="color: green;"></i></a>
 								</td>
 								

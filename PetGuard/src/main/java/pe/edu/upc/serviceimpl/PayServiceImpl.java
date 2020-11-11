@@ -18,15 +18,9 @@ public class PayServiceImpl implements IPayService{
 
 	@Override
 	public int insert(Pay pay) {
-		int rptaN = pR.searchPayName(pay.getName());
-		int rptaE = pR.searchPayEntity(pay.getEntity());
-		if (rptaN <=3 && rptaE == 0 ) {
-			pR.save(pay);
-			return 0;
-		}
-		else {
-			return 1;
-		}
+		
+		pR.save(pay);
+		return 0;
 	}
 
 	@Override

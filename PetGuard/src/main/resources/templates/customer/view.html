@@ -38,23 +38,21 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/pays/index}">
+				th:href="@{/customers/index}">
 				<div class="sidebar-brand-icon">
 					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">PetGuard</div>
 			</a>
 
-
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 
 
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -76,14 +74,10 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
 							métodos de pago</a>
 					</div>
 				</div></li>
-
 
 
 			<!-- Divider -->
@@ -123,107 +117,87 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
 						</a></li>
-
-
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
-									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
-									align="middle"></img></span>
-						</a> <!-- Dropdown - User Information --></li>
-
 					</ul>
 
 				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container">
+					<div class="card">
+						<div class="card-header text-white bg-dark mb-3">Detalle de
+							Cliente</div>
+						<div class="card-body">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Métodos de pago</h1>
+							<div class="table-responsive">
+								<table class="table table-white">
 
-					<a th:href="@{/pays/new}" class="btn btn-secondary btn-xs"
-						style="background-color: #8062ff; border-color: white">Nuevo</a>
+									<tbody>
+										<tr>
+											<td>Nombre</td>
+											<td th:text="${customer.name}"></td>
+										</tr>
+										<tr>
+											<td>Apellido</td>
+											<td th:text="${customer.lastname}"></td>
+										</tr>
+										<tr>
+											<td>DNI</td>
+											<td th:text="${customer.dni}"></td>
+										</tr>
+										<tr>
+											<td>Telefono</td>
+											<td th:text="${customer.phone}"></td>
+										</tr>
+										<tr>
+											<td>Email</td>
+											<td th:text="${customer.email}"></td>
+										</tr>
+										<tr>
+											<td>Fecha de nacimiento</td>
+											<td th:text="${customer.birthdate}"></td>
+										</tr>
+										<tr>
+											<td>FOTO</td>
+											<td><img th:if="${#strings.length(customer.foto)> 0}"
+												class="img-thumbnail rounded float-left"
+												style="max-width: 50%;"
+												th:src="@{'/customers/uploads/' + ${customer.foto}}"
+												th:alt="${customer.foto}" /></td>
+										</tr>
+									</tbody>
 
-					<form th:action="@{/pays/find}" method="post" th:object="${pay}">
+								</table>
 
-						<div class="form-group">
-							<table>
-								<tbody>
-									<tr>
-										<td><label for="name" class="col-sm-2 col-form-label">Buscar:</label></td>
-
-										<td><input type="text" class="form-control"
-											th:field="*{name}" id="name" placeholder="Metodo de pago"
-											required="required" autocomplete="off"></input></td>
-										<td><button type="submit" class="btn btn-danger">
-												<i class="iconf fa fa-search" style="color: white;"></i>
-											</button></td>
-										<td><a href="/pays/list" class="btn btn-danger">Limpiar</a></td>
-									</tr>
-								</tbody>
-							</table>
+								<a th:href="@{/customers/list}" type="button"
+									class="btn btn-danger k"> <span
+									class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+								</a>
+							</div>
 						</div>
-
-					</form>
-
-
-					<hr class="sidebar-divider">
-
-					<table class="table"
-						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
-						<thead style="color: white; background-color: #8062ff">
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Método de Pago</th>
-								<th scope="col">Entidad financiera</th>
-								<th scope="col">Eliminar</th>
-								<th scope="col">Actualizar</th>
-							</tr>
-						</thead>
-						<tbody style="color: #353434">
-							<tr th:each="c: ${listaMedioPagos}">
-								<td th:text="${c.idPay}"></td>
-								<td th:text="${c.name}"></td>
-								<td th:text="${c.banking.name}"></td>
-								<td><a th:href="@{'/pays/delete/'+${c.idPay}}"> <i
-										class="iconf fa fa-trash" style="color: red;"></i>
-								</a>	
-								</td>
-								<td>
-								<a th:href="@{'/pays/irupdate/'+${c.idPay}}"><i
-										class="iconf fa fa-pen" style="color: green;"></i></a>
-								</td>
-								
-							</tr>
-						</tbody>
-					</table>
-
-					<p th:text="${mensaje}" class="form-text text-danger"></p>
-
-				</div>
-				<!-- /.container-fluid -->
-
-			</div>
-			<!-- End of Main Content -->
-
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 202002</span>
 					</div>
 				</div>
-			</footer>
-			<!-- End of Footer -->
+
+
+
+			</div>
+			<!-- /.container-fluid -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright &copy; Web 2019</span>
+				</div>
+			</div>
+		</footer>
+		<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -233,7 +207,30 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">¿Listo para
+						salir?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Seleccione "Cerrar sesión" a
+					continuación si está listo para finalizar su sesión actual</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancelar</button>
+					<a class="btn btn-primary" th:href="@{/categories/index}">Cerrar
+						Sesión</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/vendor/jquery/jquery.min.js"></script>

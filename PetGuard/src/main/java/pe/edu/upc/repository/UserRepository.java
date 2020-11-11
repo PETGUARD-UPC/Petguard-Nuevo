@@ -11,7 +11,7 @@ import pe.edu.upc.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	@Query("from User u where u.username like %:username%")
+	@Query("from User u where UPPER(u.username) like %:username% or LOWER(u.username) like %:username%")
 	List<User>findBynameUser(@Param("username")String nameUser);
 	
 	@Query("select count(u.username) from User u where u.username=:username or LOWER(u.username)=:username")

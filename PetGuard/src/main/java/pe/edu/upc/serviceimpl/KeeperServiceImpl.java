@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,18 @@ public class KeeperServiceImpl implements IKeeperService {
 			kR.save(keeper);
 		}
 		return rptaE;
+	}
+	
+	@Override
+	public void delete(int idkeeper) {
+		// TODO Auto-generated method stub
+		kR.deleteById(idkeeper);
+	}
+	
+	@Override
+	public Optional<Keeper> searchId(int idkeeper) {
+		// TODO Auto-generated method stub
+		return kR.findById(idkeeper);
 	}
 
 }

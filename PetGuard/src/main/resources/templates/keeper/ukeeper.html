@@ -34,18 +34,20 @@
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar"
 			style="background-image: linear-gradient(180deg, #614ffb 10%, #fdd7fc 97%)">
-
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/customers/index}">
+				th:href="@{/keepers/index}">
 				<div class="sidebar-brand-icon">
 					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">PetGuard</div>
 			</a>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
+
+
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -75,7 +77,6 @@
 							métodos de pago</a>
 					</div>
 				</div></li>
-
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -123,12 +124,22 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Clientes</h1>
+					<h1 class="h3 mb-4 text-gray-800">Actualizar cuidador</h1>
 
-
-					<form th:action="@{/customers/save}" th:object="${customer}"
+					<form th:action="@{/keepers/update}" th:object="${keeper}"
 						method="post" enctype="multipart/form-data"
 						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
+
+						<div class="form-group row">
+							<label for="idKeeper" class="col-sm-2 col-form-label">Id</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{idKeeper}" class="form-control"
+									th:errorclass="'form-control alert-danger'" readonly /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('idKeeper')}" th:errors="*{idKeeper}"></small>
+							</div>
+						</div>
+
 						<div class="form-group row">
 							<label for="user" class="col-sm-2 col-form-label">Elegir
 								el usuario:</label>
@@ -142,81 +153,107 @@
 						</div>
 
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
+							<label for="nameCu" class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
 								<input type="text" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
 									title="Sólo se permite letras" th:field="*{name}"
-									class="form-control" />
+									class="form-control" autocomplete="off"/>
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
 							</div>
 						</div>
-
 						<div class="form-group row">
-							<label for="lastname" class="col-sm-2 col-form-label">Apellido</label>
+							<label for="lastnameCu" class="col-sm-2 col-form-label">Apellido</label>
 							<div class="col-sm-6">
 								<input type="text" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
 									title="Sólo se permite letras" th:field="*{lastname}"
-									class="form-control" />
+									class="form-control" autocomplete="off"/>
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('lastname')}"
 									th:errors="*{lastname}" />
 							</div>
 						</div>
-
 						<div class="form-group row">
-							<label for="dni" class="col-sm-2 col-form-label">DNI</label>
+							<label for="phoneCu" class="col-sm-2 col-form-label">Teléfono</label>
+							<div class="col-sm-6">
+								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
+									title="Sólo se permite números" th:field="*{phone}"
+									class="form-control" autocomplete="off"/>
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" />
+
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="dniCu" class="col-sm-2 col-form-label">DNI</label>
 							<div class="col-sm-6">
 								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
 									title="Sólo se permite números" th:field="*{dni}"
-									class="form-control" />
+									class="form-control" autocomplete="off"/>
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" />
-							</div>
-						</div>
 
-						<div class="form-group row">
-							<label for="phone" class="col-sm-2 col-form-label">Teléfono</label>
-							<div class="col-sm-6">
-								<input type="number" pattern="^[1-9][.\d]*(,\d+)?$"
-									title="Sólo se permite números" th:field="*{phone}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" />
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="emailC" class="col-sm-2 col-form-label">Email</label>
+							<label for="emailCu" class="col-sm-2 col-form-label">Email</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{email}" class="form-control" />
+								<input type="text" th:field="*{email}" class="form-control" autocomplete="off"/>
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
+
+
+								<!-- 									th:errorclass="'form-control alert-danger'" required -->
+								<!-- 									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="birthdateC" class="col-sm-2 col-form-label">Fecha
+							<label for="birthdateCu" class="col-sm-2 col-form-label">Fecha
 								de Nacimiento</label>
-							<div class="col-sm-6"> 
-								<input type="date" th:field="*{birthdate}" required="required" class="form-control" />
+							<div class="col-sm-6">
+								<input type="date" th:field="*{birthdate}" class="form-control" />
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('birthdate')}"
 									th:errors="*{birthdate}" />
 							</div>
 						</div>
 						<div class="form-group row">
+							<label for="salary" class="col-sm-2 col-form-label">Salario</label>
+							<div class="col-sm-6">
+								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
+									title="Sólo se permite números" th:field="*{salary}"
+									class="form-control" autocomplete="off"/>
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" />
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="experience" class="col-sm-2 col-form-label">Experiencia</label>
+							<div class="col-sm-6">
+								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
+									title="Sólo se permite números" th:field="*{experience}"
+									class="form-control" autocomplete="off"/>
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('experience')}"
+									th:errors="*{experience}" />
+							</div>
+						</div>
+
+						<div class="form-group row">
 							<label for="file" class="col-sm-2 col-form-label ">Foto:</label>
 							<div class="col-sm-6">
 								<input type="file" name="file" class="form-control"
-									th:text="${customer.foto}" required="required" />
+									th:text="${keeper.foto}" required="required" />
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<div class="col-sm-6">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="submit" value="Guardar" class="btn btn-dark"
+									type="submit" value="Actualizar" class="btn btn-dark"
 									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/customers/list" class="btn btn-dark"
+								<a href="/keepers/list" class="btn btn-dark"
 									style="background-color: #8062ff; border-color: white">Cancelar</a>
 							</div>
 						</div>
@@ -288,5 +325,8 @@
 </body>
 
 </html>
+
+
+
 
 

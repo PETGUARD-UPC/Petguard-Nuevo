@@ -134,9 +134,9 @@
 							<label for="nameCu" class="col-sm-2 col-form-label">Nombre
 								Usuario</label>
 							<div class="col-sm-6">
-								<input type="text" pattern="^[a-zA-Z ]+$"
+								<input type="text" 
 									title="Sólo se permite letras" th:field="*{username}"
-									class="form-control" autocomplete="off" />
+									class="form-control" autocomplete="off"  />
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('username')}"
 									th:errors="*{username}"></p>
