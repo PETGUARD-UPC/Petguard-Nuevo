@@ -123,124 +123,60 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+<div class="container">
+					<div class="card">
+						<div class="card-header text-white bg-dark mb-3">Detalle de
+							Mascota</div>
+						<div class="card-body">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Mascota</h1>
+							<div class="table-responsive">
+								<table class="table table-white">
 
-					<form th:action="@{/pets/save}" th:object="${pet}" method="post" enctype="multipart/form-data"
-						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
+									<tbody>
+										<tr>
+											<td>Nombre</td>
+											<td th:text="${pet.name}"></td>
+										</tr>
+										<tr>
+											<td>Raza</td>
+											<td th:text="${pet.breed}"></td>
+										</tr>
+										<tr>
+											<td>Edad</td>
+											<td th:text="${pet.years}"></td>
+										</tr>
+										<tr>
+											<td>Peso</td>
+											<td th:text="${pet.weight}"></td>
+										</tr>
+										<tr>
+											<td>Sexo</td>
+											<td th:text="${pet.gender}"></td>
+										</tr>
+										<tr>
+											<td>Cliente</td>
+											<td th:text="${pet.customer.idCustomer}"></td>
+										</tr>
+										<tr>
+											<td>FOTO</td>
+											<td><img th:if="${#strings.length(pet.foto)> 0}"
+												class="img-thumbnail rounded float-left"
+												style="max-width: 50%;"
+												th:src="@{'/pets/uploads/' + ${pet.foto}}"
+												th:alt="${pet.foto}" /></td>
+										</tr>
+									</tbody>
 
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre
-								de mascota</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="[A-Za-z]+"
-									title="Sólo se permite letras" th:field="*{name}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
+								</table>
+
+								<a th:href="@{/pets/list}" type="button"
+									class="btn btn-danger k"> <span
+									class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+								</a>
 							</div>
 						</div>
-
-						<div class="form-group row">
-							<label for="breed" class="col-sm-2 col-form-label">Raza</label>
-							<div class="col-sm-6">
-								<select name="breed" class="form-control" id="breed">
-									<option value="0" selected disabled>Elegir raza de
-										mascota</option>
-									<option value="Labrador">Labrador</option>
-									<option value="Pastor Alemán">Pastor Alemán</option>
-									<option value="Yorkshire">Yorkshire</option>
-									<option value="Beagle">Beagle</option>
-									<option value="Golden Retriever">Golden Retriever</option>
-									<option value="Chihuahua">Chihuahua</option>
-									<option value="Pequinés">Pequinés</option>
-									<option value="Bulldog">Bulldog</option>
-									<option value="Rottweiler">Rottweiler</option>
-									<option value="Pug">Pug</option>
-									<option value="Shar Pei">Shar Pei</option>
-									<option value="Husky">Husky</option>
-									<option value="Mestizo">Mestizo</option>
-								</select>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('breed')}" th:errors="*{breed}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="edadMascota" class="col-sm-2 col-form-label">Edad</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="[0-9]+"
-									title="Sólo se permite números" th:field="*{years}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('years')}" th:errors="*{years}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="pesoMascota" class="col-sm-2 col-form-label">Peso</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="[0-9]+"
-									title="Sólo se permite números" th:field="*{weight}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="gender" class="col-sm-2 col-form-label">Sexo</label>
-							<div class="col-sm-6">
-								<select name="gender" class="form-control" id="gender">
-									<option value="0" selected disabled>Elegir género de
-										mascota</option>
-									<option value="Macho">Macho</option>
-									<option value="Hembra">Hembra</option>
-								</select>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
-							<div class="col-sm-6">
-								<select class="form-control" th:field="*{customer.idCustomer}">
-									<option value="0" selected disabled>Elegir dueño de
-										mascota</option>
-									<option th:each="l: ${listaClientes}"
-										th:value="${l.idCustomer}"
-										th:text="${l.name + ' '+l.lastname}"
-										th:selected="(${l.idCustomer} == *{customer.idCustomer})"></option>
-								</select>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('customer')}"
-									th:errors="*{customer}" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="file" class="col-sm-2 col-form-label ">Foto:</label>
-							<div class="col-sm-6">
-								<input type="file" name="file" class="form-control"
-									th:text="${pet.foto}" required="required" />
-							</div>
-						</div>
-
-
-						<div class="form-group row">
-							<div class="col-sm-6">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-									type="submit" value="Guardar" class="btn btn-dark"
-									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/pets/list" class="btn btn-dark"
-									style="background-color: #8062ff; border-color: white">Cancelar</a>
-							</div>
-						</div>
-						<p th:text="${mensaje}" class="form-text text-danger"></p>
-					</form>
-
+					</div>
+				</div>
 
 
 

@@ -37,13 +37,13 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-                class="sidebar-brand d-flex align-items-center justify-content-center"
-                th:href="@{/pets/index}">
-                <div class="sidebar-brand-icon">
-                    <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">PetGuard</div>
-            </a>
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				th:href="@{/pets/index}">
+				<div class="sidebar-brand-icon">
+					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">PetGuard</div>
+			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
@@ -71,10 +71,12 @@
 						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de
+							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
+							métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -141,10 +143,10 @@
 					<!-- Page Heading -->
 					<h1 class="h3 mb-4 text-gray-800">Mascotas</h1>
 
-					<a th:href="@{/pets/new/}" class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
-		
-					<form th:action="@{/pets/find}" method="post"
-						th:object="${pet}">
+					<a th:href="@{/pets/new/}" class="btn btn-secondary btn-xs"
+						style="background-color: #8062ff; border-color: white">Nuevo</a>
+
+					<form th:action="@{/pets/find}" method="post" th:object="${pet}">
 
 						<div class="form-group">
 							<table>
@@ -165,10 +167,12 @@
 						</div>
 
 					</form>
+					<!-- buscar -->
 					<hr class="sidebar-divider">
 
-					<table class="table" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
-						<thead style="color:white; background-color: #8062ff">
+					<table class="table"
+						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
+						<thead style="color: white; background-color: #8062ff">
 							<tr>
 								<th scope="col">IdMascota</th>
 								<th scope="col">Nombre</th>
@@ -177,17 +181,26 @@
 								<th scope="col">Peso</th>
 								<th scope="col">Sexo</th>
 								<th scope="col">Dueño</th>
+								<th scope="col" class="text-center">Operación</th>
+								<th scope="col" class="text-center">Operación</th>
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
 							<tr th:each="l: ${listaMascotas}">
-								<td th:text="${l.idPet}"></td>
+								<td><a class="btn btn-danger btn-xs"
+									th:href="@{/pets/view/} + ${l.idPet}" th:text="${l.idPet}"></a></td>
 								<td th:text="${l.name}"></td>
 								<td th:text="${l.breed}"></td>
 								<td th:text="${l.years + ' años'}"></td>
 								<td th:text="${l.weight+ ' kilogramos'}"></td>
 								<td th:text="${l.gender}"></td>
 								<td th:text="${l.customer.name +'  '+ l.customer.lastname}"></td>
+								<td class="text-center"><a
+									th:href="@{'/pets/irupdate/' + ${l.idPet}}"><i
+										class="iconf fa fa-pen" style="color: green;"></i></a></td>
+								<td class="text-center"><a
+									th:href="@{'/pets/delete/'+${l.idPet}}"><i
+										class="iconf fa fa-trash" style="color: red;"></i></a></td>
 							</tr>
 						</tbody>
 					</table>

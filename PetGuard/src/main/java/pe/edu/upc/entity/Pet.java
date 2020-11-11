@@ -19,46 +19,48 @@ import javax.validation.constraints.NotNull;
 @Table(name = "pets")
 public class Pet {
 
-	//@NotNull(message = "Se debe elegir dueño de la mascota")
+	// @NotNull(message = "Se debe elegir dueño de la mascota")
 	@ManyToOne
 	@JoinColumn(name = "idCustomer", nullable = false)
 	private Customer customer;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPet;
-	
-	//@NotEmpty(message = "Ingresa el nombre!")
-	@Column(name = "name", length=40, nullable = false)
+
+	// @NotEmpty(message = "Ingresa el nombre!")
+	@Column(name = "name", length = 40, nullable = false)
 	private String name;
-	
-	//@NotNull(message = "Se debe elegir raza de mascota!")
+
+	// @NotNull(message = "Se debe elegir raza de mascota!")
 	@Column(name = "breed", length = 30, nullable = false)
 	private String breed;
-	
-	//@NotNull(message = "Ingresar edad de mascota")
-	//@Max(value = 20, message = "Edad máxima es 20 años")
-	//@Min(value = 1, message = "Edad minima es 1 año")
+
+	// @NotNull(message = "Ingresar edad de mascota")
+	// @Max(value = 20, message = "Edad máxima es 20 años")
+	// @Min(value = 1, message = "Edad minima es 1 año")
 	@Column(name = "years")
 	private int years;
-	
-	//@NotNull(message = "Ingresar peso de mascota")
+
+	// @NotNull(message = "Ingresar peso de mascota")
 	@DecimalMax(value = "20.00", message = "El peso máximo es 20 kg")
 	@DecimalMin(value = "1.00", message = "El peso mínimo es 1 kg")
 	@Column(name = "weight")
 	private Double weight;
-	
-	//@NotNull(message = "Se debe elegir género de mascota!")
+
+	// @NotNull(message = "Se debe elegir género de mascota!")
 	@Column(name = "gender")
 	private String gender;
+
+	private String foto;
 
 	public Pet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pet(Customer customer, int idPet, String name, String breed, int years,
-			Double weight, String gender) {
+	public Pet(Customer customer, int idPet, String name, String breed, int years, Double weight, String gender,
+			String foto) {
 		super();
 		this.customer = customer;
 		this.idPet = idPet;
@@ -67,6 +69,7 @@ public class Pet {
 		this.years = years;
 		this.weight = weight;
 		this.gender = gender;
+		this.foto = foto;
 	}
 
 	public Customer getCustomer() {
@@ -125,8 +128,12 @@ public class Pet {
 		this.gender = gender;
 	}
 
-	
+	public String getFoto() {
+		return foto;
+	}
 
-	
-	
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 }

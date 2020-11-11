@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,18 @@ public class PetServiceImpl implements IPetService{
 	public List<Pet> findBynamePet(String namePet) {
 		// TODO Auto-generated method stub
 		return pR.findBynamePet(namePet);
+	}
+
+	@Override
+	public Optional<Pet> searchId(int idPet) {
+		// TODO Auto-generated method stub
+		return pR.findById(idPet);
+	}
+
+	@Override
+	public void delete(int idPet) {
+		// TODO Auto-generated method stub
+		pR.deleteById(idPet);
 	}
 
 }
