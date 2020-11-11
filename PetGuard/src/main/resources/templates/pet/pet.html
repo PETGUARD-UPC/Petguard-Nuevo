@@ -148,7 +148,7 @@
 						<div class="form-group row">
 							<label for="breed" class="col-sm-2 col-form-label">Raza</label>
 							<div class="col-sm-6">
-								<select name="breed" class="form-control" id="breed" required>
+								<select required name="breed" class="form-control" id="breed" >
 									<option value="0" selected disabled>Elegir raza de
 										mascota</option>
 									<option value="Labrador">Labrador</option>
@@ -193,11 +193,9 @@
 						</div>
 
 						<div class="form-group row">
-							<label for="gender" class="col-sm-2 col-form-label">Sexo</label>
+							<label  for="gender" class="col-sm-2 col-form-label">Sexo</label>
 							<div class="col-sm-6">
-								<select name="gender" class="form-control" id="gender" required>
-									<option value="0" selected disabled>Elegir género de
-										mascota</option>
+								<select required name="gender" class="form-control" id="gender">
 									<option value="Macho">Macho</option>
 									<option value="Hembra">Hembra</option>
 								</select>
@@ -209,7 +207,7 @@
 						<div class="form-group row">
 							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{customer.idCustomer}" required>
+								<select required class="form-control" th:field="*{customer.idCustomer}">
 									<option value="0" selected disabled>Elegir dueño de
 										mascota</option>
 									<option th:each="l: ${listaClientes}"
