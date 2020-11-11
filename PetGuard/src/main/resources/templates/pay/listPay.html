@@ -147,8 +147,7 @@
 					<a th:href="@{/pays/new}" class="btn btn-secondary btn-xs"
 						style="background-color: #8062ff; border-color: white">Nuevo</a>
 
-					<form th:action="@{/pays/find}" method="post"
-						th:object="${pay}">
+					<form th:action="@{/pays/find}" method="post" th:object="${pay}">
 
 						<div class="form-group">
 							<table>
@@ -157,8 +156,8 @@
 										<td><label for="name" class="col-sm-2 col-form-label">Buscar:</label></td>
 
 										<td><input type="text" class="form-control"
-											th:field="*{name}" id="name" 
-											placeholder="Metodo de pago" required="required"></input></td>
+											th:field="*{name}" id="name" placeholder="Metodo de pago"
+											required="required"></input></td>
 										<td><button type="submit" class="btn btn-danger">
 												<i class="iconf fa fa-search" style="color: white;"></i>
 											</button></td>
@@ -180,6 +179,8 @@
 								<th scope="col">Id</th>
 								<th scope="col">Método de Pago</th>
 								<th scope="col">Entidad financiera</th>
+								<th scope="col">Eliminar</th>
+								<th scope="col">Actualizar</th>
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
@@ -187,11 +188,20 @@
 								<td th:text="${c.idPay}"></td>
 								<td th:text="${c.name}"></td>
 								<td th:text="${c.entity}"></td>
+								<td><a th:href="@{'/pays/delete/'+${c.idPay}}"> <i
+										class="iconf fa fa-trash" style="color: red;"></i>
+								</a>	
+								</td>
+								<td>
+								<a th:href="@{'/pays/irupdate/'+${c.idPay}}"><i
+										class="iconf fa fa-pen" style="color: green;"></i></a>
+								</td>
+								
 							</tr>
 						</tbody>
 					</table>
 
-					<p th:text="${mensaje}" class="form-text text-danger" ></p>
+					<p th:text="${mensaje}" class="form-text text-danger"></p>
 
 				</div>
 				<!-- /.container-fluid -->
