@@ -1,7 +1,6 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,18 +32,6 @@ public class ReserveServiceImpl implements IReserveService{
 	public List<Reserve> findBycustomer(String name) {
 		// TODO Auto-generated method stub
 		return rR.findBycustomer(name);
-	}
-
-	@Override
-	public void delete(int idReserve) {
-		rR.deleteById(idReserve);
-		
-	}
-
-	@Override
-	public Optional<Reserve> searchId(int idReserve) {
-		
-		return rR.findById(idReserve);
 	}
 
 }

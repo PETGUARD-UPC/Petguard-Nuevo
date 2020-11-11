@@ -19,7 +19,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.Pay;
-import pe.edu.upc.serviceinterface.IBanking;
 import pe.edu.upc.serviceinterface.IPayService;
 
 @Controller
@@ -29,13 +28,8 @@ public class PayController {
 	@Autowired
 	public IPayService pS;
 	
-	@Autowired
-	public IBanking bS;
-	
 	@GetMapping("/new")
 	public String newPay(Model model){
-		
-		model.addAttribute("listaBancos", bS.list());
 		model.addAttribute("pay", new Pay());
 		return "pay/pay";
 	}
@@ -45,8 +39,6 @@ public class PayController {
 			SessionStatus status) throws Exception{
 		
 		if(result.hasErrors()) {
-			
-			model.addAttribute("listaBancos", bS.list());
 			return "pay/pay";
 		}else {
 			int rpta = pS.insert(pay);
@@ -55,7 +47,7 @@ public class PayController {
 				return "pay/pay";
 			} else {
 				model.addAttribute("listaMedioPagos", pS.list());
-				return "redirect:/pays/list";
+				return "/pay/listPay";
 			}
 		}
 	}
@@ -111,7 +103,6 @@ public class PayController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/pays/list";
 		} else {
-			model.addAttribute("listaBancos", bS.list());
 			model.addAttribute("listaMedioPagos", pS.list());
 			model.addAttribute("pay", objPay.get());
 			return "pay/upay";
@@ -131,13 +122,5 @@ public class PayController {
 		}
 		model.addAttribute("listaMedioPagos", pS.list());
 		return "redirect:/pays/list";
-
 	}
-	
 }
-
-
-
-
-
-
