@@ -37,13 +37,13 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-                class="sidebar-brand d-flex align-items-center justify-content-center"
-                th:href="@{/customers/index}">
-                <div class="sidebar-brand-icon">
-                    <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">PetGuard</div>
-            </a>
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				th:href="@{/customers/index}">
+				<div class="sidebar-brand-icon">
+					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">PetGuard</div>
+			</a>
 
 
 			<!-- Divider -->
@@ -72,10 +72,12 @@
 						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de
+							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
+							métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -142,23 +144,23 @@
 					<!-- Page Heading -->
 					<h1 class="h3 mb-4 text-gray-800">Clientes</h1>
 
-					<a th:href="@{/customers/new/}" class="btn btn-secondary btn-xs" style="background-color: #8062ff ; border-color: white">Nuevo</a>
+					<a th:href="@{/customers/new/}" class="btn btn-secondary btn-xs"
+						style="background-color: #8062ff; border-color: white">Nuevo</a>
 
 
 
-						<form th:action="@{/customers/find}" method="post"
+					<form th:action="@{/customers/find}" method="post"
 						th:object="${customer}">
 
 						<div class="form-group">
 							<table>
 								<tbody>
 									<tr>
-										<td><label for="name"
-											class="col-sm-2 col-form-label">Buscar:</label></td>
+										<td><label for="name" class="col-sm-2 col-form-label">Buscar:</label></td>
 
 										<td><input type="text" class="form-control"
-											th:field="*{name}" id="name"
-											placeholder="Nombre" required="required"></input></td>
+											th:field="*{name}" id="name" placeholder="Nombre"
+											required="required"></input></td>
 										<td><button type="submit" class="btn btn-danger">
 												<i class="iconf fa fa-search" style="color: white;"></i>
 											</button></td>
@@ -169,11 +171,12 @@
 						</div>
 
 					</form>
-					
+
 					<hr class="sidebar-divider">
 
-					<table class="table" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
-						<thead style="color:white; background-color: #8062ff">
+					<table class="table"
+						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
+						<thead style="color: white; background-color: #8062ff">
 							<tr>
 								<th scope="col">Id</th>
 								<th scope="col">Nombre</th>
@@ -183,11 +186,15 @@
 								<th scope="col">Email</th>
 								<th scope="col">Fecha de nacimiento</th>
 								<th scope="col">Usuario</th>
+								<th scope="col" class="text-center">Actualizar</th>
+								<th scope="col" class="text-center">Eliminar</th>
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
 							<tr th:each="c: ${listaClientes}">
-								<td th:text="${c.idCustomer}"></td>
+								<td><a class="btn btn-danger btn-xs"
+									th:href="@{/customers/view/}+ ${c.idCustomer}"
+									th:text="${c.idCustomer}"></a></td>
 								<td th:text="${c.name}"></td>
 								<td th:text="${c.lastname}"></td>
 								<td th:text="${c.dni}"></td>
@@ -195,11 +202,17 @@
 								<td th:text="${c.email}"></td>
 								<td th:text="${c.birthdate}"></td>
 								<td th:text="${c.user.username}"></td>
+								<td class="text-center"><a
+									th:href="@{'/customers/irupdate/' + ${c.idCustomer}}"><i
+										class="iconf fa fa-pen" style="color: blue;"></i></a></td>
+								<td class="text-center"><a
+									th:href="@{'/customers/delete/' + ${c.idCustomer}}"><i
+										class="iconf fa fa-trash" style="color: red;"></i></a></td>
 							</tr>
 						</tbody>
 					</table>
 
-					<p th:text="${mensaje}" class="form-text text-danger" ></p>
+					<p th:text="${mensaje}" class="form-text text-danger"></p>
 
 				</div>
 				<!-- /.container-fluid -->
