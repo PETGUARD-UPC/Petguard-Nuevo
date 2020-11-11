@@ -44,8 +44,11 @@
 				</div>
 				<div class="sidebar-brand-text mx-3">PetGuard</div>
 			</a>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
+
+
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -120,127 +123,81 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container">
+					<div class="card">
+						<div class="card-header text-white bg-dark mb-3">Detalle de
+							Cliente</div>
+						<div class="card-body">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Clientes</h1>
+							<div class="table-responsive">
+								<table class="table table-white">
 
+									<tbody>
+										<tr>
+											<td>Nombre</td>
+											<td th:text="${customer.name}"></td>
+										</tr>
+										<tr>
+											<td>Apellido</td>
+											<td th:text="${customer.lastname}"></td>
+										</tr>
+										<tr>
+											<td>DNI</td>
+											<td th:text="${customer.dni}"></td>
+										</tr>
+										<tr>
+											<td>Telefono</td>
+											<td th:text="${customer.phone}"></td>
+										</tr>
+										<tr>
+											<td>Email</td>
+											<td th:text="${customer.email}"></td>
+										</tr>
+										<tr>
+											<td>Fecha de nacimiento</td>
+											<td th:text="${customer.birthdate}"></td>
+										</tr>
+										<tr>
+											<td>FOTO</td>
+											<td><img th:if="${#strings.length(customer.foto)> 0}"
+												class="img-thumbnail rounded float-left"
+												style="max-width: 50%;"
+												th:src="@{'/customers/uploads/' + ${customer.foto}}"
+												th:alt="${customer.foto}" /></td>
+										</tr>
+									</tbody>
 
-					<form th:action="@{/customers/save}" th:object="${customer}"
-						method="post" enctype="multipart/form-data"
-						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
-						<div class="form-group row">
-							<label for="user" class="col-sm-2 col-form-label">Elegir
-								el usuario:</label>
-							<div class="col-sm-6">
-								<select class="form-control" th:field="*{user.idUser}">
-									<option th:each="l: ${listaUsuarios}" th:value="${l.idUser}"
-										th:text="${l.username}"
-										th:selected="(${l.idUser} == *{user.idUser})"></option>
-								</select>
+								</table>
+
+								<a th:href="@{/customers/list}" type="button"
+									class="btn btn-danger k"> <span
+									class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+								</a>
 							</div>
 						</div>
-
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
-									title="Sólo se permite letras" th:field="*{name}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="lastname" class="col-sm-2 col-form-label">Apellido</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
-									title="Sólo se permite letras" th:field="*{lastname}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('lastname')}"
-									th:errors="*{lastname}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="dni" class="col-sm-2 col-form-label">DNI</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
-									title="Sólo se permite números" th:field="*{dni}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="phone" class="col-sm-2 col-form-label">Teléfono</label>
-							<div class="col-sm-6">
-								<input type="number" pattern="^[1-9][.\d]*(,\d+)?$"
-									title="Sólo se permite números" th:field="*{phone}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="emailC" class="col-sm-2 col-form-label">Email</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{email}" class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="birthdateC" class="col-sm-2 col-form-label">Fecha
-								de Nacimiento</label>
-							<div class="col-sm-6"> 
-								<input type="date" th:field="*{birthdate}" required="required" class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('birthdate')}"
-									th:errors="*{birthdate}" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="file" class="col-sm-2 col-form-label ">Foto:</label>
-							<div class="col-sm-6">
-								<input type="file" name="file" class="form-control"
-									th:text="${customer.foto}" required="required" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-sm-6">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="submit" value="Guardar" class="btn btn-dark"
-									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/customers/list" class="btn btn-dark"
-									style="background-color: #8062ff; border-color: white">Cancelar</a>
-							</div>
-						</div>
-						<p th:text="${mensaje}" class="form-text text-danger"></p>
-					</form>
-
-				</div>
-				<!-- /.container-fluid -->
-
-			</div>
-			<!-- End of Main Content -->
-
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 2019</span>
 					</div>
 				</div>
-			</footer>
-			<!-- End of Footer -->
+
+
+
+			</div>
+			<!-- /.container-fluid -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright &copy; Web 2019</span>
+				</div>
+			</div>
+		</footer>
+		<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -288,5 +245,3 @@
 </body>
 
 </html>
-
-
