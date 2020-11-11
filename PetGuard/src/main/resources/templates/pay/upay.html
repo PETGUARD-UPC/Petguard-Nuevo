@@ -139,9 +139,9 @@
 						<div class="form-group row">
 							<label for="idPay" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
-								<label type="text" th:field="*{idPay}"
+								<input type="text" th:field="*{idPay}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" readonly/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('idPay')}"
 									th:errors="*{idPay}"></small>
