@@ -191,7 +191,7 @@
 								<select class="form-control" th:field="*{pay.idPay}">
 									<option value="0" selected disabled>Elegir medio de pago</option>
 									<option th:each="l: ${listaMedioPagos}" 
-										th:value="${l.idPay}" th:text="${l.name + ' '+ l.entity}"
+										th:value="${l.idPay}" th:text="${l.name + ' '+ l.banking.name}"
 										th:selected="(${l.idPay} == *{pay.idPay})"></option>
 								</select>
 								<p class="alert alert-danger" 

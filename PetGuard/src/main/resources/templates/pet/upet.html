@@ -148,9 +148,9 @@
 							<label for="name" class="col-sm-2 col-form-label">Nombre
 								de mascota</label>
 							<div class="col-sm-6">
-								<input type="text" pattern="[A-Za-z]+"
+								<input type="text" pattern="[A-Za-z]+$"
 									title="Sólo se permite letras" th:field="*{name}"
-									class="form-control" />
+									class="form-control" required/>
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
 							</div>
@@ -159,7 +159,7 @@
 						<div class="form-group row">
 							<label for="breed" class="col-sm-2 col-form-label">Raza</label>
 							<div class="col-sm-6">
-								<select name="breed" class="form-control" id="breed">
+								<select name="breed" class="form-control" id="breed" required>
 									<option value="0" selected disabled>Elegir raza de
 										mascota</option>
 									<option value="Labrador">Labrador</option>
@@ -195,7 +195,7 @@
 						<div class="form-group row">
 							<label for="pesoMascota" class="col-sm-2 col-form-label">Peso</label>
 							<div class="col-sm-6">
-								<input type="text" pattern="[0-9]+"
+								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
 									title="Sólo se permite números" th:field="*{weight}"
 									class="form-control" />
 								<p class="alert alert-danger"
@@ -206,7 +206,7 @@
 						<div class="form-group row">
 							<label for="gender" class="col-sm-2 col-form-label">Sexo</label>
 							<div class="col-sm-6">
-								<select name="gender" class="form-control" id="gender">
+								<select name="gender" class="form-control" id="gender" required>
 									<option value="0" selected disabled>Elegir género de
 										mascota</option>
 									<option value="Macho">Macho</option>
@@ -220,7 +220,7 @@
 						<div class="form-group row">
 							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{customer.idCustomer}">
+								<select class="form-control" th:field="*{customer.idCustomer}" required>
 									<option value="0" selected disabled>Elegir dueño de
 										mascota</option>
 									<option th:each="l: ${listaClientes}"

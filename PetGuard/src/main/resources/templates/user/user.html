@@ -73,6 +73,9 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
 							métodos de pago</a>
 					</div>
@@ -134,9 +137,8 @@
 							<label for="nameCu" class="col-sm-2 col-form-label">Nombre
 								Usuario</label>
 							<div class="col-sm-6">
-								<input type="text" 
-									title="Sólo se permite letras" th:field="*{username}"
-									class="form-control" autocomplete="off"  />
+								<input type="text"  th:field="*{username}"
+									class="form-control" autocomplete="off" />
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('username')}"
 									th:errors="*{username}"></p>

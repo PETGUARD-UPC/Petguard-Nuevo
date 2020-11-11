@@ -46,6 +46,7 @@ public class PetController {
 	@GetMapping("/new")
 	public String newPet(Model model) {
 		
+		model.addAttribute("listaMascotas",mS.list());
 		model.addAttribute("listaClientes", cS.list());	
 		model.addAttribute("pet", new Pet());
 		return "pet/pet";
@@ -57,6 +58,7 @@ public class PetController {
 			SessionStatus status) throws Exception{
 		if(result.hasErrors()) {
 			model.addAttribute("listaClientes", cS.list());
+			model.addAttribute("listaMascotas",mS.list());
 			return"pet/pet";
 		}else {
 			if (!foto.isEmpty()) {
@@ -71,6 +73,8 @@ public class PetController {
 					uniqueFilename = uploadFileService.copy(foto);
 				} catch (IOException e) {
 					e.printStackTrace();
+					model.addAttribute("listaClientes", cS.list());
+					model.addAttribute("listaMascotas",mS.list());
 				}
 
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
@@ -78,6 +82,7 @@ public class PetController {
 			}
 			mS.insert(pet);
 		}
+		model.addAttribute("listaClientes", cS.list());
 		model.addAttribute("listaMascotas",mS.list());
 		return "redirect:/pets/list";
 	}
@@ -101,6 +106,7 @@ public class PetController {
 			return "redirect:/pets/list";
 		} else {
 			model.addAttribute("listaClientes", cS.list());
+			model.addAttribute("listaMascotas",mS.list());
 			model.addAttribute("pet", objAr.get());
 			return "pet/upet";
 		}
@@ -125,6 +131,8 @@ public class PetController {
 			SessionStatus status) throws Exception {
 		
         if (result.hasErrors()) {
+        	model.addAttribute("listaClientes", cS.list());
+			model.addAttribute("listaMascotas",mS.list());
             return "pet/pet";
         } else {
         	if (!foto.isEmpty()) {
@@ -188,6 +196,7 @@ public class PetController {
 			if (id > 0) {
 				mS.delete(id);
 				model.addAttribute("listaClientes", cS.list());
+				model.addAttribute("listaMascotas",mS.list());
 				model.addAttribute("pet", new Pet());
 				model.addAttribute("mensaje", "Se eliminó correctamente");
 
@@ -200,6 +209,7 @@ public class PetController {
 			System.out.println(e.getMessage());
 			model.addAttribute("mensaje", "No se puede eliminar una mascota relacionada");
 			model.addAttribute("listaClientes", cS.list());
+			model.addAttribute("listaMascotas",mS.list());
 
 			return "pet/listPet";
 		}

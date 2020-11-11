@@ -63,7 +63,4 @@ public class Pay {
 		this.banking = banking;
 	}
 
-	
-	
-	
 }

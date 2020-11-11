@@ -16,3 +16,4 @@ public interface ReserveRepository extends JpaRepository<Reserve, Integer>{
 	
 
 }
+//@Query("from Pay p where p.name like %:name% or p.banking.name like %:name% or UPPER(p.name) like %:name% or LOWER(p.name) like %:name% or UPPER(p.banking.name) like %:name% or LOWER(p.banking.name) like %:name%")
