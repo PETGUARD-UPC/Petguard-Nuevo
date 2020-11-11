@@ -37,13 +37,13 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-                class="sidebar-brand d-flex align-items-center justify-content-center"
-                th:href="@{/customers/index}">
-                <div class="sidebar-brand-icon">
-                    <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">PetGuard</div>
-            </a>
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				th:href="@{/customers/index}">
+				<div class="sidebar-brand-icon">
+					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">PetGuard</div>
+			</a>
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
@@ -67,10 +67,12 @@
 						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de
+							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
+							métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -125,86 +127,95 @@
 
 
 					<form th:action="@{/customers/save}" th:object="${customer}"
-						method="post" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
-						<div class="form-group row" >
-							<label for="user" class="col-sm-2 col-form-label">Elegir el usuario:</label>
+						method="post" enctype="multipart/form-data"
+						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
+						<div class="form-group row">
+							<label for="user" class="col-sm-2 col-form-label">Elegir
+								el usuario:</label>
 							<div class="col-sm-6">
-								<select class="form-control"
-										th:field="*{user.idUser}">
-									<option th:each="l: ${listaUsuarios}" 
-										th:value="${l.idUser}" th:text="${l.username}"
+								<select class="form-control" th:field="*{user.idUser}">
+									<option th:each="l: ${listaUsuarios}" th:value="${l.idUser}"
+										th:text="${l.username}"
 										th:selected="(${l.idUser} == *{user.idUser})"></option>
 								</select>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
-								<input type="text" pattern="[A-Za-z]+" title="Sólo se permite letras" th:field="*{name}" class="form-control"/> 
-									<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('name')}" 
-									th:errors="*{name}" />
+								<input type="text" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
+									title="Sólo se permite letras" th:field="*{name}"
+									class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
 							</div>
 						</div>
-						 
+
 						<div class="form-group row">
 							<label for="lastname" class="col-sm-2 col-form-label">Apellido</label>
 							<div class="col-sm-6">
-								<input type="text" pattern="[A-Za-z]+" title="Sólo se permite letras" th:field="*{lastname}" 
-									class="form-control"/> 
-									<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('lastname')}" 
+								<input type="text" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
+									title="Sólo se permite letras" th:field="*{lastname}"
+									class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('lastname')}"
 									th:errors="*{lastname}" />
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
-							<label for="lastname" class="col-sm-2 col-form-label">DNI</label>
+							<label for="dni" class="col-sm-2 col-form-label">DNI</label>
 							<div class="col-sm-6">
-								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{dni}" 
-									class="form-control"/> 
-									<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('dni')}" 
-									th:errors="*{dni}" />
+								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
+									title="Sólo se permite números" th:field="*{dni}"
+									class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" />
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="phone" class="col-sm-2 col-form-label">Teléfono</label>
 							<div class="col-sm-6">
-								<input type="number" pattern="[0-9]+" title="Sólo se permite números" th:field="*{phone}" 
-									class="form-control"/> 
-									<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('phone')}" 
-									th:errors="*{phone}" />
+								<input type="number" pattern="^[1-9][.\d]*(,\d+)?$"
+									title="Sólo se permite números" th:field="*{phone}"
+									class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" />
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="emailC" class="col-sm-2 col-form-label">Email</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{email}" 
-									class="form-control"/> 
-									<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('email')}" 
-									th:errors="*{email}" />
+								<input type="text" th:field="*{email}" class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="birthdateC" class="col-sm-2 col-form-label">Fecha
 								de Nacimiento</label>
-							<div class="col-sm-6">
-								<input type="date" th:field="*{birthdate}" class="form-control"/> 
-								<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('birthdate')}" 
+							<div class="col-sm-6"> 
+								<input type="date" th:field="*{birthdate}" required="required" class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('birthdate')}"
 									th:errors="*{birthdate}" />
 							</div>
 						</div>
-						
+						<div class="form-group row">
+							<label for="file" class="col-sm-2 col-form-label ">Foto:</label>
+							<div class="col-sm-6">
+								<input type="file" name="file" class="form-control"
+									th:text="${customer.foto}" required="required" />
+							</div>
+						</div>
+
 						<div class="form-group row">
 							<div class="col-sm-6">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="submit" value="Guardar" class="btn btn-dark" style="background-color: #8062ff ; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									type="submit" value="Guardar" class="btn btn-dark"
+									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<a href="/customers/list" class="btn btn-dark"
 									style="background-color: #8062ff; border-color: white">Cancelar</a>
 							</div>
