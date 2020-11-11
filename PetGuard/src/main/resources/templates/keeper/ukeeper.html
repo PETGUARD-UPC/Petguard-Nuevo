@@ -223,8 +223,8 @@
 							<label for="salary" class="col-sm-2 col-form-label">Salario</label>
 							<div class="col-sm-6">
 								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
-									title="Sólo se permite números" th:field="*{salary}"
-									class="form-control" autocomplete="off"/>
+									th:field="*{salary}"
+									class="form-control" autocomplete="off" required/>
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" />
 							</div>
