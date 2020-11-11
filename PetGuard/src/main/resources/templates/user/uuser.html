@@ -37,13 +37,13 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-                class="sidebar-brand d-flex align-items-center justify-content-center"
-                th:href="@{/users/index}">
-                <div class="sidebar-brand-icon">
-                    <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">PetGuard</div>
-            </a>
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				th:href="@{/users/index}">
+				<div class="sidebar-brand-icon">
+					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">PetGuard</div>
+			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
@@ -69,10 +69,12 @@
 						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de
+							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
+							métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -126,34 +128,39 @@
 					<h1 class="h3 mb-4 text-gray-800">Actualizar Usuarios</h1>
 
 					<form th:action="@{/users/update}" th:object="${user}"
-						method="post" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
-						
+						method="post"
+						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
+
 						<div class="form-group row">
 							<label for="id" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{idUser}"
+								<input type="text" readonly="readonly" th:field="*{idUser}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('idUser')}"
-									th:errors="*{idUser}"></small>
+									th:if="${#fields.hasErrors('idUser')}" th:errors="*{idUser}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
-							<label for="nameCu" class="col-sm-2 col-form-label">Nombre Usuario</label>
+							<label for="nameCu" class="col-sm-2 col-form-label">Nombre
+								Usuario</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{username}" class="form-control"/> 
-									<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+								<input type="text" pattern="^[a-zA-Z ]+$"
+									title="Sólo se permite letras" th:field="*{username}"
+									class="form-control" autocomplete="off" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('username')}"
+									th:errors="*{username}"></p>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="contraUs" class="col-sm-2 col-form-label">Contraseña</label>
 							<div class="col-sm-6">
-								<input type="password" th:field="*{password}" class="form-control"/>
-									<p class="alert alert-danger"
+								<input type="password" th:field="*{password}"
+									class="form-control" />
+								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('password')}"
 									th:errors="*{password}"></p>
 							</div>
@@ -161,8 +168,10 @@
 						<div class="form-group row">
 							<div class="col-sm-6">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="submit" value="Guardar" class="btn btn-dark" style="background-color: #8062ff ; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/users/list" class="btn btn-dark" style="background-color: #8062ff ; border-color: white">Cancelar</a>
+									type="submit" value="Guardar" class="btn btn-dark"
+									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="/users/list" class="btn btn-dark"
+									style="background-color: #8062ff; border-color: white">Cancelar</a>
 							</div>
 						</div>
 						<p th:text="${mensaje}" class="form-text text-danger"></p>
@@ -235,7 +244,6 @@
 </body>
 
 </html>
-						
-						
-						
-						
+
+
+
