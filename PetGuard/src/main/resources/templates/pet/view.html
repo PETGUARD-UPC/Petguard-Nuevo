@@ -50,10 +50,9 @@
 
 
 
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -79,7 +78,6 @@
 							métodos de pago</a>
 					</div>
 				</div></li>
-
 
 
 			<!-- Divider -->
@@ -119,93 +117,68 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
 						</a></li>
-
-
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
-									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
-									align="middle"></img></span>
-						</a> <!-- Dropdown - User Information --></li>
-
 					</ul>
 
 				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+<div class="container">
+					<div class="card">
+						<div class="card-header text-white bg-dark mb-3">Detalle de
+							Mascota</div>
+						<div class="card-body">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Mascotas</h1>
+							<div class="table-responsive">
+								<table class="table table-white">
 
-					<a th:href="@{/pets/new/}" class="btn btn-secondary btn-xs"
-						style="background-color: #8062ff; border-color: white">Nuevo</a>
+									<tbody>
+										<tr>
+											<td>Nombre</td>
+											<td th:text="${pet.name}"></td>
+										</tr>
+										<tr>
+											<td>Raza</td>
+											<td th:text="${pet.breed}"></td>
+										</tr>
+										<tr>
+											<td>Edad</td>
+											<td th:text="${pet.years}"></td>
+										</tr>
+										<tr>
+											<td>Peso</td>
+											<td th:text="${pet.weight}"></td>
+										</tr>
+										<tr>
+											<td>Sexo</td>
+											<td th:text="${pet.gender}"></td>
+										</tr>
+										<tr>
+											<td>Cliente</td>
+											<td th:text="${pet.customer.idCustomer}"></td>
+										</tr>
+										<tr>
+											<td>FOTO</td>
+											<td><img th:if="${#strings.length(pet.foto)> 0}"
+												class="img-thumbnail rounded float-left"
+												style="max-width: 50%;"
+												th:src="@{'/pets/uploads/' + ${pet.foto}}"
+												th:alt="${pet.foto}" /></td>
+										</tr>
+									</tbody>
 
-					<form th:action="@{/pets/find}" method="post" th:object="${pet}">
+								</table>
 
-						<div class="form-group">
-							<table>
-								<tbody>
-									<tr>
-										<td><label for="name" class="col-sm-2 col-form-label">Buscar:</label></td>
-
-										<td><input type="text" class="form-control"
-											th:field="*{name}" id="name" placeholder="Nombre"
-											required="required"></input></td>
-										<td><button type="submit" class="btn btn-danger">
-												<i class="iconf fa fa-search" style="color: white;"></i>
-											</button></td>
-										<td><a href="/pets/list" class="btn btn-danger">Limpiar</a></td>
-									</tr>
-								</tbody>
-							</table>
+								<a th:href="@{/pets/list}" type="button"
+									class="btn btn-danger k"> <span
+									class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+								</a>
+							</div>
 						</div>
+					</div>
+				</div>
 
-					</form>
-					<!-- buscar -->
-					<hr class="sidebar-divider">
 
-					<table class="table"
-						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
-						<thead style="color: white; background-color: #8062ff">
-							<tr>
-								<th scope="col">IdMascota</th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Raza</th>
-								<th scope="col">Edad</th>
-								<th scope="col">Peso</th>
-								<th scope="col">Sexo</th>
-								<th scope="col">Dueño</th>
-								<th scope="col" class="text-center">Eliminar</th>
-								<th scope="col" class="text-center">Actualizar</th>
-							</tr>
-						</thead>
-						<tbody style="color: #353434">
-							<tr th:each="l: ${listaMascotas}">
-								<td><a class="btn btn-danger btn-xs"
-									th:href="@{/pets/view/} + ${l.idPet}" th:text="${l.idPet}"></a></td>
-								<td th:text="${l.name}"></td>
-								<td th:text="${l.breed}"></td>
-								<td th:text="${l.years + ' años'}"></td>
-								<td th:text="${l.weight+ ' kilogramos'}"></td>
-								<td th:text="${l.gender}"></td>
-								<td th:text="${l.customer.name +'  '+ l.customer.lastname}"></td>
-								<td class="text-center"><a
-									th:href="@{'/pets/delete/' + ${l.idPet}}"><i
-										class="iconf fa fa-trash" style="color: red;"></i></a></td>
-								<td class="text-center"><a
-									th:href="@{'/pets/irupdate/'+${l.idPet}}"><i
-										class="iconf fa fa-pen" style="color: green;"></i></a></td>
-							</tr>
-						</tbody>
-					</table>
-
-					<p th:text="${mensaje}"></p>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -217,7 +190,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 202002</span>
+						<span>Copyright &copy; Web 2019</span>
 					</div>
 				</div>
 			</footer>
@@ -234,7 +207,30 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">¿Listo para
+						salir?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Seleccione "Cerrar sesión" a
+					continuación si está listo para finalizar su sesión actual</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancelar</button>
+					<a class="btn btn-primary" th:href="@{/categories/index}">Cerrar
+						Sesión</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/vendor/jquery/jquery.min.js"></script>

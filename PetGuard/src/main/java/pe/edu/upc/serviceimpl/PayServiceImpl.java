@@ -1,8 +1,7 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
-
-import javax.transaction.Transactional;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +17,16 @@ public class PayServiceImpl implements IPayService{
 	public PayRepository pR;
 
 	@Override
-	@Transactional
-	public void insert(Pay pay) {
-		
-		pR.save(pay);
+	public int insert(Pay pay) {
+		int rptaN = pR.searchPayName(pay.getName());
+		int rptaE = pR.searchPayEntity(pay.getEntity());
+		if (rptaN <=3 && rptaE == 0 ) {
+			pR.save(pay);
+			return 0;
+		}
+		else {
+			return 1;
+		}
 	}
 
 	@Override
@@ -36,5 +41,16 @@ public class PayServiceImpl implements IPayService{
 		return pR.findBynamePay(namePay);
 	}
 	
+	@Override
+	public void delete(int idPay) {
+		pR.deleteById(idPay);
+	}
+	
+	@Override
+	public Optional<Pay> searchId(int idPay) {
+		// TODO Auto-generated method stub
+		return pR.findById(idPay);
+
+	}
 	
 }

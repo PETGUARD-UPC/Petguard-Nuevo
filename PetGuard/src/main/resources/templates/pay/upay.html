@@ -37,13 +37,13 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/pets/index}">
-				<div class="sidebar-brand-icon">
-					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
-				</div>
-				<div class="sidebar-brand-text mx-3">PetGuard</div>
-			</a>
+                class="sidebar-brand d-flex align-items-center justify-content-center"
+                th:href="@{/pays/index}">
+                <div class="sidebar-brand-icon">
+                    <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">PetGuard</div>
+            </a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
@@ -70,12 +70,10 @@
 						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Gestión de
-							usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
-							métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -126,121 +124,69 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Mascota</h1>
-
-					<form th:action="@{/pets/save}" th:object="${pet}" method="post" enctype="multipart/form-data"
-						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
-
+					<h1 class="h3 mb-4 text-gray-800">Actualizar Método de pago</h1>
+					
+				<!--	<hr class="sidebar-divider">
+					<div th:object="${pay}" th:remove="tag">
+						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+							role="alert">
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+						</ul>
+					</div>
+ -->
+					<form th:action="@{/pays/update}" th:object="${pay}"
+						method="post" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre
-								de mascota</label>
+							<label for="idPay" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
-								<input type="text" pattern="[A-Za-z]+"
-									title="Sólo se permite letras" th:field="*{name}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
+								<label type="text" th:field="*{idPay}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('idPay')}"
+									th:errors="*{idPay}"></small>
 							</div>
 						</div>
-
 						<div class="form-group row">
-							<label for="breed" class="col-sm-2 col-form-label">Raza</label>
+							<label for="pay" class="col-sm-2 col-form-label">Tipo de pago</label>
 							<div class="col-sm-6">
-								<select name="breed" class="form-control" id="breed">
-									<option value="0" selected disabled>Elegir raza de
-										mascota</option>
-									<option value="Labrador">Labrador</option>
-									<option value="Pastor Alemán">Pastor Alemán</option>
-									<option value="Yorkshire">Yorkshire</option>
-									<option value="Beagle">Beagle</option>
-									<option value="Golden Retriever">Golden Retriever</option>
-									<option value="Chihuahua">Chihuahua</option>
-									<option value="Pequinés">Pequinés</option>
-									<option value="Bulldog">Bulldog</option>
-									<option value="Rottweiler">Rottweiler</option>
-									<option value="Pug">Pug</option>
-									<option value="Shar Pei">Shar Pei</option>
-									<option value="Husky">Husky</option>
-									<option value="Mestizo">Mestizo</option>
+								<select name="name" class="form-control" id="name">
+								<option value="0" selected disabled>Elegir tipo de tarjeta</option>
+									<option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+									<option value="Tarjeta de Débito">Tarjeta de Débito</option>
 								</select>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('breed')}" th:errors="*{breed}" />
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('name')}" 
+									th:errors="*{name}" />
 							</div>
 						</div>
-
+						
 						<div class="form-group row">
-							<label for="edadMascota" class="col-sm-2 col-form-label">Edad</label>
+							<label for="pay" class="col-sm-2 col-form-label">Entidad financiera</label>
 							<div class="col-sm-6">
-								<input type="text" pattern="[0-9]+"
-									title="Sólo se permite números" th:field="*{years}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('years')}" th:errors="*{years}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="pesoMascota" class="col-sm-2 col-form-label">Peso</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="[0-9]+"
-									title="Sólo se permite números" th:field="*{weight}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="gender" class="col-sm-2 col-form-label">Sexo</label>
-							<div class="col-sm-6">
-								<select name="gender" class="form-control" id="gender">
-									<option value="0" selected disabled>Elegir género de
-										mascota</option>
-									<option value="Macho">Macho</option>
-									<option value="Hembra">Hembra</option>
+								<select name="entity" class="form-control" id="entity">
+								<option value="0" selected disabled>Elegir entidad financiera</option>
+									<option value="Visa">Visa</option>
+									<option value="MasterCard">MasterCard</option>
+									<option value="American Express">American Express</option>
 								</select>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" />
+								<p class="alert alert-danger" 
+									th:if="${#fields.hasErrors('entity')}" 
+									th:errors="*{entity}" />
 							</div>
 						</div>
-
-						<div class="form-group row">
-							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
-							<div class="col-sm-6">
-								<select class="form-control" th:field="*{customer.idCustomer}">
-									<option value="0" selected disabled>Elegir dueño de
-										mascota</option>
-									<option th:each="l: ${listaClientes}"
-										th:value="${l.idCustomer}"
-										th:text="${l.name + ' '+l.lastname}"
-										th:selected="(${l.idCustomer} == *{customer.idCustomer})"></option>
-								</select>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('customer')}"
-									th:errors="*{customer}" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="file" class="col-sm-2 col-form-label ">Foto:</label>
-							<div class="col-sm-6">
-								<input type="file" name="file" class="form-control"
-									th:text="${pet.foto}" required="required" />
-							</div>
-						</div>
-
-
+						
 						<div class="form-group row">
 							<div class="col-sm-6">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-									type="submit" value="Guardar" class="btn btn-dark"
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+									type="submit" value="Actualizar" class="btn btn-dark"
 									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/pets/list" class="btn btn-dark"
+								<a href="/pays/list" class="btn btn-dark"
 									style="background-color: #8062ff; border-color: white">Cancelar</a>
 							</div>
 						</div>
 						<p th:text="${mensaje}" class="form-text text-danger"></p>
 					</form>
-
 
 
 
@@ -309,3 +255,6 @@
 </body>
 
 </html>
+
+
+

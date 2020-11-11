@@ -2,6 +2,7 @@ package pe.edu.upc.controller;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -11,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.Pay;
 import pe.edu.upc.serviceinterface.IPayService;
@@ -38,11 +41,15 @@ public class PayController {
 		if(result.hasErrors()) {
 			return "pay/pay";
 		}else {
-			pS.insert(pay);
+			int rpta = pS.insert(pay);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "El metodo de pago ya existe!!");
+				return "pay/pay";
+			} else {
+				model.addAttribute("listaMedioPagos", pS.list());
+				return "/pay/listPay";
+			}
 		}
-		model.addAttribute("listaMedioPagos", pS.list());
-		
-		return "redirect:/pays/list";
 	}
 	
 	@GetMapping("/list")
@@ -69,5 +76,52 @@ public class PayController {
 		}
 		model.addAttribute("listaMedioPagos", listaMedioPagos);
 		return "/pay/listPay";
+	}
+	
+	@RequestMapping("/delete/{id}")
+	public String deleteLaboratory(Model model, @PathVariable(value = "id") int id) {
+		try {
+			if (id > 0) {
+				pS.delete(id);
+			}
+			model.addAttribute("pay", new Pay());
+			model.addAttribute("mensaje", "Se eliminó correctamente!");
+			model.addAttribute("listaMedioPagos", pS.list());
+		} catch (Exception e) {
+			model.addAttribute("pay", new Pay());
+			model.addAttribute("mensaje", "No se puede eliminar!!");
+			model.addAttribute("listaMedioPagos", pS.list());
+
+		}
+		return "/pay/listPay";
+	}
+	
+	@RequestMapping("/irupdate/{id}")
+	public String irUpdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
+		Optional<Pay> objPay = pS.searchId(id);
+		if (objPay == null) {
+			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
+			return "redirect:/pays/list";
+		} else {
+			model.addAttribute("listaMedioPagos", pS.list());
+			model.addAttribute("pay", objPay.get());
+			return "pay/upay";
+
+		}
+
+	}
+
+	@PostMapping("/update")
+	public String updateVaccine(@Valid Pay pay, BindingResult result, Model model, SessionStatus status)
+			throws Exception {
+		if (result.hasErrors()) {
+			return "pay/pay";
+		} else {
+			pS.insert(pay);
+			model.addAttribute("mensaje", "Registro actualizado correctamente");
+		}
+		model.addAttribute("listaMedioPagos", pS.list());
+		return "redirect:/pays/list";
+
 	}
 }
