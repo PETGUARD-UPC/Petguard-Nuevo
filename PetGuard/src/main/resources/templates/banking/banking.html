@@ -37,24 +37,22 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/pays/index}">
-				<div class="sidebar-brand-icon">
-					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
-				</div>
-				<div class="sidebar-brand-text mx-3">PetGuard</div>
-			</a>
-
+                class="sidebar-brand d-flex align-items-center justify-content-center"
+                th:href="@{/bankings/index}">
+                <div class="sidebar-brand-icon">
+                    <img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">PetGuard</div>
+            </a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 
 
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -72,18 +70,16 @@
 						<a class="collapse-item" th:href="@{/reserves/list}">Reserva</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Gestión de
-							usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Gestión de usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
-							métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
 					</div>
+					
 				</div></li>
-
 
 
 			<!-- Divider -->
@@ -123,19 +119,6 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
 						</a></li>
-
-
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
-									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
-									align="middle"></img></span>
-						</a> <!-- Dropdown - User Information --></li>
-
 					</ul>
 
 				</nav>
@@ -145,66 +128,36 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Métodos de pago</h1>
+					<h1 class="h3 mb-4 text-gray-800">Entidades Bancarias</h1>
 
-					<a th:href="@{/pays/new}" class="btn btn-secondary btn-xs"
-						style="background-color: #8062ff; border-color: white">Nuevo</a>
-
-					<form th:action="@{/pays/find}" method="post" th:object="${pay}">
-
-						<div class="form-group">
-							<table>
-								<tbody>
-									<tr>
-										<td><label for="name" class="col-sm-2 col-form-label">Buscar:</label></td>
-
-										<td><input type="text" class="form-control"
-											th:field="*{name}" id="name" placeholder="Metodo de pago"
-											required="required" autocomplete="off"></input></td>
-										<td><button type="submit" class="btn btn-danger">
-												<i class="iconf fa fa-search" style="color: white;"></i>
-											</button></td>
-										<td><a href="/pays/list" class="btn btn-danger">Limpiar</a></td>
-									</tr>
-								</tbody>
-							</table>
+					<form th:action="@{/bankings/save}" th:object="${banking}"
+						method="post" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
+						
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Nombre
+								de entidad bancaria</label>
+							<div class="col-sm-6">
+								<input type="text" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
+									title="Sólo se permite letras" th:field="*{name}"
+									class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
+							</div>
 						</div>
-
+						
+						<div class="form-group row">
+							<div class="col-sm-6">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+									type="submit" value="Guardar" class="btn btn-dark"
+									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="/bankings/list" class="btn btn-dark"
+									style="background-color: #8062ff; border-color: white">Cancelar</a>
+							</div>
+						</div>
+						<p th:text="${mensaje}" class="form-text text-danger"></p>
 					</form>
 
 
-					<hr class="sidebar-divider">
-
-					<table class="table"
-						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
-						<thead style="color: white; background-color: #8062ff">
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Método de Pago</th>
-								<th scope="col">Entidad financiera</th>
-								<th scope="col">Eliminar</th>
-								<th scope="col">Actualizar</th>
-							</tr>
-						</thead>
-						<tbody style="color: #353434">
-							<tr th:each="c: ${listaMedioPagos}">
-								<td th:text="${c.idPay}"></td>
-								<td th:text="${c.name}"></td>
-								<td th:text="${c.banking.name}"></td>
-								<td><a th:href="@{'/pays/delete/'+${c.idPay}}"> <i
-										class="iconf fa fa-trash" style="color: red;"></i>
-								</a>	
-								</td>
-								<td>
-								<a th:href="@{'/pays/irupdate/'+${c.idPay}}"><i
-										class="iconf fa fa-pen" style="color: green;"></i></a>
-								</td>
-								
-							</tr>
-						</tbody>
-					</table>
-
-					<p th:text="${mensaje}" class="form-text text-danger"></p>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -216,7 +169,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 202002</span>
+						<span>Copyright &copy; Web 2019</span>
 					</div>
 				</div>
 			</footer>
@@ -233,7 +186,30 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">¿Listo para
+						salir?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Seleccione "Cerrar sesión" a
+					continuación si está listo para finalizar su sesión actual</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancelar</button>
+					<a class="btn btn-primary" th:href="@{/categories/index}">Cerrar
+						Sesión</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/vendor/jquery/jquery.min.js"></script>
@@ -248,3 +224,6 @@
 </body>
 
 </html>
+
+
+
