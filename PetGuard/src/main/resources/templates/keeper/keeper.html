@@ -170,7 +170,7 @@
 						<div class="form-group row">
 							<label for="phoneCu" class="col-sm-2 col-form-label">Teléfono</label>
 							<div class="col-sm-6">
-								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
+								<input type="text" pattern="^[0-9][.\d]*(,\d+)?$"
 									title="Sólo se permite números" th:field="*{phone}"
 									class="form-control" autocomplete="off" />
 								<p class="alert alert-danger"
@@ -181,7 +181,7 @@
 						<div class="form-group row">
 							<label for="dniCu" class="col-sm-2 col-form-label">DNI</label>
 							<div class="col-sm-6">
-								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
+								<input type="text" pattern="^[0-9][.\d]*(,\d+)?$"
 									title="Sólo se permite números" th:field="*{dni}"
 									class="form-control" autocomplete="off" />
 								<p class="alert alert-danger"

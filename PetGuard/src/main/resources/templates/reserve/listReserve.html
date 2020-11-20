@@ -202,13 +202,15 @@
 								<td th:text="${'S/. '+ r.hour* r.keeper.salary}"></td>
 
 
-								   <td>
-							    <a th:href="@{'/reserves/delete/'+${r.idReserve}}">
-								<i class="iconf fa fa-trash" style="color:red;"></i>
-								</a>
-								</td>
-								
 								<td>
+							    <a th:href="@{'/reserves/delete/'+${r.idReserve}}">
+								<i onclick="myFunction()" class="iconf fa fa-trash" style="color:red;"></i>
+								<script>
+								function myFunction() {
+ 								 alert("¿Estás seguro de eliminar esta reserva?");
+								}
+								</script>
+								</a>&nbsp;&nbsp;&nbsp;&nbsp;
 								<a th:href="@{'/reserves/irupdate/'+${r.idReserve}}">
 								<i class="iconf fa fa-pen" style="color:#FFC848;"></i>
 								</a>

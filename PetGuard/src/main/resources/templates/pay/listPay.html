@@ -181,8 +181,7 @@
 								<th scope="col">Id</th>
 								<th scope="col">Método de Pago</th>
 								<th scope="col">Entidad financiera</th>
-								<th scope="col">Eliminar</th>
-								<th scope="col">Actualizar</th>
+								<th scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
@@ -190,13 +189,19 @@
 								<td th:text="${c.idPay}"></td>
 								<td th:text="${c.name}"></td>
 								<td th:text="${c.banking.name}"></td>
-								<td><a th:href="@{'/pays/delete/'+${c.idPay}}"> <i
-										class="iconf fa fa-trash" style="color: red;"></i>
-								</a>	
-								</td>
+								
 								<td>
-								<a th:href="@{'/pays/irupdate/'+${c.idPay}}"><i
-										class="iconf fa fa-pen" style="color: green;"></i></a>
+								<a th:href="@{'/pays/delete/'+${c.idPay}}"> 
+								<i onclick="myFunction()" class="iconf fa fa-trash" style="color: red;"></i>
+								<script>
+								function myFunction() {
+ 								 alert("¿Estás seguro de eliminar este metodo de pago?");
+								}
+								</script>
+								</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								<a th:href="@{'/pays/irupdate/'+${c.idPay}}">
+								<i class="iconf fa fa-pen" style="color: green;"></i>
+								</a>
 								</td>
 								
 							</tr>

@@ -188,8 +188,7 @@
 								<th scope="col">Email</th>
 								<th scope="col">Fecha de nacimiento</th>
 								<th scope="col">Usuario</th>
-								<th scope="col" class="text-center">Actualizar</th>
-								<th scope="col" class="text-center">Eliminar</th>
+								<th scope="col" class="text-center">Operación</th>
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
@@ -204,12 +203,21 @@
 								<td th:text="${c.email}"></td>
 								<td th:text="${c.birthdate}"></td>
 								<td th:text="${c.user.username}"></td>
-								<td class="text-center"><a
-									th:href="@{'/customers/irupdate/' + ${c.idCustomer}}"><i
-										class="iconf fa fa-pen" style="color: blue;"></i></a></td>
-								<td class="text-center"><a
-									th:href="@{'/customers/delete/' + ${c.idCustomer}}"><i
-										class="iconf fa fa-trash" style="color: red;"></i></a></td>
+								
+								<td class="text-center">
+								<a th:href="@{'/customers/irupdate/' + ${c.idCustomer}}">
+								<i class="iconf fa fa-pen" style="color: blue;"></i>
+								
+								</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								<a th:href="@{'/customers/delete/' + ${c.idCustomer}}">
+								<i onclick="myFunction()" class="iconf fa fa-trash" style="color: red;"></i>
+								<script>
+								function myFunction() {
+ 								 alert("¿Estás seguro de eliminar este cliente?");
+								}
+								</script>
+								</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>

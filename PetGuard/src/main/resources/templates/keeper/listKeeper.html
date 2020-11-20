@@ -185,13 +185,12 @@
 								<th scope="col">Salario</th>
 								<th scope="col">Experiencia</th>
 								<th scope="col">Usuario</th>
-								<th scope="col">Eliminar</th>
-								<th scope="col">Actualizar</th>
+								<th scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
 							<tr th:each="cu: ${listaCuidadores}">
-							<td><a class="btn btn-danger btn-xs"
+							<td><a class="btn btn-link btn-xs"
 									th:href="@{/keepers/view/} + ${cu.idKeeper}" th:text="${cu.idKeeper}"></a></td>
 								<td th:text="${cu.name}"></td>
 								<td th:text="${cu.lastname}"></td>
@@ -200,12 +199,20 @@
 								<td th:text="${'S/. ' + cu.salary}"></td>
 								<td th:text="${cu.experience+ ' meses'}"></td>
 								<td th:text="${cu.user.username}"></td>
-								<td class="text-center"><a
-									th:href="@{'/keepers/delete/' + ${cu.idKeeper}}"><i
-										class="iconf fa fa-trash" style="color: red;"></i></a></td>
-								<td class="text-center"><a
-									th:href="@{'/keepers/irupdate/'+${cu.idKeeper}}"><i
-										class="iconf fa fa-pen" style="color: green;"></i></a></td>
+								
+								<td class="text-center">
+								<a th:href="@{'/keepers/delete/' + ${cu.idKeeper}}">
+								<i onclick="myFunction()" class="iconf fa fa-trash" style="color: red;"></i>
+								<script>
+								function myFunction() {
+ 								 alert("¿Estás seguro de eliminar este cuidador?");
+								}
+								</script>
+								</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								<a th:href="@{'/keepers/irupdate/'+${cu.idKeeper}}">
+								<i class="iconf fa fa-pen" style="color: green;"></i>
+								</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>

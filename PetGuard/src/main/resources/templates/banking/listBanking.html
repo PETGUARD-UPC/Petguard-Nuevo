@@ -181,19 +181,22 @@
 							<tr>
 								<th scope="col">Id</th>
 								<th scope="col">Entidad financiera</th>
-								<th scope="col">Eliminar</th>
-								<th scope="col">Actualizar</th>
+								<th scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody style="color: #353434">
 							<tr th:each="c: ${listaBancos}">
 								<td th:text="${c.idBanking}"></td>
 								<td th:text="${c.name}"></td>
-								<td><a th:href="@{'/bankings/delete/'+${c.idBanking}}"> <i
-										class="iconf fa fa-trash" style="color: red;"></i>
-								</a>	
-								</td>
 								<td>
+								<a th:href="@{'/bankings/delete/'+${c.idBanking}}"> 
+								<i onclick="myFunction()" class="iconf fa fa-trash" style="color: red;"></i>
+								<script>
+								function myFunction() {
+ 								 alert("¿Estás seguro de eliminar esta entidad bancaria?");
+								}
+								</script>
+								</a>&nbsp;&nbsp;&nbsp;&nbsp;
 								<a th:href="@{'/bankings/irupdate/'+${c.idBanking}}"><i
 										class="iconf fa fa-pen" style="color: green;"></i></a>
 								</td>

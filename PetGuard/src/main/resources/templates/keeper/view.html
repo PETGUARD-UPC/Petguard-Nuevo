@@ -126,13 +126,13 @@
 
 				<!-- Begin Page Content -->
 				<div class="container">
-					<div class="card">
+					<div class="card text-center" style="max-width: 50rem;">
 						<div class="card-header text-white bg-dark mb-3">Detalle del
 							cuidador</div>
 						<div class="card-body">
 
 							<div class="table-responsive">
-								<table class="table table-white">
+								<table class="table table-black">
 
 									<tbody>
 										<tr>
@@ -169,13 +169,13 @@
 										</tr>
 										<tr>
 											<td>Experiencia</td>
-											<td th:text="${keeper.experience}"></td>
+											<td th:text="${keeper.experience} + ' meses'"></td>
 										</tr>
 										<tr>
 											<td>FOTO</td>
 											<td><img th:if="${#strings.length(keeper.foto)> 0}"
 												class="img-thumbnail rounded float-left"
-												style="max-width: 50%;"
+												style="max-width: 50%;text-align: right:"
 												th:src="@{'/keepers/uploads/' + ${keeper.foto}}"
 												th:alt="${keeper.foto}" /></td>
 										</tr>
@@ -184,11 +184,11 @@
 								</table>
 
 								<a th:href="@{/keepers/list}" type="button"
-									class="btn btn-danger k"> <span
+									class="btn btn-info k"> <span
 									class="glyphicon glyphicon-circle-arrow-left"></span> Volver
 								</a>
 							</div>
-						</div>
+				</div>
 					</div>
 				</div>
 
