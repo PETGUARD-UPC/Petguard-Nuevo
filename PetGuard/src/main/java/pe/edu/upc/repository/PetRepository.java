@@ -10,8 +10,9 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.entity.Pet;
 @Repository
 public interface PetRepository extends JpaRepository<Pet, Integer>{
-	@Query("from Pet p where p.name like %:name% or p.breed like %:name% or p.customer.name like %:name% or p.customer.lastname like %:name%")
+	@Query("from Pet p where p.name like %:name% or p.breed like %:name% or p.customer.name like %:name% or p.customer.lastname like %:name% or UPPER(p.name) like %:name% or LOWER(p.name) like %:name% or UPPER(p.breed) like %:name% or LOWER(p.breed) like %:name% or UPPER(p.customer.name) like %:name% or LOWER(p.customer.name) like %:name% or UPPER(p.customer.lastname) like %:name% or LOWER(p.customer.lastname) like %:name%")
 	List<Pet>findBynamePet(@Param("name")String namePet);
 
 	
 }
+

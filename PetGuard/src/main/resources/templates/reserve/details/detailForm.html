@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>2020-02</title>
+<title>2020</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -34,11 +34,10 @@
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar"
 			style="background-image: linear-gradient(180deg, #614ffb 10%, #fdd7fc 97%)">
-
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/pets/index}">
+				th:href="@{/reserves/index}">
 				<div class="sidebar-brand-icon">
 					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
 				</div>
@@ -47,7 +46,6 @@
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
-
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
@@ -74,17 +72,16 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
+						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
+							entidades bancarias</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
+							métodos de pago</a>
 					</div>
 				</div></li>
-
-
 			<!-- Divider -->
 			<hr class="sidebar-divider">
-
 			<!-- Sidebar Toggler (Sidebar) -->
 
 
@@ -118,7 +115,11 @@
 							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a>
+						</a></li>
+
+
+
+						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow"><a
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -141,149 +142,68 @@
 									Cerrar sesión
 								</a>
 							</div></li>
+
 					</ul>
 
 				</nav>
 				<!-- End of Topbar -->
+				<h3 class="title-content">Agregar cuidador a reservar</h3>
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="card">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Mascota</h1>
+					<div class="card-body">
 
-					<form th:action="@{/pets/save}" th:object="${pet}" method="post" enctype="multipart/form-data"
-						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
 
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre
-								de mascota</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="[A-Za-z]+$"
-									title="Sólo se permite letras" th:field="*{name}"
-									class="form-control" required/>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
+						<form th:action="@{'/reserves/savekeeper'+${reserve.idReserve}}"
+							method="post" th:object="${detail}">
+							<div class="form-group row">
+								<label for="" class="col-sm-2 col-form-label">Cuidador:
+								</label>
+								<div class="col-sm-6">
+									<select class="form-control" th:field="*{keeper.idKeeper}">
+										<option th:each="k: ${listaCuidadores}"
+											th:value="${k.idKeeper}" th:text="${k.name}"
+											th:selected="(${k.idKeeper} == *{keeper.idKeeper})"></option>
+									</select>
+								</div>
 							</div>
-						</div>
+							<div class="form-group row">
+								<label for="hour" class="col-sm-2 col-form-label">Horas:</label>
+								<div class="col-sm-6">
+									<input type="number" required
+										th:errorclass="'form-control alert-danger'" th:field="*{hour}"
+										class="form-control" id="hour"></input>
+									<div class="alert alert-danger"
+										th:if="${#fields.hasErrors('hour')}" th:errors="*{hour}"></div>
 
-						<div class="form-group row">
-							<label for="breed" class="col-sm-2 col-form-label">Raza</label>
-							<div class="col-sm-6">
-								<select name="breed" class="form-control" id="breed" required>
-									<option value="">Elegir raza de mascota</option>
-									<option value="Labrador">Labrador</option>
-									<option value="Pastor Alemán">Pastor Alemán</option>
-									<option value="Yorkshire">Yorkshire</option>
-									<option value="Beagle">Beagle</option>
-									<option value="Golden Retriever">Golden Retriever</option>
-									<option value="Chihuahua">Chihuahua</option>
-									<option value="Pequinés">Pequinés</option>
-									<option value="Bulldog">Bulldog</option>
-									<option value="Rottweiler">Rottweiler</option>
-									<option value="Pug">Pug</option>
-									<option value="Shar Pei">Shar Pei</option>
-									<option value="Husky">Husky</option>
-									<option value="Mestizo">Mestizo</option>
-								</select>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('breed')}" th:errors="*{breed}" />
+									<div th:if="${error}" class="alert alert-danger">
+										<p th:text="${error}"></p>
+									</div>
+
+								</div>
 							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="edadMascota" class="col-sm-2 col-form-label">Edad</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="[0-9]+"
-									title="Sólo se permite números" th:field="*{years}"
-									class="form-control" required/>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('years')}" th:errors="*{years}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="pesoMascota" class="col-sm-2 col-form-label">Peso</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="^[1-9][.\d]*(,\d+)?$"
-									title="Sólo se permite números" th:field="*{weight}"
-									class="form-control" required/>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label  for="gender" class="col-sm-2 col-form-label">Sexo</label>
-							<div class="col-sm-6">
-								<select name="gender" class="form-control" id="gender" required>
-								<option value="">Elegir sexo de mascota</option>
-									<option value="Macho">Macho</option>
-									<option value="Hembra">Hembra</option>
-								</select>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
-							<div class="col-sm-6">
-								<select required class="form-control" th:field="*{customer.idCustomer}">
-									<option value="0" selected disabled>Elegir dueño de
-										mascota</option>
-									<option th:each="l: ${listaClientes}"
-										th:value="${l.idCustomer}"
-										th:text="${l.name + ' '+l.lastname}"
-										th:selected="(${l.idCustomer} == *{customer.idCustomer})"></option>
-								</select>
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('customer')}"
-									th:errors="*{customer}" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="file" class="col-sm-2 col-form-label ">Foto:</label>
-							<div class="col-sm-6">
-								<input type="file" name="file" class="form-control"
-									th:text="${pet.foto}" required="required" />
-							</div>
-						</div>
-
-
-						<div class="form-group row">
-							<div class="col-sm-6">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-									type="submit" value="Guardar" class="btn btn-dark"
-									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/pets/list" class="btn btn-dark"
-									style="background-color: #8062ff; border-color: white">Cancelar</a>
-							</div>
-						</div>
-						<p th:text="${mensaje}" class="form-text text-danger"></p>
-					</form>
-
-
-
-
-				</div>
-				<!-- /.container-fluid -->
-
-			</div>
-			<!-- End of Main Content -->
-
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 2019</span>
+							<button type="submit" class="btnadd btn btn-secondary">Agregar</button>
+							<a th:href="@{'/reserves/detail/' + ${reserve.idReserve}}"
+								class="btncancel btn btn-danger">Cancelar</a>
+						</form>
 					</div>
 				</div>
-			</footer>
-			<!-- End of Footer -->
-
+			</div>
 		</div>
-		<!-- End of Content Wrapper -->
+
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright &copy; Web 2020</span>
+				</div>
+			</div>
+		</footer>
+		<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -294,7 +214,7 @@
 	</a>
 
 	<!-- Logout Modal-->
-		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -307,14 +227,14 @@
 					</button>
 				</div>
 				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual.</div>
+					continuación si está listo para finalizar su sesión actual</div>
 				<div class="modal-footer">
 					<form id="logoutForm" th:action="@{/logout}" method="post">
 						<button class="btn btn-danger"
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/pets/list}">Cancel</button>
+							th:href="@{/categories/list}">Cancel</button>
 					</form>
 				</div>
 			</div>

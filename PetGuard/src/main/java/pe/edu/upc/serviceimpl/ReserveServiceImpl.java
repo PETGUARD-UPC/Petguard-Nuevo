@@ -29,11 +29,10 @@ public class ReserveServiceImpl implements IReserveService{
 		return rR.findAll();
 	}
 
-	@Override
-	public List<Reserve> findBycustomer(String name) {
-		// TODO Auto-generated method stub
-		return rR.findBycustomer(name);
-	}
+	/*
+	 * @Override public List<Reserve> findBycustomer(String name) { // TODO
+	 * Auto-generated method stub return rR.findBycustomer(name); }
+	 */
 
 	@Override
 	public void delete(int idReserve) {
@@ -45,6 +44,19 @@ public class ReserveServiceImpl implements IReserveService{
 	public Optional<Reserve> searchId(int idReserve) {
 		// TODO Auto-generated method stub
 		return rR.findById(idReserve);
+	}
+
+	@Override
+	public Reserve listarId(int idReserve) {
+		// TODO Auto-generated method stub
+		Optional<Reserve> op = rR.findById(idReserve);
+		return op.isPresent() ? op.get() : new Reserve();
+	}
+
+	@Override
+	public List<Reserve> listar() {
+		// TODO Auto-generated method stub
+		return rR.findAll();
 	}
 
 }
