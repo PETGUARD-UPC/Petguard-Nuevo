@@ -11,7 +11,7 @@ import pe.edu.upc.entity.Reserve;
 @Repository
 public interface ReserveRepository extends JpaRepository<Reserve, Integer>{
 	
-	@Query("from Reserve r where r.customer.name like %?1% or r.keeper.name like %?1% or r.keeper.lastname like %?1% or r.customer.lastname like %?1% ")
+	@Query("from Reserve r where r.customer.name like %?1% or r.keeper.name like %?1% or r.keeper.lastname like %?1% or r.customer.lastname like %?1% or UPPER(r.customer.name) like %?1% or LOWER(r.customer.name) like %?1% or UPPER(r.keeper.name) like %?1% or LOWER(r.keeper.name) like %?1% or UPPER(r.keeper.lastname) like %?1% or LOWER(r.keeper.lastname) like %?1% or UPPER(r.customer.lastname) like %?1% or LOWER(r.customer.lastname) like %?1%")
 	List<Reserve>findBycustomer(String name);
 	
 
