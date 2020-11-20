@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.entity.Rol;
+import pe.edu.upc.entity.Role;
 import pe.edu.upc.serviceinterface.IRolService;
 
 @Controller
@@ -23,12 +23,12 @@ public class RolController {
 
 	@GetMapping("/new")
 	public String newRol(Model model) {
-		model.addAttribute("rol", new Rol());
+		model.addAttribute("rol", new Role());
 		return "rol/rol";
 	}
 
 	@PostMapping("/save")
-	public String saveRol(@Valid Rol rol, BindingResult result, Model model, SessionStatus status) throws Exception {
+	public String saveRol(@Valid Role rol, BindingResult result, Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
 			return "rol/rol";
 		} else {

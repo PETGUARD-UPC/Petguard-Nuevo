@@ -2,11 +2,11 @@ package pe.edu.upc.serviceinterface;
 
 import java.util.List;
 
-import pe.edu.upc.entity.Rol;
+import pe.edu.upc.entity.Role;
 
 public interface IRolService {
 
-	public void insertar(Rol rol);
+	public void insertar(Role rol);
 	
-	List<Rol>list();
+	List<Role>list();
 }

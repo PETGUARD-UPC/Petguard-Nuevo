@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.edu.upc.entity.Rol;
+import pe.edu.upc.entity.Role;
 import pe.edu.upc.repository.RolRepository;
 import pe.edu.upc.serviceinterface.IRolService;
 
@@ -23,7 +23,7 @@ public class RolServiceImpl implements IRolService, Serializable{
 	
 	@Override
 	@Transactional
-	public void insertar(Rol rol) {
+	public void insertar(Role rol) {
 		// TODO Auto-generated method stub
 		try {
 			roR.save(rol);
@@ -33,7 +33,7 @@ public class RolServiceImpl implements IRolService, Serializable{
 	}
 
 	@Override
-	public List<Rol> list() {
+	public List<Role> list() {
 		// TODO Auto-generated method stub
 		return roR.findAll();
 	}

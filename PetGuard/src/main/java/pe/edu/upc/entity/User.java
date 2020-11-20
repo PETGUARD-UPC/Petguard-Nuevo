@@ -1,11 +1,17 @@
 package pe.edu.upc.entity;
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 //import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotEmpty;
@@ -27,6 +33,11 @@ public class User {
 	@Size(min=1, message = "Debe ingresar una contraseña")
 	@Column(name="password")
 	private String password;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Role> roles;
+	
+	private Boolean enabled;
 
 	public User() {
 		super();
@@ -63,8 +74,23 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 	
 	
-
-
+	
 }

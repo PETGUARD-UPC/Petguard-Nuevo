@@ -16,5 +16,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Query("select count(u.username) from User u where u.username=:username or LOWER(u.username)=:username")
 	public int searchUser(@Param("username")String username);
+	
+	public User findByUsername(String username);
 
 }
