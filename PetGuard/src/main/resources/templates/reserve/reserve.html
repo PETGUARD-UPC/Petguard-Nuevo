@@ -57,7 +57,7 @@
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
+						<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">Clientes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -74,10 +74,12 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
+						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
+							entidades bancarias</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
+							métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -138,37 +140,38 @@
 					</tbody> -->
 
 					<form th:action="@{/reserves/save}" th:object="${reserve}"
-						method="post" style="font-family: var(--bs-font-sans-serif);font-size: .875rem; font-weight: 400">
+						method="post"
+						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
 
- 
+						<!-- 
 						<div class="form-group row">
 							<label for="id" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{idReserve}" class="form-control"
-									th:errorclass="'form-control alert-danger'" readonly="readonly" /> <small
+								<input type="text" th:field="*{idReserva}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('idReserve')}"
-									th:errors="*{idReserve}"></small>
+									th:if="${#fields.hasErrors('idReserva')}"
+									th:errors="*{idReserva}"></small>
 							</div>
-						</div> 
+						</div> -->
 
 						<div class="form-group row">
 							<label for="customer" class="col-sm-2 col-form-label">Cliente:</label>
 							<div class="col-sm-6">
-								<select class="form-control" 
-										th:field="*{customer.idCustomer}">
+								<select class="form-control" th:field="*{customer.idCustomer}">
 									<option value="0" selected disabled>Elegir cliente</option>
-									<option th:each="l: ${listaClientes}" 
-										th:value="${l.idCustomer}" th:text="${l.name + ' '+l.lastname}"
+									<option th:each="l: ${listaClientes}"
+										th:value="${l.idCustomer}"
+										th:text="${l.name + ' '+l.lastname}"
 										th:selected="(${l.idCustomer} == *{customer.idCustomer})"></option>
 								</select>
-								<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('customer')}" 
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('customer')}"
 									th:errors="*{customer}" />
 							</div>
 						</div>
-						
-						
+
+<!-- 
 						<div class="form-group row">
 							<label for="keeper" class="col-sm-2 col-form-label">Cuidador:</label>
 							<div class="col-sm-6">
@@ -178,27 +181,26 @@
 										th:value="${l.idKeeper}" th:text="${l.name+ ' '+l.lastname}"
 										th:selected="(${l.idKeeper} == *{keeper.idKeeper})"></option>
 								</select>
-								<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('keeper')}" 
-									th:errors="*{keeper}" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('keeper')}" th:errors="*{keeper}" />
 							</div>
-						</div>
+						</div> -->
 
-						<div class="form-group row">
-							<label for="pay" class="col-sm-2 col-form-label">Medio de pago:</label>
+						<!-- <div class="form-group row">
+							<label for="pay" class="col-sm-2 col-form-label">Medio de
+								pago:</label>
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{pay.idPay}">
-									<option value="0" selected disabled>Elegir medio de pago</option>
-									<option th:each="l: ${listaMedioPagos}" 
-										th:value="${l.idPay}" th:text="${l.name + ' '+ l.banking.name}"
+									<option value="0" selected disabled>Elegir medio de
+										pago</option>
+									<option th:each="l: ${listaMedioPagos}" th:value="${l.idPay}"
+										th:text="${l.name}"
 										th:selected="(${l.idPay} == *{pay.idPay})"></option>
 								</select>
-								<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('pay')}" 
-									th:errors="*{pay}" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('pay')}" th:errors="*{pay}" />
 							</div>
 						</div>
-
 
 
 
@@ -206,57 +208,65 @@
 							<label for="card" class="col-sm-2 col-form-label">Número
 								de Tarjeta: </label>
 							<div class="col-sm-6">
-								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{card}" 
-								class="form-control" autocomplete="off"/>
-								<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('card')}" 
-									th:errors="*{card}" />
+								<input type="text" pattern="[0-9]+"
+									title="Sólo se permite números" th:field="*{card}"
+									class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('card')}" th:errors="*{card}" />
 							</div>
 						</div>
 
 						<div class="form-group row">
-							<label for="site" class="col-sm-2 col-form-label">Dirección: </label>
+							<label for="site" class="col-sm-2 col-form-label">Dirección:
+							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{site}" 
-								class="form-control"/>
-								<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('site')}" 
-									th:errors="*{site}" />
+								<input type="text" th:field="*{site}" class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('site')}" th:errors="*{site}" />
 							</div>
-						</div>
+						</div> -->
 
 						<div class="form-group row">
-							<label for="date" class="col-sm-2 col-form-label">Fecha de reserva: </label>
+							<label for="date" class="col-sm-2 col-form-label">Fecha
+								de reserva: </label>
 							<div class="col-sm-6">
-								<input type="date" th:field="*{date}" 
-								class="form-control" required/>
-								<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('date')}" 
-									th:errors="*{date}" />
+								<input type="date" th:field="*{date}" class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('date')}" th:errors="*{date}" />
 							</div>
 						</div>
 
-						<div class="form-group row">
-							<label for="hour" class="col-sm-2 col-form-label">Cantidad
-								horas para cuiado de mascota: </label>
+<!-- 						<div class="form-group row">
+							<label for="hour" class="col-sm-2 col-form-label">Horas de cuidado </label>
 							<div class="col-sm-6">
-								<input type="text" pattern="[0-9]+" title="Sólo se permite números" th:field="*{hour}" 
-								class="form-control"/>
-								<p class="alert alert-danger" 
-									th:if="${#fields.hasErrors('hour')}" 
-									th:errors="*{hour}" />
+								<input type="text" pattern="[0-9]+"
+									title="Sólo se permite números" th:field="*{hour}"
+									class="form-control" />
+								<p class="alert alert-danger"
+									th:if="${#fields.hasErrors('hour')}" th:errors="*{hour}" />
 							</div>
+						</div> -->
+
+						<div class="form-group" style="opacity: 1; display: none;">
+							<label for="" class=" col-form-label">Fecha de reserva:
+							</label> <input type="date" th:field="*{requestDate}"
+								class="form-control" th:errorclass="'form-control alert-danger'" />
+							<small class="form-text text-danger"
+								th:if="${#fields.hasErrors('requestDate')}"
+								th:errors="*{requestDate}"></small>
+
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('requestDate')}"
+								th:errors="*{requestDate}"></div>
 						</div>
-
-
-<!-- 						<div class="form-group row"> -->
-<!-- 							<label for="salary" class="col-sm-2 col-form-label">Tarifa de cuidador: </label> -->
-<!-- 							<div class="col-sm-6"> -->
-<!-- 								<output th:each="l: ${listaCuidadores}" -->
-<!-- 										th:value="${l.salary}" -->
-<!-- 								class="form-control"> </output> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
+						<!-- 						<div class="form-group row"> -->
+						<!-- 							<label for="salary" class="col-sm-2 col-form-label">Tarifa de cuidador: </label> -->
+						<!-- 							<div class="col-sm-6"> -->
+						<!-- 								<output th:each="l: ${listaCuidadores}" -->
+						<!-- 										th:value="${l.salary}" -->
+						<!-- 								class="form-control"> </output> -->
+						<!-- 							</div> -->
+						<!-- 						</div> -->
 						<!--  
 						<div class="form-group row">
 							<label for="price" class="col-sm-2 col-form-label">Costo total a pagar: </label>

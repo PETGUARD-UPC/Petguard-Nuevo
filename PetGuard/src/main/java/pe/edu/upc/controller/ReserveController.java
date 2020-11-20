@@ -20,9 +20,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.Reserve;
+import pe.edu.upc.entity.ReserveDetail;
 import pe.edu.upc.serviceinterface.ICustomerService;
 import pe.edu.upc.serviceinterface.IKeeperService;
 import pe.edu.upc.serviceinterface.IPayService;
+import pe.edu.upc.serviceinterface.IReserveDetailService;
 import pe.edu.upc.serviceinterface.IReserveService;
 
 @Controller
@@ -41,6 +43,8 @@ public class ReserveController {
 	@Autowired
 	private IPayService pS;
 	
+	@Autowired
+	private IReserveDetailService idrS;
 	
 	@GetMapping("/new")
 	public String newReserve(Model model) {
@@ -52,7 +56,17 @@ public class ReserveController {
 		model.addAttribute("reserve", new Reserve());
 		return "reserve/reserve";
 	}
-	
+	@RequestMapping("/newreserve/{id}")
+	public String irNewReserve(@PathVariable(value = "id") Integer id, Map<String, Object> model) {
+
+		model.put("detail", new ReserveDetail());
+		model.put("listaCuidadores", kS.list());
+
+		Reserve objres = rS.listarId(id);
+		model.put("reserve", objres);
+
+		return "reserve/details/detailForm";
+	}
 	@PostMapping("/save")
 	public String saveReserve(@Valid Reserve res, BindingResult result, Model model,
 			SessionStatus status) throws Exception {	
@@ -69,33 +83,82 @@ public class ReserveController {
 		model.addAttribute("listaReservas", rS.list());
 		return "redirect:/reserves/list";
 	}
-	
-	@GetMapping("/list")
-	public String listReserves(Model model) {
+	@PostMapping("/savekeeper{id}")
+	public String newHourXReserve(@PathVariable(value = "id") int id, @Valid ReserveDetail reservedet,
+			RedirectAttributes flash, BindingResult result, Model model, SessionStatus status) {
+		Reserve res = rS.listarId(id);
+		if (result.hasErrors()) {
+			flash.addFlashAttribute("error", "El valor debe ser positivo");
+			String cadena1 = "redirect:/reserve/newreserve/" + id;
+			return cadena1;
+		}
 		try {
-			model.addAttribute("reserve", new Reserve());
-			model.addAttribute("listaReservas", rS.list());
+			res.addDetailReserve(reservedet);
+			rS.insert(res);
+			status.isComplete();
 		} catch (Exception e) {
-			System.out.println("no se pudo listar las reservas en el controller");
+			model.addAttribute("error", e.getMessage());
+			System.out.println(e.getMessage());
 		}
-		return "/reserve/listReserve";
-		
+		String cadena = "redirect:/reserves/detail/" + id;
+		return cadena;
 	}
+	/*
+	 * @GetMapping("/list") public String listReserves(Model model) { try {
+	 * model.addAttribute("reserve", new Reserve());
+	 * model.addAttribute("listaReservas", rS.list()); } catch (Exception e) {
+	 * System.out.println("no se pudo listar las reservas en el controller"); }
+	 * return "/reserve/listReserve";
+	 * 
+	 * }
+	 */
 	
-	@RequestMapping("/find")
-	public String findBycustomer(Map<String, Object> model, @ModelAttribute Reserve reserve) throws ParseException{
-		
-		List<Reserve> listaReservas;
-		reserve.setSite(reserve.getSite());
-		listaReservas=rS.findBycustomer(reserve.getSite());
-		
-		if(listaReservas.isEmpty()) {
-			model.put("mensaje", "No se encontró");
-		}
-		
-		model.put("listaReservas", listaReservas);
-		return  "reserve/listReserve";
+	@RequestMapping("/list")
+	public String listar(Map<String, Object> model) {
+		model.put("listaReservas", rS.listar());
+		return "reserve/listReserve";
 	}
+	@GetMapping("/detail/{id}")
+	public String detailReserve(@PathVariable(value = "id") Integer id, Map<String, Object> model,
+			RedirectAttributes flash) {
+		Reserve res = rS.listarId(id);
+
+		if (res == null) {
+			flash.addFlashAttribute("error", "El Detalle no existe en la base de datos");
+			return "reserve/listReserve";
+		}
+		model.put("reserve", res);
+		model.put("titulo", "Detalle de Reserva #" + res.getIdReserve());
+		return "reserve/details/listDetail";
+	}
+	@RequestMapping("{idres}/eliminardetail/{id}")
+	public String eliminarDetalle(Map<String, Object> model, @PathVariable(value = "id") Integer idret,
+			@PathVariable(value = "idres") Integer idres, RedirectAttributes flash) {
+		try {
+			if (idret != null && idret > 0) {
+				idrS.delete(idret);
+				flash.addAttribute("mensaje", "Se eliminó correctamente");
+				flash.addAttribute("mensaje1", "Se eliminó correctamente el id" + idret);
+			} else
+				return "redirect:/home";
+		} catch (Exception e) {
+			model.put("mensaje", "No se puede eliminar");
+			model.put("error", e.getMessage());
+		}
+		String cadena = "redirect:/reserves/detail/" + idres;
+		return cadena;
+	}
+	/*
+	 * @RequestMapping("/find") public String findBycustomer(Map<String, Object>
+	 * model, @ModelAttribute Reserve reserve) throws ParseException{
+	 * 
+	 * List<Reserve> listaReservas; reserve.setSite(reserve.getSite());
+	 * listaReservas=rS.findBycustomer(reserve.getSite());
+	 * 
+	 * if(listaReservas.isEmpty()) { model.put("mensaje", "No se encontró"); }
+	 * 
+	 * model.put("listaReservas", listaReservas); return "reserve/listReserve"; }
+	 */
 	
 	@RequestMapping("/delete/{id}")
 	public String deleteReserve(Model model, @PathVariable(value = "id") int id) {

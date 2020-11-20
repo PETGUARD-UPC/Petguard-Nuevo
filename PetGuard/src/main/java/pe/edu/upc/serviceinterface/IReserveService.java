@@ -10,8 +10,11 @@ public interface IReserveService {
 	public void insert(Reserve reserve);
 	public List<Reserve> list();
 	
-	List<Reserve>findBycustomer(String name);
+	/* List<Reserve>findBycustomer(String name); */
 	//para eliminar y actualizar
+	Reserve listarId(int idReserve);
+
+	List<Reserve> listar();
 	public void delete(int idReserve);
 	Optional<Reserve>searchId(int idReserve);
 
