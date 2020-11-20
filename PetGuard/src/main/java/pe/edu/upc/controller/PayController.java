@@ -113,7 +113,6 @@ public class PayController {
 			return "redirect:/pays/list";
 		} else {
 			model.addAttribute("listaMedioPagos", pS.list());
-			model.addAttribute("listaBancos", bS.list());
 			model.addAttribute("pay", objPay.get());
 			return "pay/upay";
 
