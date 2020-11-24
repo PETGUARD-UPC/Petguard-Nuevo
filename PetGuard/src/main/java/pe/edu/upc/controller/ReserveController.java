@@ -229,4 +229,9 @@ public class ReserveController {
 		return  "redirect:/reserves/list";
 	}
 		
+	@RequestMapping("/reporte1")
+	public String categoryTop(Map<String, Object> model) {
+		model.put("listaReservasTop", rS.reserveTop());
+		return "reports/reserveTop";
+	}
 }
