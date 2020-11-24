@@ -46,12 +46,6 @@ public class ReserveController {
 	@Autowired
 	private IReserveDetailService idrS;
 	
-	@RequestMapping("/reports")
-	public String Report()
-	{
-		return "reports/reports";
-	}
-	
 	@GetMapping("/new")
 	public String newReserve(Model model) {
 		
@@ -229,9 +223,4 @@ public class ReserveController {
 		return  "redirect:/reserves/list";
 	}
 		
-	@RequestMapping("/reporte1")
-	public String categoryTop(Map<String, Object> model) {
-		model.put("listaReservasTop", rS.reserveTop());
-		return "reports/reserveTop";
-	}
 }

@@ -71,15 +71,10 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
-							entidades bancarias</a>
+						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
-							métodos de pago</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reserves/reports}">Reportes</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -129,15 +124,15 @@
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
 						</a> <!-- Dropdown - User Information -->
-							<div
+						<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="#"> <i
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="users/index" data-toggle="modal"
-									data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="users/index"
+									data-toggle="modal" data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
@@ -224,9 +219,8 @@
 						<div class="form-group row">
 							<label for="birthdateC" class="col-sm-2 col-form-label">Fecha
 								de Nacimiento</label>
-							<div class="col-sm-6">
-								<input type="date" th:field="*{birthdate}" class="form-control"
-									required />
+							<div class="col-sm-6"> 
+								<input type="date" th:field="*{birthdate}"  class="form-control" required/>
 								<p class="alert alert-danger"
 									th:if="${#fields.hasErrors('birthdate')}"
 									th:errors="*{birthdate}" />
@@ -280,7 +274,7 @@
 	</a>
 
 	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
