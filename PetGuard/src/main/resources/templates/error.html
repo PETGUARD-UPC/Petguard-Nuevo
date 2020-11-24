@@ -38,14 +38,17 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/customers/index}">
+				th:href="@{/users/list}">
 				<div class="sidebar-brand-icon">
 					<img th:src="@{/img/logopet.png}" style="width: 150%; height: 150%" /></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">PetGuard</div>
 			</a>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
+
+
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -71,15 +74,10 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
-							entidades bancarias</a>
+						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
-							métodos de pago</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reserves/reports}">Reportes</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -121,6 +119,10 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
 						</a></li>
+
+
+
+						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow"><a
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -128,6 +130,7 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
+
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -136,12 +139,13 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="users/index" data-toggle="modal"
+								<a class="dropdown-item" href="#" data-toggle="modal"
 									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
 							</div></li>
+
 					</ul>
 
 				</nav>
@@ -150,107 +154,20 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Clientes</h1>
+					<div class="container">
 
+						<div class="card" style="width:500px; align-content: center">
+							<img class="card-img-bottom" src="/img/alert.jpg" alt="Card image">
+							<div class="card-body">
+								<h4 class="card-title" style="color: black;">Acceso denegado</h4>
+    							<p class="card-text" style="color: black;">Lo sentimos, NO tienes permisos para acceder a este módulo.</p>
+								<a th:href="@{/reserves/list}" class="btn btn-primary"
+									role="button">Ir al inicio</a>
 
-					<form th:action="@{/customers/save}" th:object="${customer}"
-						method="post" enctype="multipart/form-data"
-						style="font-family: var(- -bs-font-sans-serif); font-size: .875rem; font-weight: 400">
-						<div class="form-group row">
-							<label for="user" class="col-sm-2 col-form-label">Elegir
-								el usuario:</label>
-							<div class="col-sm-6">
-								<select class="form-control" th:field="*{user.idUser}">
-									<option th:each="l: ${listaUsuarios}" th:value="${l.idUser}"
-										th:text="${l.username}"
-										th:selected="(${l.idUser} == *{user.idUser})"></option>
-								</select>
 							</div>
 						</div>
+					</div>
 
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
-									title="Sólo se permite letras" th:field="*{name}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="lastname" class="col-sm-2 col-form-label">Apellido</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
-									title="Sólo se permite letras" th:field="*{lastname}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('lastname')}"
-									th:errors="*{lastname}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="dni" class="col-sm-2 col-form-label">DNI</label>
-							<div class="col-sm-6">
-								<input type="text" pattern="^[0-9][.\d]*(,\d+)?$"
-									title="Sólo se permite números" th:field="*{dni}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="phone" class="col-sm-2 col-form-label">Teléfono</label>
-							<div class="col-sm-6">
-								<input type="number" pattern="^[1-9][.\d]*(,\d+)?$"
-									title="Sólo se permite números" th:field="*{phone}"
-									class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="emailC" class="col-sm-2 col-form-label">Email</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{email}" class="form-control" />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="birthdateC" class="col-sm-2 col-form-label">Fecha
-								de Nacimiento</label>
-							<div class="col-sm-6">
-								<input type="date" th:field="*{birthdate}" class="form-control"
-									required />
-								<p class="alert alert-danger"
-									th:if="${#fields.hasErrors('birthdate')}"
-									th:errors="*{birthdate}" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="file" class="col-sm-2 col-form-label ">Foto:</label>
-							<div class="col-sm-6">
-								<input type="file" name="file" class="form-control"
-									th:text="${customer.foto}" required="required" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-sm-6">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="submit" value="Guardar" class="btn btn-dark"
-									style="background-color: #8062ff; border-color: white"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/customers/list" class="btn btn-dark"
-									style="background-color: #8062ff; border-color: white">Cancelar</a>
-							</div>
-						</div>
-						<p th:text="${mensaje}" class="form-text text-danger"></p>
-					</form>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -262,7 +179,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 2019</span>
+						<span>Copyright &copy; Web 2020</span>
 					</div>
 				</div>
 			</footer>
@@ -293,14 +210,14 @@
 					</button>
 				</div>
 				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual.</div>
+					continuación si está listo para finalizar su sesión actual</div>
 				<div class="modal-footer">
 					<form id="logoutForm" th:action="@{/logout}" method="post">
-						<button class="btn btn-danger"
+						<button class="btn btn-primary"
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/customers/list}">Cancel</button>
+							th:href="@{/pets/list}">Cancel</button>
 					</form>
 				</div>
 			</div>
@@ -320,5 +237,3 @@
 </body>
 
 </html>
-
-

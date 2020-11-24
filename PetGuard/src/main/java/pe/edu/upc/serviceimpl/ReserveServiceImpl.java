@@ -58,5 +58,10 @@ public class ReserveServiceImpl implements IReserveService{
 		// TODO Auto-generated method stub
 		return rR.findAll();
 	}
+	
+	public List<String[]> reserveTop() {
+		// TODO Auto-generated method stub
+		return rR.reserveTop();
+	}
 
 }
