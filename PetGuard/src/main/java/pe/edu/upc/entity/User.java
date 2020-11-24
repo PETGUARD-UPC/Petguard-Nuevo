@@ -1,6 +1,6 @@
 package pe.edu.upc.entity;
 
-import java.io.Serializable;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,36 +13,50 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+//import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "users")
-public class Users implements Serializable {
-
+public class User {
 	
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@Column(length = 30, unique = true)
+	private int idUser;
+	
+	@NotEmpty(message = "Debe ingresar un nombre de usuario")
+	@Column(name="username")
 	private String username;
-
-	@Column(length = 200)
+	 
+	@Size(min=1, message = "Debe ingresar una contraseña")
+	@Column(name="password")
 	private String password;
-
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Role> roles;
+	
 	private Boolean enabled;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private List<Role> roles;
-
-	public Long getId() {
-		return id;
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public User(int idUser, String username, String password) {
+		super();
+		this.idUser = idUser;
+		this.username = username;
+		this.password = password;
+	}
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
 	public String getUsername() {
@@ -61,14 +75,6 @@ public class Users implements Serializable {
 		this.password = password;
 	}
 
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -77,4 +83,14 @@ public class Users implements Serializable {
 		this.roles = roles;
 	}
 
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+	
+	
 }

@@ -6,7 +6,7 @@ import pe.edu.upc.entity.Role;
 
 public interface IRolService {
 
-	public void insert(Role rol);
+	public void insertar(Role rol);
 	
 	List<Role>list();
 }

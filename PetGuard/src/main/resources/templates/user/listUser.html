@@ -73,18 +73,10 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>
+						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
-							entidades bancarias</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
-							métodos de pago</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reserves/reports}">Reportes</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -203,10 +195,10 @@
 						</thead>
 						<tbody style="color: #353434">
 							<tr th:each="us: ${listaUsuarios}">
-								<td th:text="${us.id}"></td>
+								<td th:text="${us.idUser}"></td>
 								<td th:text="${us.username}"></td>
 								<td>
-								<a th:href="@{'/users/delete/'+${us.id}">
+								<a th:href="@{'/users/delete/'+${us.idUser}}">
 								<i onclick="myFunction()" class="iconf fa fa-trash" style="color: red;"></i>
 								<script>
 								function myFunction() {
@@ -214,7 +206,7 @@
 								}
 								</script>
 								</a>&nbsp;&nbsp;&nbsp;&nbsp;
-								<a th:href="@{'/users/irupdate/'+${us.id}}">
+								<a th:href="@{'/users/irupdate/'+${us.idUser}}">
 								<i class="iconf fa fa-pen" style="color: green;"></i>
 								</a>
 								</td>

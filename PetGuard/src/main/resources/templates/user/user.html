@@ -73,18 +73,11 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
-							entidades bancarias</a>
+						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
 							métodos de pago</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reserves/reports}">Reportes</a>
 					</div>
 				</div></li>
 
@@ -170,9 +163,9 @@
 						</div>
 
 						<div class="form-group row">
-							<label for="contraUs" class="col-sm-2 col-form-label" >Contraseña</label>
+							<label for="contraUs" class="col-sm-2 col-form-label" style="color: white">Contraseña</label>
 							<div class="col-sm-6">
-								<input type="password"value="FakePSW" id="myInput" th:field="*{password}"
+								<input type="text" value="hidden" id="myInput" th:field="*{password}"
 									class="form-control" />
 								<input type="checkbox" onclick="myFunction()">Mostar contraseña
 						

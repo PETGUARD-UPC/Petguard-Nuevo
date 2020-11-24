@@ -230,13 +230,8 @@ public class ReserveController {
 	}
 		
 	@RequestMapping("/reporte1")
-	public String reserveMonth(Map<String, Object> model) {
-		model.put("listaReservasMonth", rS.reserveMonth());
-		return "reports/reserveMonth";
-	}
-	@RequestMapping("/reporte3")
-	public String reserveHour(Map<String, Object> model) {
-		model.put("listaReservasHour", rS.reserveHour());
-		return "reports/reserveHour";
+	public String categoryTop(Map<String, Object> model) {
+		model.put("listaReservasTop", rS.reserveTop());
+		return "reports/reserveTop";
 	}
 }

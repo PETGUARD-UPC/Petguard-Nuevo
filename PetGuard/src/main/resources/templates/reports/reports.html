@@ -32,8 +32,7 @@
 		<!-- Sidebar -->
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar"
-			style="background-image: linear-gradient(180deg, #614ffb 10%, #fdd7fc 97%)">
+			id="accordionSidebar">
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
@@ -72,9 +71,6 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/rols/list}">Roles</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
 							entidades bancarias</a>
 					</div>
@@ -82,7 +78,7 @@
 						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
 							métodos de pago</a>
 					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
+						<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/reserves/reports}">Reportes</a>
 					</div>
 				</div></li>
@@ -176,9 +172,9 @@
 									Reporte</a>
 							</div>
 							<div class="cproyecto ">
-								<h3 class="tproyecto ">Reporte de la fecha de la reserva con mayor hora</h3>
+								<h3 class="tproyecto ">Reporte del mayor número de horas solicitadas</h3>
 								<p class="dproyecto "></p>
-								<a class="lnikp " th:href="@{/reserves/reporte3}">Ver
+								<a class="lnikp " th:href="@{/pet/reporte3}">Ver
 									Reporte</a>
 							</div>
 						</div>

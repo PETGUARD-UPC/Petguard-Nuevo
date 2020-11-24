@@ -73,18 +73,10 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>
+						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
-							entidades bancarias</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
-							métodos de pago</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reserves/reports}">Reportes</a>
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
 					</div>
 				</div></li>
 
@@ -161,11 +153,11 @@
 						<div class="form-group row">
 							<label for="id" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
-								<input type="text" readonly="readonly" th:field="*{id}"
+								<input type="text" readonly="readonly" th:field="*{idUser}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
+									th:if="${#fields.hasErrors('idUser')}" th:errors="*{idUser}"></small>
 							</div>
 						</div>
 
