@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import pe.edu.upc.entity.User;
+import pe.edu.upc.entity.Users;
 import pe.edu.upc.serviceinterface.IUserService;
 
 @Controller
@@ -34,12 +34,12 @@ public class UserController {
 	@GetMapping("/new")
 	public String newUser(Model model) {
 
-		model.addAttribute("user", new User());
+		model.addAttribute("user", new Users());
 		return "user/user";
 	}
 
 	@PostMapping("/save")
-	public String saveUser(@Valid User user, BindingResult result, Model model, SessionStatus status) throws Exception {
+	public String saveUser(@Valid Users user, BindingResult result, Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
 			return "user/user";
 		}
@@ -62,7 +62,7 @@ public class UserController {
 	@GetMapping("/list")
 	public String listUsers(Model model) {
 		try {
-			model.addAttribute("user", new User());
+			model.addAttribute("user", new Users());
 			model.addAttribute("listaUsuarios", uS.list());
 		} catch (Exception e) {
 			System.out.println("no se pudo listar los usuarios en el controller");
@@ -72,9 +72,9 @@ public class UserController {
 	}
 
 	@RequestMapping("/find")
-	public String findBynameUser(Model model, @Validated User user) throws ParseException {
+	public String findBynameUser(Model model, @Validated Users user) throws ParseException {
 
-		List<User> listaUsuarios;
+		List<Users> listaUsuarios;
 		listaUsuarios = uS.findBynameUser(user.getUsername());
 
 		if (listaUsuarios.isEmpty()) {
@@ -91,14 +91,14 @@ public class UserController {
             if(id>0) {
                 uS.delete(id);
             }
-            model.addAttribute("user", new User());
+            model.addAttribute("user", new Users());
             model.addAttribute("mensaje", "Se eliminó correctamente");
             model.addAttribute("listaUsuarios", uS.list());
 
 
         } catch (Exception e) {
 
-            model.addAttribute("user", new User());
+            model.addAttribute("user", new Users());
             model.addAttribute("mensaje", "No se puede eliminar!");
             model.addAttribute("listaUsuarios", uS.list());
 
@@ -110,7 +110,7 @@ public class UserController {
 	@GetMapping("/irupdate/{id}")
 	public String irUpdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
-		Optional<User> objUs = uS.searchId(id);
+		Optional<Users> objUs = uS.searchId(id);
 
 		if (objUs == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -123,7 +123,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/update")
-	public String updateLaboratory(@Valid User user, BindingResult result, Model model,
+	public String updateLaboratory(@Valid Users user, BindingResult result, Model model,
 			SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
 			return "user/user";

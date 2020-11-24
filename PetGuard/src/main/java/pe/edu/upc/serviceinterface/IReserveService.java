@@ -18,6 +18,6 @@ public interface IReserveService {
 	public void delete(int idReserve);
 	Optional<Reserve>searchId(int idReserve);
 	
-	public List<String[]> reserveTop();
-
+	public List<String[]> reserveMonth();
+	public List<String[]> reserveHour();
 }

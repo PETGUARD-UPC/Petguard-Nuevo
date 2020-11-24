@@ -24,7 +24,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" style="background-image: #614ffb">
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -32,7 +32,9 @@
 		<!-- Sidebar -->
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+			id="accordionSidebar"
+			style="background-image: linear-gradient(180deg, #614ffb 10%, #fdd7fc 97%)">
+			
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
@@ -71,6 +73,9 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/rols/list}">Roles</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
 							entidades bancarias</a>
 					</div>
@@ -78,7 +83,7 @@
 						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
 							métodos de pago</a>
 					</div>
-						<div class="bg-white py-2 collapse-inner rounded">
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/reserves/reports}">Reportes</a>
 					</div>
 				</div></li>
@@ -154,21 +159,21 @@
 
 					<div class="content container">
 						<div class="cinforeport">
-							<h3 class="title-content">Reporte de cantidad de reservas por mes</h3>
-							<p class="inforeport">Lista de la cantidad de reservas en los meses transcurridos</p>
+							<h3 class="title-content">Reporte de la cantidad de reservas por mes</h3>
+							<p class="inforeport">Lista las reservas con la cantidad por mes</p>
 						</div>
 						<table class="table">
 							<thead class="thead-light">
 								<tr>
-									<th scope="col" class="text-center">MES</th>
 									<th scope="col" class="text-center">Cantidad de reservas</th>
+									<th scope="col" class="text-center">Mes</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="rep : ${listaReservasTop}">
+								<tr th:each="rep : ${listaReservasMonth}">
 									<td class="text-center" th:text="${rep[0]}"></td>
-									<td class="text-center" th:text="${rep[1]}"></td>
-								</tr>
+ 									<td class="text-center" th:text="${rep[1]}"></td>
+ 								</tr>
 							</tbody>
 						</table>
 					</div>

@@ -24,7 +24,7 @@ public class Role implements Serializable {
 	private String rol;
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User user;
+	private Users user;
 
 	public Long getId() {
 		return id;
@@ -42,11 +42,11 @@ public class Role implements Serializable {
 		this.rol = rol;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 

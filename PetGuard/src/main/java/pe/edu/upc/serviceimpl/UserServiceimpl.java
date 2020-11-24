@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.edu.upc.entity.User;
+import pe.edu.upc.entity.Users;
 import pe.edu.upc.repository.UserRepository;
 import pe.edu.upc.serviceinterface.IUserService;
 
@@ -19,19 +19,19 @@ public class UserServiceimpl implements IUserService{
 
 
 	@Override
-	public List<User> list() {
+	public List<Users> list() {
 		// TODO Auto-generated method stub
 		return uR.findAll();
 	}
 
 	@Override
-	public List<User> findBynameUser(String username) {
+	public List<Users> findBynameUser(String username) {
 		// TODO Auto-generated method stub
 		return uR.findBynameUser(username);
 	}
 
 	@Override
-	public int insert(User user) {
+	public int insert(Users user) {
 		int rpta=uR.searchUser(user.getUsername());
 		if (rpta==0) {
 			uR.save(user);
@@ -47,7 +47,7 @@ public class UserServiceimpl implements IUserService{
 	}
 
 	@Override
-	public Optional<User> searchId(int idUser) {
+	public Optional<Users> searchId(int idUser) {
 
 		return uR.findById(idUser);
 	}

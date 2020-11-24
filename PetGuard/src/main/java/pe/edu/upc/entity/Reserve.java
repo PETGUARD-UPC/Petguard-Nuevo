@@ -30,9 +30,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Reserve {
 	
 //	@NotNull(message = "Se debe elegir un cliente!")
-	@ManyToOne
-	@JoinColumn(name = "idCustomer", nullable = false)
-	private Customer customer;
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "idCustomer", nullable = false) private Customer customer;
+	 */
 	
 	/*
 	 * //@NotNull(message = "Se debe elegir un cuidador!")
@@ -100,7 +102,7 @@ public class Reserve {
 
 
 
-	public Reserve(@NotNull(message = "Se debe elegir un cliente!") Customer customer,
+	public Reserve(
 			@NotNull(message = "Se debe elegir un cuidador!") Keeper keeper,
 			@NotNull(message = "Se debe elegir un método de pago!") Pay pay, int idReserve,
 			@Size(min = 13, max = 18, message = "Ingresar numero de tarjeta válido") String card,
@@ -109,7 +111,7 @@ public class Reserve {
 			@Min(value = 1, message = "El minimo de horas de reserva es 1") int hour, Integer price,
 			List<ReserveDetail> reserveDetails) {
 		super();
-		this.customer = customer;
+//		this.customer = customer;
 //		this.keeper = keeper;
 	//	this.pay = pay;
 		this.idReserve = idReserve;
@@ -133,17 +135,13 @@ public class Reserve {
 	}
 
 ////////////////////
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
+	/*
+	 * public Customer getCustomer() { return customer; }
+	 * 
+	 * 
+	 * 
+	 * public void setCustomer(Customer customer) { this.customer = customer; }
+	 */
 
 
 	/*

@@ -32,16 +32,17 @@
 		<!-- Sidebar -->
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+			id="accordionSidebar"
+			style="background-image: linear-gradient(180deg, #614ffb 10%, #fdd7fc 97%)">
 
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/rols/list}">
+				th:href="@{/categories/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">Pet Guard</div>
+				<div class="sidebar-brand-text mx-2">Programación en web</div>
 			</a>
 
 			<!-- Divider -->
@@ -57,7 +58,7 @@
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
+				<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">Clientes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -74,13 +75,18 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar entidades bancarias</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pays/list}">Gestionar métodos de pago</a>
-					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/rols/list}">Roles</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
+							entidades bancarias</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/pays/list}">Gestionar
+							métodos de pago</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reserves/reports}">Reportes</a>
 					</div>
 				</div></li>
 
@@ -142,7 +148,7 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="rols/index"
+								<a class="dropdown-item" href="categories/index"
 									data-toggle="modal" data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
@@ -160,7 +166,7 @@
 					<!-- Page Heading -->
 					<h1 class="h3 mb-4 text-gray-800">Roles</h1>
 
-					<a th:href="@{/rols/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+					<a th:href="@{/roles/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
 
 					<hr class="sidebar-divider">
 
@@ -175,7 +181,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="r: ${listaRoles}">
+							<tr th:each="r: ${listRoles}">
 								<td th:text="${r.id}"></td>
 								<td th:text="${r.rol}"></td>
 								<td th:text="${r.user.username}"></td>
@@ -234,7 +240,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/rols/list}">Cancel</button>
+							th:href="@{/categories/list}">Cancel</button>
 					</form>
 				</div>
 			</div>

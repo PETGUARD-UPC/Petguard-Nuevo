@@ -28,7 +28,7 @@ public class Keeper {
 
 	@ManyToOne
 	@JoinColumn(name = "idUser")
-	private User user;
+	private Users user;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,7 +81,7 @@ public class Keeper {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Keeper(User user, int idKeeper, String name, String lastname, String phone, String dni, String email,
+	public Keeper(Users user, int idKeeper, String name, String lastname, String phone, String dni, String email,
 			Date birthdate, int score, Double salary, int experience, String foto) {
 		super();
 		this.user = user;
@@ -98,11 +98,11 @@ public class Keeper {
 		this.setFoto(foto);
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 

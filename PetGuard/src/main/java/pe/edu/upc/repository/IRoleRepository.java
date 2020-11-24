@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.entity.Role;
 
 @Repository
-public interface RolRepository extends JpaRepository<Role, Integer>{
-
+public interface IRoleRepository extends JpaRepository<Role, Long> {
+	
 }

@@ -61,7 +61,19 @@ public class ReserveServiceImpl implements IReserveService{
 	
 	public List<String[]> reserveTop() {
 		// TODO Auto-generated method stub
-		return rR.reserveTop();
+		return rR.reserveMonth();
+	}
+
+	@Override
+	public List<String[]> reserveHour() {
+		// TODO Auto-generated method stub
+		return rR.reserveHour();
+	}
+
+	@Override
+	public List<String[]> reserveMonth() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -26,7 +26,7 @@ public class Customer {
 
 	@ManyToOne
 	@JoinColumn(name = "idUser")
-	private User user;
+	private Users user;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,7 +69,7 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(User user, int idCustomer, String name, String lastname, String phone, String email, Date birthdate,
+	public Customer(Users user, int idCustomer, String name, String lastname, String phone, String email, Date birthdate,
 			String dni, String foto) {
 		super();
 		this.user = user;
@@ -83,11 +83,11 @@ public class Customer {
 		this.setFoto(foto);
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 
