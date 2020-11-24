@@ -74,7 +74,7 @@
 							usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>
+						<a class="collapse-item" th:href="@{/rols/list}">Roles</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/bankings/list}">Gestionar
@@ -178,10 +178,10 @@
 							<label for="user" class="col-sm-2 col-form-label">Elegir
 								el usuario:</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{user.id}">
-									<option th:each="l: ${listaUsuarios}" th:value="${l.id}"
+								<select class="form-control" th:field="*{user.idUser}">
+									<option th:each="l: ${listaUsuarios}" th:value="${l.idUser}"
 										th:text="${l.username}"
-										th:selected="(${l.id} == *{user.id})"></option>
+										th:selected="(${l.idUser} == *{user.idUser})"></option>
 								</select>
 							</div>
 						</div>

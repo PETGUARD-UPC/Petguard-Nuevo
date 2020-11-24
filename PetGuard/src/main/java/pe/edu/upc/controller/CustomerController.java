@@ -74,10 +74,7 @@ public class CustomerController {
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
 				customer.setFoto(uniqueFilename);
 			}
-			
 		}
-		
-		
 
 		int rpta = cS.insert(customer);
 		if (rpta > 0) {

@@ -37,7 +37,7 @@ public class UserController {
 		model.addAttribute("user", new Users());
 		return "user/user";
 	}
-	
+
 	@PostMapping("/save")
 	public String saveUser(@Valid Users user, BindingResult result, Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
