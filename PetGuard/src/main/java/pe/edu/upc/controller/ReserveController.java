@@ -46,6 +46,12 @@ public class ReserveController {
 	@Autowired
 	private IReserveDetailService idrS;
 	
+	@RequestMapping("/reports")
+	public String Report()
+	{
+		return "reports/reports";
+	}
+	
 	@GetMapping("/new")
 	public String newReserve(Model model) {
 		

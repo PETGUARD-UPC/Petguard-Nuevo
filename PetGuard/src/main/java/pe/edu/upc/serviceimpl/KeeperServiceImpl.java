@@ -60,4 +60,10 @@ public class KeeperServiceImpl implements IKeeperService {
 		return kR.findById(idkeeper);
 	}
 
+	@Override
+	public List<String[]> keeperTop() {
+		// TODO Auto-generated method stub
+		return kR.keeperTop();
+	}
+
 }

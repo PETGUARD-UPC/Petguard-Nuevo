@@ -18,6 +18,6 @@ public interface IKeeperService {
 	List<Keeper>findBynameKeeper(String nameKeeper);
 	
 	Optional<Keeper> searchId(int idKeeper);
-
+	public List<String[]> keeperTop();
 
 }
