@@ -9,18 +9,18 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
 </head>
-<body>
+<body style="background-image: url('/img/fondo.jpeg');">
 
-	<div class="container" align="center">
+	<div class="container" align="center" style="margin: 0 auto;">
 		<div class="card border-light text-center">
-			<div class="card-body" align="center">
+			<div class="card" align="center">
 				<form th:action="@{/login}" method="post">
 
 					<div class="col-sm-6">
-						<img th:src="@{/img/upc.png}" height="35%" width="35%" />
+						<img th:src="@{/img/logopet.png}" height="35%" width="35%" />
 					</div>
 					<div class="col-sm-6">
-						<p class="btn btn-lg btn-danger btn-block">Programación en Web</p>
+						<p class="btn btn-lg btn-light btn-block">Petguard</p>
 					</div>
 
 					<div class="col-sm-6">
@@ -34,13 +34,17 @@
 					</div>
 
 					<div class="col-sm-6">
-						<input type="submit" class="btn btn-lg btn-danger btn-block"
-							value="Ingresar" />
+						<input type="submit" class="btn btn-lg btn-light btn-block"
+							value="Ingresar" style="margin: 0 auto;" />
 					</div>
 
-				</form>
-				
 
+				</form>
+				<div class="col-sm-6">
+					<input type="submit" class="btn btn-lg btn-light btn-block"
+						value="Registrar usuario" href="/users/new"
+						style="margin: 0 auto;" />
+				</div>
 			</div>
 		</div>
 		<div align="center" class="col-sm-6">
