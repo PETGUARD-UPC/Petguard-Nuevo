@@ -17,5 +17,7 @@ public interface IReserveService {
 	List<Reserve> listar();
 	public void delete(int idReserve);
 	Optional<Reserve>searchId(int idReserve);
+	
+	public List<String[]> reserveTop();
 
 }

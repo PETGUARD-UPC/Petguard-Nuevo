@@ -54,7 +54,7 @@
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
+						<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/customers/list}">Clientes</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -148,38 +148,31 @@
 
 				</nav>
 				<!-- End of Topbar -->
-				<div class="content container">
-					<div class="cinforeport">
-						<h3 class="title-content">Reportes</h3>
-					</div>
-				</div>
+
 
 				<div class="bg row">
 
-
 					<div class="content container">
-						<div class="creportes d-flex justify-content-around">
-							<div class="cproyecto ">
-								<h3 class="tproyecto ">Reporte de la cantidad de reservas por un mes</h3>
-								<p class="dproyecto "></p>
-								<a class="lnikp " th:href="@{/reserves/reporte1}">Ver
-									Reporte</a>
-							</div>
-							<div class="cproyecto ">
-								<h3 class="tproyecto ">Reporte de cuidadores con mayor demanda</h3>
-								<p class="dproyecto ">Lista los cuidadores con mayor demanda por parte de los clientes</p>
-								<a class="lnikp " th:href="@{/keepers/reporte2}">Ver
-									Reporte</a>
-							</div>
-							<div class="cproyecto ">
-								<h3 class="tproyecto ">Reporte del mayor número de horas solicitadas</h3>
-								<p class="dproyecto "></p>
-								<a class="lnikp " th:href="@{/pet/reporte3}">Ver
-									Reporte</a>
-							</div>
+						<div class="cinforeport">
+							<h3 class="title-content">Reporte de cantidad de reservas por mes</h3>
+							<p class="inforeport">Lista de la cantidad de reservas en los meses transcurridos</p>
 						</div>
-
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col" class="text-center">MES</th>
+									<th scope="col" class="text-center">Cantidad de reservas</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="rep : ${listaReservasTop}">
+									<td class="text-center" th:text="${rep[0]}"></td>
+									<td class="text-center" th:text="${rep[1]}"></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
+
 				</div>
 
 				<!-- Footer -->
